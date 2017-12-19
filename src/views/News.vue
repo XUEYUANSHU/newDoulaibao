@@ -1,36 +1,6 @@
 <template>
     <div class="products">
-      <div class="listType">
-        <ul>
-            <li :class=" (!activeName)? 'activeName': ''"  @click="selected()"> <img src="../assets/img/全部产品页-06.png" alt=""> </li>
-            <li :class=" activeName== '0'? 'activeName': ''"  @click="selected('0')"><img src="../assets/img/全部产品页-07.png" alt=""></li>
-            <li :class=" activeName== '1'? 'activeName': ''"  @click="selected('1')"><img src="../assets/img/全部产品页-08.png" alt=""></li>
-            <li :class=" activeName== '2'? 'activeName': ''"  @click="selected('2')"><img src="../assets/img/全部产品页-09.png" alt=""></li>
-        </ul>
-      </div>
-      <div  class="chooseType">
-      <span class="close-text">关闭</span>
-        <div @click="chooseType" ref="slider1" id="slider1" class="close1">
-                <div ref="slider2" id="slider2" class="close2"></div>
-        </div>
-      </div>
-      <div class="productList">
-        <ul>
-            <li   v-for="(item, idx) in list" :key="idx">
-                <div class="list-content">
-                    <div class="text-content">
-                        <div class="title">{{item.productName}}</div>
-                        <div class="desc">{{item.productIntro}}</div>
-                    </div>
-                    <div class="number-content">
-                        <div class="price">{{'¥' + item.productMinPrice + '起'}}<br></div>
-                        <div class="percent" v-if="showPercenter">{{+ item.commissionRate + '%奖励'}}</div>
-                    </div>
-                </div>
-            </li>
-        </ul>
-      </div>
-     <ele_footer  :activeName="2"></ele_footer>
+       <h2>消息中心</h2>
     </div>
 
 </template>
@@ -43,14 +13,9 @@ import router from "@/router/index";
 import "swiper/dist/css/swiper.css";
 import { swiper, swiperSlide } from "vue-awesome-swiper";
 export default {
-  data() {
-    return {
-      activeName: "",
-      showPercenter: true,
-      list: []
-    };
+  prop: {
+    //        option:Object
   },
-
   components: {
     swiper,
     swiperSlide,
@@ -62,46 +27,38 @@ export default {
       url: api.allProductIndex,
       data: {
         userId: 1,
-        productType: ""
+        productType: 1
       }
     })
       .then(res => {
-        console.log(this.list, "请求到的产品数据", res.data);
-        this.list = Object.assign([], res.data.productList);
-        console.log(this.list, "请求到的产品数据", res.data);
+        console.log("请求到的产品数据", res.code);
       })
       .catch(rtn => {
         console.log(rtn);
       });
   },
-  methods: {
-    selected(type) {
-      this.activeName = type;
-      console.log("选择的险种类型", type);
-      axios({
-        method: "POST",
-        url: api.allProductIndex,
-        data: {
-          userId: 1,
-          productType: this.activeName
+  data() {
+    return {
+      bannerList: [],
+      swiperOption: {
+        autoplay: {
+          delay: 5000,
+          disableOnInteraction: false
+        },
+        pagination: {
+          el: ".swiper-pagination",
+          clickable: true
         }
-      })
-        .then(res => {
-          console.log(this.list, "请求到的产品数据", res.data);
-          this.list = Object.assign([], res.data.productList);
-          console.log(this.list, "请求到的产品数据", res.data);
-        })
-        .catch(rtn => {
-          console.log(rtn);
-        });
-    },
+      }
+    };
+  },
+  methods: {
     chooseType() {
-      this.showPercenter = !this.showPercenter;
       this.$refs["slider1"].className =
         this.$refs["slider1"].className == "close1" ? "open1" : "close1";
       this.$refs["slider2"].className =
         this.$refs["slider2"].className == "close2" ? "open2" : "close2";
-      console.log(this.$refs["slider1"].className, "类名");
+      console.log("选择全部或者不选");
     }
   },
   //    data: ,
@@ -121,7 +78,7 @@ export default {
   transform: translate(-50%, 0);
   border-left: 0.14rem solid transparent;
   border-right: 0.14rem solid transparent;
-  border-top: 0.14rem solid #f25f23;
+  border-top: 0.28rem solid #f25f23;
 }
 .listType {
   height: 1.34rem;
@@ -157,7 +114,6 @@ export default {
     right: 0.7rem;
     top: 50%;
     transform: translate(-50%, -50%);
-    color: #7B7A7A;
   }
   #slider1 {
     width: 0.52rem;
@@ -201,7 +157,7 @@ export default {
     box-sizing: border-box;
     height: 1.82rem;
     padding: 0.35rem;
-    border-bottom: 2px solid #f3f0f0;
+    border: 1px solid yellow;
     .list-content {
       display: flex;
       width: 100%;
@@ -209,15 +165,13 @@ export default {
       .text-content {
         flex: 1;
         height: 100%;
-        // border: 1px solid blue;
+        border: 1px solid blue;
         .title {
           padding-bottom: 0.25rem;
           font-size: 0.32rem;
-          color: #707070;
           font-weight: 600;
         }
         .desc {
-          color: #999999;
           font-size: 0.24rem;
           line-height: 0.35rem;
         }
@@ -229,6 +183,7 @@ export default {
         font-weight: 600;
         text-align: right;
         color: #f25f23;
+        border: 1px solid red;
       }
     }
   }
