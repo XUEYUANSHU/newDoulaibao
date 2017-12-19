@@ -62,7 +62,7 @@ export default {
       url: api.allProductIndex,
       data: {
         userId: 1,
-        productType: ''
+        productType: ""
       }
     })
       .then(res => {
@@ -76,29 +76,32 @@ export default {
   },
   methods: {
     selected(type) {
-        this.activeName = type;
-        console.log('选择的险种类型', type);
-         axios({
-      method: "POST",
-      url: api.allProductIndex,
-      data: {
-        userId: 1,
-        productType: this.activeName
-      }
-    })
-      .then(res => {
-        console.log(this.list, "请求到的产品数据", res.data);
-        this.list = Object.assign([], res.data.productList);
-        console.log(this.list, "请求到的产品数据", res.data);
+      this.activeName = type;
+      console.log("选择的险种类型", type);
+      axios({
+        method: "POST",
+        url: api.allProductIndex,
+        data: {
+          userId: 1,
+          productType: this.activeName
+        }
       })
-      .catch(rtn => {
-        console.log(rtn);
-      });
+        .then(res => {
+          console.log(this.list, "请求到的产品数据", res.data);
+          this.list = Object.assign([], res.data.productList);
+          console.log(this.list, "请求到的产品数据", res.data);
+        })
+        .catch(rtn => {
+          console.log(rtn);
+        });
     },
     chooseType() {
       this.showPercenter = !this.showPercenter;
-      this.$refs["slider1"].className == "close1" ? "open1" : "close1";
-      this.$refs["slider2"].className == "close2" ? "open2" : "close2";
+      this.$refs["slider1"].className =
+        this.$refs["slider1"].className == "close1" ? "open1" : "close1";
+      this.$refs["slider2"].className =
+        this.$refs["slider2"].className == "close2" ? "open2" : "close2";
+      console.log(this.$refs["slider1"].className, "类名");
     }
   },
   //    data: ,
