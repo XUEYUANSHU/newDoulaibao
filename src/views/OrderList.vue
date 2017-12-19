@@ -22,9 +22,11 @@
                         <span class="status">核保中</span>
                     </div>
                     <div class="orderInfo">
-                        <div><span class="text">被保险人:</span><span>李某某</span></div>
-                        <div><span class="text">被投保人:</span><span>李某某</span></div>
-                        <div><span class="text">世间:</span><span>2017-10-24 19:00</span></div>
+                        <div><span class="text">总价 : </span><span>李某某</span></div>
+                        <div><span class="text">份数 : </span><span>李某某</span></div>
+                        <div><span class="text">购买人 : </span><span>李某某</span></div>
+                        <div><span class="text">被投保人 : </span><span>李某某</span></div>
+                        <div><span class="text">时间 : </span><span>2017-10-24 19:00</span></div>
                     </div>
                 </li>
             </ul>
@@ -97,7 +99,7 @@ export default {
         box-sizing: border-box;
         height: 1.76rem;
         padding: 0.2rem 0 0.28rem 0;
-        border: 1px solid red;
+       
         .insuranceType{
             display: flex;
             width: 3.6rem;
@@ -106,7 +108,7 @@ export default {
             font-size: 0.24rem;
             color: #fff;
             border-radius: 0.34rem;
-            border: 0.01rem solid red;
+         
             background: #E68509;
             span{
                 flex: 1;
@@ -119,12 +121,12 @@ export default {
             height: 0.42rem;
             margin-top: 0.22rem;
             font-size: 0.28rem;
-            border: 0.01rem solid red;
              span{
                 flex: 1;
                 text-align: center;
                 line-height: 0.42rem;
-                border-left: 1px solid #000;
+                color: #999999 ;
+                border-left: 1px solid #F0EEEE;
             }
         }  
     }
@@ -138,12 +140,13 @@ export default {
            padding: 0 0.24rem;
            font-size: 0.28rem;
            color: #FC8D00;
+            font-size: 0.28rem;
             .orderHeader{
                 display: flex;
                 justify-content: center;
                 align-items: center;
                 padding: 0.16rem 0;
-                border-bottom: 1px solid #000;
+                border-bottom: 1px solid #F0EEEE;
                 img{
                     width: 1.6rem;
                     height: 0.8rem;
@@ -156,6 +159,7 @@ export default {
                 }
                 .status{
                     flex: 1.5;
+                    font-size: 0.24rem;
                 }
             }
             .orderInfo{
@@ -164,7 +168,11 @@ export default {
                 padding: 0.2rem 0;
                 line-height: 0.32rem;   
                 div{
-                    padding: 0.02rem 0;
+                    // padding: 0.06rem 0;
+                    line-height: 0.48rem;
+                    .text{
+                        color: #333333;
+                    }
                 }
             }
        }
