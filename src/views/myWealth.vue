@@ -1,7 +1,7 @@
 <template>
     <div class="wrap">
         <div class="header">
-            <p>累计收入（元）<i class="icon-eye"></i></p>
+            <p>累计收入（元）<i class="icon-eye" @click="pushRoute('history')"></i></p>
             <p>0.00</p>
             <p><span class="cash">提现</span></p>
         </div>
@@ -40,13 +40,17 @@
         </ul>
     </div>
         <div class="item-detail-bar">
-            <p class="item-history-detail">历史收支明细</p>
+            <p class="item-history-detail" @click="pushRoute(history)">历史收支明细</p>
         </div>
     </div>
 </template>
 <script>
     export  default {
-
+        methods: {
+            pushRoute(param) {
+                this.$router.push("" + param + "");
+            }
+        }
     }
 </script>
 <style lang="less" scoped="scoped">
