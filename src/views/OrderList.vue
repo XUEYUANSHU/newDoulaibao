@@ -56,7 +56,7 @@ export default {
                     status: 0,
                     type: 2                }
             }).then((res) => {
-                console.log("请求到的订单列表数据", res.code)
+                console.log("请求到的订单列表数据", res.data)
           
             }).catch(rtn => {
                 console.log(rtn)

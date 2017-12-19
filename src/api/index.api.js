@@ -163,7 +163,7 @@ api.sms = baseurl + "/sms/send";
  userId 当前用户userId
  请求时写入data{}中
  */
-api.team = baseurl + "/notice/list?userId=";
+api.list = baseurl + "/notice/list?userId=";
 
 /**
  * 团队详情

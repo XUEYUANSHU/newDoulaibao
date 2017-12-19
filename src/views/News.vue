@@ -1,192 +1,181 @@
 <template>
-    <div class="products">
-       <h2>消息中心</h2>
+    <div>
+        <div class="header">
+            <div class="insuranceType">
+                <span>车险</span>
+                <span class="activeType">个险</span>
+                <span>理财</span></div>
+            <div class="insuranceStatus">
+                <span>待支付</span>
+                <span>已支付</span>
+                <span>即将到期</span>
+                <span>待支已失效</span>
+            </div>
+        </div>
+        <div class="spacing"></div>
+        <div class="orderWraper">
+            <ul>
+                <li class="orderList">
+                    <div class="orderHeader">
+                        <img src="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=49366202,632101467&fm=27&gp=0.jpg" alt="">
+                        <span class="insuranceTitle">保险名称保险名称保险名称保险名称保险名称</span>
+                        <span class="status">核保中</span>
+                    </div>
+                    <div class="orderInfo">
+                        <div><span class="text">总价 : </span><span>李某某</span></div>
+                        <div><span class="text">份数 : </span><span>李某某</span></div>
+                        <div><span class="text">购买人 : </span><span>李某某</span></div>
+                        <div><span class="text">被投保人 : </span><span>李某某</span></div>
+                        <div><span class="text">时间 : </span><span>2017-10-24 19:00</span></div>
+                    </div>
+                </li>
+            </ul>
+        </div>
     </div>
-
 </template>
 <script>
-import axios from "axios";
-import footer from "@/components/footer.vue";
+import axios from 'axios'
 // import axios from '@/api/my-axios.js'
-import api from "@/api/index.api";
-import router from "@/router/index";
-import "swiper/dist/css/swiper.css";
-import { swiper, swiperSlide } from "vue-awesome-swiper";
+import api from '@/api/index.api'
+import router from '@/router/index'
+import 'swiper/dist/css/swiper.css'
+import { swiper, swiperSlide } from 'vue-awesome-swiper'
 export default {
-  prop: {
-    //        option:Object
+    prop:{
+ 
+    },
+    components: {
+      
+    },
+    mounted(){
+        axios({
+                method: 'POST',
+                url:api.list,
+                data: {
+                    userId:1,
+                    type: 1
+                                }
+            }).then((res) => {
+                console.log("新闻通知列表", res.data)
+          
+            }).catch(rtn => {
+                console.log(rtn)
+            });
+   
+    },
+    data(){
+            return{
+                bannerList:[
+
+                ],
+                swiperOption: {
+                    autoplay: {
+                        delay: 5000,
+                        disableOnInteraction: false
+                    },
+                    pagination: {
+                        el: '.swiper-pagination',
+                        clickable: true,
+
+                    }
+                }
+            }
+    },
+      methods: {
+          
   },
-  components: {
-    swiper,
-    swiperSlide,
-    ele_footer: footer
-  },
-  mounted() {
-    axios({
-      method: "POST",
-      url: api.allProductIndex,
-      data: {
-        userId: 1,
-        productType: 1
-      }
-    })
-      .then(res => {
-        console.log("请求到的产品数据", res.code);
-      })
-      .catch(rtn => {
-        console.log(rtn);
-      });
-  },
-  data() {
-    return {
-      bannerList: [],
-      swiperOption: {
-        autoplay: {
-          delay: 5000,
-          disableOnInteraction: false
-        },
-        pagination: {
-          el: ".swiper-pagination",
-          clickable: true
-        }
-      }
-    };
-  },
-  methods: {
-    chooseType() {
-      this.$refs["slider1"].className =
-        this.$refs["slider1"].className == "close1" ? "open1" : "close1";
-      this.$refs["slider2"].className =
-        this.$refs["slider2"].className == "close2" ? "open2" : "close2";
-      console.log("选择全部或者不选");
+ 
+    created() {//budgetListuserId
     }
-  },
-  //    data: ,
-  created() {
-    //budgetListuserId
-  }
-};
+ 
+}
 </script>
  
-<style lang="less" scoped>
-.activeName::before {
-  content: "";
-  position: absolute;
-  left: 50%;
-  top: 100%;
-  z-index: 9;
-  transform: translate(-50%, 0);
-  border-left: 0.14rem solid transparent;
-  border-right: 0.14rem solid transparent;
-  border-top: 0.28rem solid #f25f23;
-}
-.listType {
-  height: 1.34rem;
-  background-color: #f25f23;
-  font-size: 13px;
-  border: 1px solid red;
-  ul {
-    display: flex;
-    width: 100%;
-    height: 100%;
-    li {
-      position: relative;
-      flex: 1;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      img {
-        width: 0.54rem;
-        height: 0.88rem;
-      }
+<style lang="less"> 
+    .activeType{
+           background: #FC8D00;
     }
-  }
-}
-.chooseType {
-  position: relative;
-  width: 100%;
-  height: 0.68rem;
-  color: #4a4a4a;
-  text-align: right;
-  background-color: #f3f0f0;
-  .close-text {
-    position: absolute;
-    right: 0.7rem;
-    top: 50%;
-    transform: translate(-50%, -50%);
-  }
-  #slider1 {
-    width: 0.52rem;
-    height: 0.32rem;
-    border-radius: 40%;
-    transition: all 0.5s;
-    position: absolute;
-    right: 0.1rem;
-    top: 50%;
-    transform: translate(-50%, -50%);
-  }
-  #slider2 {
-    width: 0.26rem;
-    height: 0.26rem;
-    transition: all 0.5s;
-    border-radius: 50%;
-    position: absolute;
-    background: white;
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.4);
-  }
-  .open1 {
-    background: rgba(0, 184, 0, 0.8);
-  }
-  .open2 {
-    top: 2px;
-    right: 1px;
-  }
-  .close1 {
-    background: rgba(144, 144, 144, 0.4);
-    // border:3px solid rgba(0,0,0,0.15);
-    border-left: transparent;
-  }
-  .close2 {
-    left: 0px;
-    top: 0px;
-    border: 2px solid rgba(0, 0, 0, 0.1);
-  }
-}
-.productList {
-  li {
-    box-sizing: border-box;
-    height: 1.82rem;
-    padding: 0.35rem;
-    border: 1px solid yellow;
-    .list-content {
-      display: flex;
-      width: 100%;
-      height: 100%;
-      .text-content {
-        flex: 1;
-        height: 100%;
-        border: 1px solid blue;
-        .title {
-          padding-bottom: 0.25rem;
-          font-size: 0.32rem;
-          font-weight: 600;
-        }
-        .desc {
-          font-size: 0.24rem;
-          line-height: 0.35rem;
-        }
-      }
-      .number-content {
-        width: 2rem;
-        padding-top: 0.25rem;
-        font-size: 0.32rem;
-        font-weight: 600;
-        text-align: right;
-        color: #f25f23;
-        border: 1px solid red;
-      }
+    .header{
+        box-sizing: border-box;
+        height: 1.76rem;
+        padding: 0.2rem 0 0.28rem 0;
+       
+        .insuranceType{
+            display: flex;
+            width: 3.6rem;
+            height: 0.64rem;
+            margin:0 auto;
+            font-size: 0.24rem;
+            color: #fff;
+            border-radius: 0.34rem;
+         
+            background: #E68509;
+            span{
+                flex: 1;
+                text-align: center;
+                line-height: 0.64rem;
+            }
+        }  
+        .insuranceStatus{
+            display: flex;
+            height: 0.42rem;
+            margin-top: 0.22rem;
+            font-size: 0.28rem;
+             span{
+                flex: 1;
+                text-align: center;
+                line-height: 0.42rem;
+                color: #999999 ;
+                border-left: 1px solid #F0EEEE;
+            }
+        }  
     }
-  }
-}
+    .spacing{
+        height: 0.12rem;
+        background: #f2f2f2
+    }
+    .orderWraper{
+        
+       .orderList{
+           padding: 0 0.24rem;
+           font-size: 0.28rem;
+           color: #FC8D00;
+            font-size: 0.28rem;
+            .orderHeader{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                padding: 0.16rem 0;
+                border-bottom: 1px solid #F0EEEE;
+                img{
+                    width: 1.6rem;
+                    height: 0.8rem;
+                }
+                .insuranceTitle{
+                    flex: 6;
+                    box-sizing: border-box;
+                    width: 2.35rem;
+                    padding:0 0.15rem;
+                }
+                .status{
+                    flex: 1.5;
+                    font-size: 0.24rem;
+                }
+            }
+            .orderInfo{
+                box-sizing: border-box;
+                height: 1.72rem;
+                padding: 0.2rem 0;
+                line-height: 0.32rem;   
+                div{
+                    // padding: 0.06rem 0;
+                    line-height: 0.48rem;
+                    .text{
+                        color: #333333;
+                    }
+                }
+            }
+       }
+    }
 </style>
  
