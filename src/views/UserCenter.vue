@@ -27,7 +27,7 @@
                         <span>我的财富</span>
                         <i class="user-icon-right"></i>
                     </li>
-                    <li>
+                    <li @click="pushRoute('OrderList')">
                         <i class="user-icon-left icon-order"></i>
                         <span>我的订单</span>
                         <i class="user-icon-right"></i>
@@ -42,7 +42,7 @@
                         <span>我是团员</span>
                         <i class="user-icon-right"></i>
                     </li>
-                    <li>
+                    <li  @click="pushRoute('News')">
                         <i class="user-icon-left icon-msg"></i>
                         <span>消息中心</span>
                         <i class="user-icon-right"></i>
@@ -92,6 +92,7 @@ export default {
   },
   methods: {
     pushRoute(param) {
+        console.log(param)
       this.$router.push("" + param + "");
     }
   }

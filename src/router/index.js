@@ -10,6 +10,7 @@ import OrderList from "@/views/OrderList"
 import myWealth from "@/views/myWealth"
 import userProfile from '@/views/userProfile'
 import editUserName from '@/views/editUserName'
+import News from '@/views/News'
 // import AllProduct from "@/views/index/AllProduct"
 // import ImTeam from "@/views/index/ImTeam"
 // //JoinTeam
@@ -61,6 +62,11 @@ var routeData = [{
     path: '/myWealth',
     name: 'myWealth',
     component: myWealth
+},
+{
+    path: '/News',
+    name: 'News',
+    component: News
 },
 {
     path: '/userProfile',
