@@ -10,6 +10,7 @@ import OrderList from "@/views/OrderList"
 import myWealth from "@/views/myWealth"
 import userProfile from '@/views/userProfile'
 import editUserName from '@/views/editUserName'
+import history from '@/views/history'
 // import AllProduct from "@/views/index/AllProduct"
 // import ImTeam from "@/views/index/ImTeam"
 // //JoinTeam
@@ -62,7 +63,12 @@ var routeData = [{
     name: 'myWealth',
     component: myWealth
 },
-{
+    {
+        path: '/history',
+        name: 'history',
+        component: history
+    },
+    {
     path: '/userProfile',
     name: 'userProfile',
     component: userProfile
