@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="userCenter">
       <h1>个人中心</h1>
         <div class="container">
             <div class="header">
@@ -57,176 +57,184 @@
 
 </template>
 <script>
-import footer from '@/components/footer.vue'
-import axios from '@/api/axios'
-import api from '@/api/index.api'
-import router from '@/router/index'
-import 'swiper/dist/css/swiper.css'
-import { swiper, swiperSlide } from 'vue-awesome-swiper'
+import footer from "@/components/footer.vue";
+import axios from "@/api/axios";
+import api from "@/api/index.api";
+import router from "@/router/index";
+import "swiper/dist/css/swiper.css";
+import { swiper, swiperSlide } from "vue-awesome-swiper";
 export default {
-    prop:{
-//        option:Object
-    },
-    components: {
-        swiper,
-        swiperSlide,
-        'ele_footer':footer
-    },
-    data(){
-            return{
-                bannerList:[
-
-                ],
-                swiperOption: {
-                    autoplay: {
-                        delay: 5000,
-                        disableOnInteraction: false
-                    },
-                    pagination: {
-                        el: '.swiper-pagination',
-                        clickable: true,
-
-                    }
-                }
-            }
-    },
-//    data: ,
-    created() {//budgetListuserId
-    },
-    methods:{
-        pushRoute(param){
-            this.$router.push(""+param+"")
+  prop: {
+    //        option:Object
+  },
+  components: {
+    swiper,
+    swiperSlide,
+    ele_footer: footer
+  },
+  data() {
+    return {
+      bannerList: [],
+      swiperOption: {
+        autoplay: {
+          delay: 5000,
+          disableOnInteraction: false
+        },
+        pagination: {
+          el: ".swiper-pagination",
+          clickable: true
         }
+      }
+    };
+  },
+  //    data: ,
+  created() {
+    //budgetListuserId
+  },
+  methods: {
+    pushRoute(param) {
+      this.$router.push("" + param + "");
     }
-
-}
+  }
+};
 </script>
-<style lang="less" scoped="scoped">
-    body{
-        background-color: #f2f2f2!important;
-        height:100%!important;
-        width:100%;
+<style lang="less" >
+body {
+  background-color: #f2f2f2 !important;
+  height: 100% !important;
+  width: 100%;
+}
+.header {
+  width: 7.5rem;
+  height: 3.84rem;
+  background-color: #009944;
+  display: flex;
+  text-align: center;
+  .item-left {
+    flex: 1;
+    padding: 0.24rem 0 0.18rem 0;
+    .item-user-msg {
+      border-right: 1px solid #fff;
+      height: 100%;
+      text-align: center;
+      img {
+        width: 1.26rem;
+        height: 1.26rem;
+        -webkit-border-radius: 50%;
+        -moz-border-radius: 50%;
+        border-radius: 50%;
+        margin: 0.5rem auto 0.22rem;
+      }
+      span {
+        display: block;
+        color: #fff;
+        font-size: 0.3rem;
+        line-height: 0.44rem;
+      }
     }
-    .header{
-        width:7.5rem;
-        height:3.84rem;
-        background-color: #009944;
+  }
+  .item-right {
+    flex: 1;
+    padding: 0.24rem 0 0.18rem 0;
+    .item-detail {
+      padding: 0.5rem 0.32rem;
+      color: #fff;
+      p {
+        font-size: 0.32rem;
         display: flex;
-        text-align: center;
-        .item-left{
-            flex:1;
-            padding: .24rem 0 .18rem 0;
-            .item-user-msg{
-                border-right:1px solid #fff;
-                height: 100%;
-                text-align: center;
-                img{
-                    width:1.26rem;
-                    height:1.26rem;
-                    -webkit-border-radius: 50%;
-                    -moz-border-radius: 50%;
-                    border-radius: 50%;
-                    margin: .5rem auto .22rem;
-                }
-                span{
-                    display: block;
-                    color: #fff;
-                    font-size: .3rem;
-                    line-height: .44rem;
-                }
-            }
+        align-items: center;
+        .icon-total {
+          background: url("../assets/img/user-icon-total.png") no-repeat center;
+          background-size: cover;
+          width: 0.48rem;
+          height: 0.48rem;
+          display: inline-block;
         }
-        .item-right{
-            flex:1;
-            padding: .24rem 0 .18rem 0;
-            .item-detail{
-                padding: .5rem .32rem;
-                color: #fff;
-                p{
-                    font-size: .32rem;
-                    display: flex;
-                    align-items: center;
-                    .icon-total{
-                        background: url("../assets/img/user-icon-total.png") no-repeat center;
-                        background-size: cover;
-                        width:.48rem;
-                        height:.48rem;
-                        display: inline-block;
-                    }
-                    span{
-                        margin-left: .1rem;
-                    }
-                }
-                p.total-money{
-                    font-size: .6rem;
-                    line-height: .9rem;
-                    /* padding-left: 66rem; */
-                    padding-left: .33rem;
-
-                }
-                .item-cash{
-                    padding: .4rem 0;
-                    span{
-                        line-height: .4rem;
-                        font-size: .28rem;
-                        margin-right: .3rem;
-                    }
-                }
-            }
+        span {
+          margin-left: 0.1rem;
         }
+      }
+      p.total-money {
+        font-size: 0.6rem;
+        line-height: 0.9rem;
+        /* padding-left: 66rem; */
+        padding-left: 0.33rem;
+      }
+      .item-cash {
+        padding: 0.4rem 0;
+        span {
+          line-height: 0.4rem;
+          font-size: 0.28rem;
+          margin-right: 0.3rem;
+        }
+      }
     }
-    .item-target{
-        /*margin-top: .2rem;*/
-        ul{
-            background-color: #fff;
-            li{
-                padding: .2rem .2rem .2rem .4rem;
-                font-size: .3rem;
-                color: #262626;
-                display: flex;
-                align-items: center;
-                border-bottom: 1px solid #f2f2f2;
-                span{
-                    margin-left: .2rem;
-                    flex:1;
-                }
-                i.user-icon-left{
-                    width:.36rem;
-                    height:.34rem;
-                }
-                i.user-icon-right{
-                    background: url("../assets/img/user-icon-more.png") no-repeat center;
-                    width:.18rem;
-                    height:.36rem;
-                    background-size: cover;
-                }
-                i.icon-wealth{
-                    background: url("../assets/img/user-icon-total.png") no-repeat center;
-                    background-size: cover;
-                }
+  }
+}
+.item-target {
+  /*margin-top: .2rem;*/
+  ul {
+    background-color: #fff;
+    li {
+      padding: 0.2rem 0.2rem 0.2rem 0.4rem;
+      font-size: 0.3rem;
+      color: #262626;
+      display: flex;
+      align-items: center;
+      border-bottom: 1px solid #f2f2f2;
+      span {
+        margin-left: 0.2rem;
+        flex: 1;
+      }
+      i.user-icon-left {
+        width: 0.36rem;
+        height: 0.34rem;
+      }
+      i.user-icon-right {
+        background: url("../assets/img/user-icon-more.png") no-repeat center;
+        width: 0.18rem;
+        height: 0.36rem;
+        background-size: cover;
+      }
+      i.icon-wealth {
+        background: url("../assets/img/user-icon-total.png") no-repeat center;
+        background-size: cover;
+      }
 
-                i.icon-order{
-                    background: url("../assets/img/user-icon-order (2).png") no-repeat center;
-                    background-size: cover;
-                }
-                i.icon-leader{
-                    background: url("../assets/img/user-icon-member.png") no-repeat center;
-                    background-size: cover;
-                }
-                i.icon-member{
-                    background: url("../assets/img/user-icon-member.png") no-repeat center;
-                    background-size: cover;
-                }
-                i.icon-msg{
-                    background: url("../assets/img/user-icon-msg.png") no-repeat center;
-                    background-size: cover;
-                }
-
-            }
-            li:nth-child(1){
-                border-bottom: .2rem solid #f2f2f2;
-                border-top: .2rem solid #f2f2f2;
-            }
-        }
+      i.icon-order {
+        background: url("../assets/img/user-icon-order (2).png") no-repeat
+          center;
+        background-size: cover;
+      }
+      i.icon-leader {
+        background: url("../assets/img/user-icon-member.png") no-repeat center;
+        background-size: cover;
+      }
+      i.icon-member {
+        background: url("../assets/img/user-icon-member.png") no-repeat center;
+        background-size: cover;
+      }
+      i.icon-msg {
+        background: url("../assets/img/user-icon-msg.png") no-repeat center;
+        background-size: cover;
+      }
     }
+    li:nth-child(1) {
+      border-bottom: 0.2rem solid #f2f2f2;
+      border-top: 0.2rem solid #f2f2f2;
+    }
+  }
+}
+.userCenter {
+  .footer {
+    ul {
+      li {
+        color: #3d3d3d;
+        &:nth-child(3) {
+          color: #e73e45;
+        }
+      }
+    }
+  }
+}
 </style>

@@ -1,7 +1,7 @@
 <template>
         <div class="footer">
             <ul>
-                <li@click="goUrl(1)">
+                <li @click="goUrl(1)">
                     <i class="iconfont">&#xe621;</i>
                     <span>首页</span>
                 </li>
@@ -18,6 +18,11 @@
 </template>
 <script>
     export default {
+        data(){
+            return{
+                activeName: 1,
+            }
+        },
   methods: {
     goUrl(index) {
         switch (index) {
@@ -42,6 +47,9 @@
     }
 </script>
 <style lang="less">
+    .activeName{
+        
+    }
     .footer{
         position: fixed;
         bottom:0;
