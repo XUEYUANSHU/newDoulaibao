@@ -20,9 +20,9 @@
 export default {
   props: {
     activeName: {
-      type: String,
+      type: Number,
       default() {
-        return "1";
+        return 1;
       }
     }
   },
