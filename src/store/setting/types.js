@@ -1,0 +1,5 @@
+export const CHANGE_GLOBAL = 'CHANGE_GLOBAL';
+export const CHANGE_SESSIONID = 'CHANGE_SESSIONID';
+
+
+

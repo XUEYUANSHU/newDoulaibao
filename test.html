@@ -1,0 +1,58 @@
+!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>apple button</title>
+    <style>
+    #slider1{
+        width: 170px;
+        height: 100px;
+        border-radius: 50px;
+        transition: all 2s;
+        position: relative;
+    }
+    #slider2{
+        width: 96px;
+        height: 96px;
+        transition: all 2s;
+        border-radius: 48px;
+        position: absolute;
+        background: white;
+        box-shadow: 0px 2px 4px rgba(0,0,0,0.4);
+    }
+    .open1{
+        background: rgba(0,184,0,0.8);
+    }
+    .open2{
+        top: 2px;
+        right: 1px;
+    }
+    .close1{
+        background: rgba(255,255,255,0.4);
+        border:3px solid rgba(0,0,0,0.15);
+        border-left: transparent;
+    }
+    .close2{
+        left: 0px;
+        top: 0px;
+        border:2px solid rgba(0,0,0,0.1);
+    }
+    </style>
+</head>
+<body>
+    <div id="slider1" class="open1">
+        <div id="slider2" class="open2"></div>
+    </div>
+   <script>
+       window.onload=function(){
+        var slider1=document.getElementById("slider1");
+        var slider2=document.getElementById("slider2");
+        slider1.onclick=function(){
+            console.log('哈哈哈哈')
+            slider1.className=(slider1.className=="close1")?"open1":"close1";
+            slider2.className=(div2.className=="close2")?"open2":"close2";
+        }
+    }
+   </script>
+</body>
+</html>
