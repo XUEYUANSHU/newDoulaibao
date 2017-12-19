@@ -1,6 +1,5 @@
 <template>
     <div class="userCenter">
-      <h1>个人中心</h1>
         <div class="container">
             <div class="header">
                 <div class="item-left">
@@ -50,7 +49,7 @@
                     </li>
                 </ul>
             </div>
-            <ele_footer></ele_footer>
+          <ele_footer  :activeName="3"></ele_footer>
         </div>
 
     </div>
@@ -98,7 +97,7 @@ export default {
   }
 };
 </script>
-<style lang="less" >
+<style lang="less" scoped>
 body {
   background-color: #f2f2f2 !important;
   height: 100% !important;
@@ -225,16 +224,5 @@ body {
     }
   }
 }
-.userCenter {
-  .footer {
-    ul {
-      li {
-        color: #3d3d3d;
-        &:nth-child(3) {
-          color: #e73e45;
-        }
-      }
-    }
-  }
-}
+ 
 </style>

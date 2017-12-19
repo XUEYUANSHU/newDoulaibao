@@ -43,7 +43,7 @@
             </div>
         </div>
         <div class="hot"></div>
-        <ele_footer></ele_footer>
+        <ele_footer  :activeName="1"></ele_footer>
     </div>
 
 </template>
@@ -113,7 +113,7 @@ export default {
   }
 };
 </script>
-<style lang="less" >
+<style lang="less" scoped>
 .nav {
   ul {
     display: flex;
@@ -157,16 +157,5 @@ export default {
     }
   }
 }
-.home {
-  .footer {
-    ul {
-      li {
-        color: #3d3d3d;
-        &:nth-child(1) {
-          color: #e73e45;
-        }
-      }
-    }
-  }
-}
+ 
 </style>

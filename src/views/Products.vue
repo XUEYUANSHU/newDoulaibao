@@ -30,7 +30,7 @@
             </li>
         </ul>
       </div>
-     <ele_footer></ele_footer>
+     <ele_footer  :activeName="2"></ele_footer>
     </div>
 
 </template>
@@ -98,7 +98,7 @@ export default {
 };
 </script>
  
-<style lang="less" >
+<style lang="less" scoped>
 .activeName::before {
   content: "";
   position: absolute;
@@ -218,17 +218,6 @@ export default {
     }
   }
 }
-.products {
-  .footer {
-    ul {
-      li {
-        color: #3d3d3d;
-        &:nth-child(2) {
-          color: #e73e45;
-        }
-      }
-    }
-  }
-}
+ 
 </style>
  
