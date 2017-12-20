@@ -63,6 +63,11 @@ var routeData = [{
     component: UserCenter
 },
 {
+    path: '/OrderList',
+    name: 'OrderList',
+    component: OrderList
+},
+{
     path: '/myWealth',
     name: 'myWealth',
     component: myWealth
