@@ -40,7 +40,7 @@
         </ul>
     </div>
         <div class="item-detail-bar">
-            <p class="item-history-detail" @click="pushRoute(history)">历史收支明细</p>
+            <p class="item-history-detail" @click="pushRoute('history')">历史收支明细</p>
         </div>
     </div>
 </template>
