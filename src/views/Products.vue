@@ -37,11 +37,8 @@
 <script>
 import axios from "axios";
 import footer from "@/components/footer.vue";
-// import axios from '@/api/my-axios.js'
 import api from "@/api/index.api";
-import router from "@/router/index";
-import "swiper/dist/css/swiper.css";
-import { swiper, swiperSlide } from "vue-awesome-swiper";
+ 
 export default {
   data() {
     return {
@@ -52,8 +49,7 @@ export default {
   },
 
   components: {
-    swiper,
-    swiperSlide,
+   
     ele_footer: footer
   },
   mounted() {

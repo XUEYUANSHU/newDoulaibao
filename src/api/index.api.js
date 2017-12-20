@@ -141,7 +141,7 @@ api.orderDetail = baseurl + "/order/info?userId=";
  status 状态0已生效 1待生效 不传全部
  请求时写入data{}中
  */
-api.orderList = baseurl + "/order/list?userId=";
+api.orderList = baseurl + "/order/list?userId=1";
 
 /**
  * parame(必填)
