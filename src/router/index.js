@@ -13,6 +13,7 @@ import editUserName from '@/views/editUserName'
 import News from '@/views/News'
 import TeamLeader from '@/views/TeamLeader'
 import TeamMember from '@/views/TeamMember'
+import Raider from '@/views/TeamMember'
 // import AllProduct from "@/views/index/AllProduct"
 // import ImTeam from "@/views/index/ImTeam"
 // //JoinTeam
@@ -41,10 +42,11 @@ var routeData = [{
 //     component: JoinTeam
 // },
 //
+
 {
-    path: '/OrderList',
-    name: 'OrderList',
-    component: OrderList
+    path: '/Raider',
+    name: 'Raider',
+    component: Raider
 },
 {
     path: '/',

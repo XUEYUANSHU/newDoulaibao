@@ -7,33 +7,30 @@
             我是团长
         </div>
         <div class="common-w">
-            <div class="share-title">分享谈对分享码</div>
+            <div class="share-title">分享团队邀请码</div>
             <div class="share-num">22222222</div>
             <div class="nav">
                 <div class="list">
                     <div>
-                        <!-- <img src="../../assets/img/short_message.png" class="icon-logo-img" /> -->
-                        <img  />
+                        <img src="../assets/img/短信@2x.png" class="icon-logo-img" />
                         <span>短信</span>
                     </div>
                     <div class="boder-line">
-                        <!-- <img src="../../assets/img/qq.png" class="icon-logo-img" /> -->
-                        <img />
+                        <img src="../assets/img/QQ@2x.png" class="icon-logo-img" />
                         <span>QQ </span>
                     </div>
                     <div>
-                        <!-- <img src="../../assets/img/weixin.png" class="icon-logo-img" /> -->
-                        <img  />
+                        <img src="../assets/img/微信@2x.png" class="icon-logo-img" />
                         <span>微信</span>
                     </div>
                     <div class="boder-line">
-                        <!-- <img src="../../assets/img/friend_circle.png" class="icon-logo-img" /> -->
-                        <img   />
+                        <img src="../assets/img/朋友圈@2x.png" class="icon-logo-img" />
+                     
                         <span>朋友圈</span>
                     </div>
                     <div style="boder:0">
-                        <!-- <img src="../../assets/img/two_code.png" class="icon-logo-img" /> -->
-                        <img   />
+                        <img src="../assets/img/二维码@2x.png" class="icon-logo-img" />
+                        
                         <span>二维码</span>
                     </div>
                 </div>
@@ -43,7 +40,7 @@
         <div class="header-content">
             <p>
                 <i class="icon-people"></i>
-                <span>团队名称</span>
+                <span class="teamName">团队名称</span>
                 <!-- <span class="more"> </span> -->
                 <input type="text" class="input1" placeholder="创富团队">
 
@@ -51,93 +48,65 @@
 
             </p>
             <p>
-                <i class="icon-person"></i>
-                <span>团队成员</span>
+                <i class="icon-persons"></i>
+                <span class="teamName">团队成员</span>
                 <!-- <input type="text"> -->
-                <span class="more">更多 </span>
+                <span class="more">192人</span>
             </p>
         </div>
         <div class="header-list">
             <div class="nav">
                 <div class="list">
                     <div>
-                        <span>李薇薇</span>
-                        <span>131****6790 </span>
+                        <span class="textTile">李薇薇</span>
+                        <span class="textContent">131****6790 </span>
                     </div>
                     <div>
-                        <span>李薇薇</span>
-                        <span>131****6790 </span>
+                        <span class="textTile">推广单数</span>
+                        <span class="textContent yellow1">13</span>
                     </div>
                     <div>
-                        <span>李薇薇</span>
-                        <span>131****6790 </span>
+                        <span class="textTile">累计收入</span>
+                        <span class="textContent yellow1">13</span>
                     </div>
                 </div>
-
-            </div>
-            <div class="nav">
-                <div class="list">
-                    <div>
-                        <span>李薇薇</span>
-                        <span>131****6790 </span>
-                    </div>
-                    <div>
-                        <span>李薇薇</span>
-                        <span>131****6790 </span>
-                    </div>
-                    <div>
-                        <span>李薇薇</span>
-                        <span>131****6790 </span>
-                    </div>
-                </div>
-
             </div>
         </div>
     </div>
 </template>
 <script>
-
- 
-import axios from '@/api/axios'
-import api from '@/api/index.api'
+import axios from "@/api/axios";
+import api from "@/api/index.api";
 
 export default {
+  data: function() {
+    return {};
+  },
 
-    data: function () {
-        return {
-
-        }
-
+  created() {
+    //console.log(, "woshi");
+    // if(){
+    this.getData();
+  },
+  methods: {
+    returnIndex() {
+      this.$router.go(-1);
     },
-
-    created() {
-        //console.log(, "woshi");
-        // if(){
-        this.getData()
-
-    },
-    methods: {
-        returnIndex() {
-            this.$router.go(-1)
-        },
-        getData() {
-            axios({
-                method: 'POST',
-                url: api.itemInfo,
-                data: { userId: 1 }
-            }).then((res) => {
-                console.log(res)
-
-            }).catch(rtn => {
-                console.log(rtn)
-            });
-        },
-
-
+    getData() {
+      axios({
+        method: "POST",
+        url: api.itemInfo,
+        data: { userId: 1 }
+      })
+        .then(res => {
+          console.log(res);
+        })
+        .catch(rtn => {
+          console.log(rtn);
+        });
     }
-
-
-}
+  }
+};
 </script>
 <style lang="less">
 .header-content {
@@ -150,29 +119,36 @@ export default {
     color: #3d3d3d;
     // padding:.2rem .3rem;
     line-height: 0.96rem;
-
+    .teamName {
+      font-size: 0.32rem;
+    }
     .icon-people {
-      width: 20px;
-      height: 20px;
+      width: 0.4rem;
+      height: 0.32rem;
       display: block;
-    //   background: url("../../assets/img/people_icon.png") no-repeat center;
+      background: url("../assets/img/people_icon.png") no-repeat center;
       background-size: cover;
     }
     .icon-eidt {
-      width: 16px;
-      height: 16px;
+      width: 0.32rem;
+      height: 0.32rem;
       display: block;
-    //   background: url("../../assets/img/icon_edit.png") no-repeat center;
+      background: url("../assets/img/icon_edit.png") no-repeat center;
       background-size: cover;
     }
-    .icon-person {
-      width: 20px;
-      height: 20px;
+    .icon-persons {
+      width: 0.4rem;
+      height: 0.32rem;
       display: block;
-    //   background: url("../../assets/img/person_icon.png") no-repeat center;
+      background: url("../assets/img/people_icon.png") no-repeat center;
       background-size: cover;
+    }
+    .more {
+      font-size: 0.28rem;
+      color: #999999;
     }
     .input1 {
+      box-sizing: border-box;
       outline: none;
       flex: 2;
       border: 0;
@@ -181,6 +157,7 @@ export default {
       margin-left: 20%;
       margin-right: 3%;
       width: 3.44rem;
+      font-size: 0.24rem;
     }
     span {
       margin-left: 20px;
@@ -260,11 +237,24 @@ export default {
       flex: 1;
       text-align: center;
       font-size: 0;
+      img {
+        width: 0.48rem;
+        height: 0.48rem;
+      }
       span {
         display: block;
+      }
+      .textTile {
+        color: #333333;
+        font-size: 0.28rem;
+      }
+      .textContent {
+        font-size: 0.24rem;
         margin-top: 0.1rem;
-        font-size: 14px;
-        color: #3d3d3d;
+        color: #999999;
+      }
+      .yellow1 {
+        color: #fc8d00;
       }
     }
   }

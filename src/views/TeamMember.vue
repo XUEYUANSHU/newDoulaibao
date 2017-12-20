@@ -1,110 +1,127 @@
 
-
-
 <template>
     <div style="background: #F9F9F9;">
-        <div class="common_top">
-            <!-- <div class="common_fanhui" @click="returnIndex"><img src="../../assets/img/return.png" /></div> -->
-            <div class="common_fanhui" @click="returnIndex"><img   /></div>
-            我是团长
+   
+        <div class="memberHeader">
+            <div><i class="icon-team"></i><span class="team">创富团队</span></div>
+            <div class="membersName"><span class="yellow2">团长: </span><span>李某某</span></div>
         </div>
-        <div class="member-w">
-            <div class="share-title"> 分享谈对分享码</div>
 
-            <div class="share-num">
-                <span class="font-red">团长</span> ：xxx</div>
-        </div>
         <div class="header-content">
             <p>
-                <i class="icon-person"></i>
-                <span>团队成员</span>
-                <span class="more">更多 </span>
+                <i class="icon-persons"></i>
+                <span class="teamName">团队成员</span>
+                <!-- <input type="text"> -->
+                <span class="more">192人</span>
             </p>
         </div>
         <div class="header-list">
             <div class="nav">
                 <div class="list">
                     <div>
-                        <span>李薇薇</span>
-                        <span>131****6790 </span>
+                        <span class="textTile">李薇薇</span>
+                        <span class="textContent">131****6790 </span>
                     </div>
                     <div>
-                        <span>李薇薇</span>
-                        <span>131****6790 </span>
+                        <span class="textTile">推广单数</span>
+                        <span class="textContent yellow1">13</span>
                     </div>
                     <div>
-                        <span>李薇薇</span>
-                        <span>131****6790 </span>
+                        <span class="textTile">累计收入</span>
+                        <span class="textContent yellow1">13</span>
                     </div>
                 </div>
-
             </div>
+        </div>
+          <div class="header-list">
             <div class="nav">
                 <div class="list">
                     <div>
-                        <span>李薇薇</span>
-                        <span>131****6790 </span>
+                        <span class="textTile">李薇薇</span>
+                        <span class="textContent">131****6790 </span>
                     </div>
                     <div>
-                        <span>李薇薇</span>
-                        <span>131****6790 </span>
+                        <span class="textTile">推广单数</span>
+                        <span class="textContent yellow1">13</span>
                     </div>
                     <div>
-                        <span>李薇薇</span>
-                        <span>131****6790 </span>
+                        <span class="textTile">累计收入</span>
+                        <span class="textContent yellow1">13</span>
                     </div>
                 </div>
-
             </div>
-            <img src="" alt="" class="img-link">
+        </div>
+         <div class="code">
+            <div><img src="../assets/img/二维码@3x.png" alt=""></div>
+            <div>分享二维码</div>
+        </div>
+        <div class="abortTeam">
+            退出团队
         </div>
     </div>
 </template>
 <script>
-
-// import api from '@/api/index.api'
-import axios from '@/api/axios'
-import api from '@/api/index.api'
+import axios from "@/api/axios";
+import api from "@/api/index.api";
 
 export default {
+  data: function() {
+    return {};
+  },
 
-    data: function () {
-        return {
-
-        }
-
+  created() {
+    //console.log(, "woshi");
+    // if(){
+    this.getData();
+  },
+  methods: {
+    returnIndex() {
+      this.$router.go(-1);
     },
-
-    created() {
-        //console.log(, "woshi");
-        // if(){
-        this.getData()
-
-    },
-    methods: {
-        returnIndex() {
-            this.$router.go(-1)
-        },
-        getData() {
-            axios({
-                method: 'POST',
-                url: api.itemInfo,
-                data: { userId: 1 }
-            }).then((res) => {
-                console.log(res)
-
-            }).catch(rtn => {
-                console.log(rtn)
-            });
-        },
-
-
+    getData() {
+      axios({
+        method: "POST",
+        url: api.itemInfo,
+        data: { userId: 1 }
+      })
+        .then(res => {
+          console.log(res);
+        })
+        .catch(rtn => {
+          console.log(rtn);
+        });
     }
-
-
-}
+  }
+};
 </script>
 <style lang="less">
+.memberHeader {
+  width: 7.02rem;
+  height: 2.08rem;
+  padding: 0.16rem 0.28rem;
+  text-align: center;
+  .icon-team {
+    display: inline-block;
+    width: 0.52rem;
+    height: 0.74rem;
+    vertical-align: text-bottom;
+    background: url("../assets/img/奖杯@2x.png") no-repeat center;
+    background-size: cover;
+  }
+  .team {
+    display: inline-block;
+    margin: 0.34rem 0 0.1rem 0;
+    font-size: 0.48rem;
+    color: #e73b3b;
+  }
+  .membersName {
+    font-size: 0.28rem;
+    color: #151515;
+    .yellow2 {
+      color: #fc8d00;
+    }
+  }
+}
 .header-content {
   background: #fff;
   padding: 0 0.24rem;
@@ -115,15 +132,40 @@ export default {
     color: #3d3d3d;
     // padding:.2rem .3rem;
     line-height: 0.96rem;
-
-    .icon-person {
-      width: 20px;
-      height: 20px;
-      display: block;
-    //   background: url("../../assets/img/person_icon.png") no-repeat center;
-      background-size: cover;
+    .teamName {
+      font-size: 0.32rem;
     }
 
+    .icon-eidt {
+      width: 0.32rem;
+      height: 0.32rem;
+      display: block;
+      background: url("../assets/img/icon_edit.png") no-repeat center;
+      background-size: cover;
+    }
+    .icon-persons {
+      width: 0.4rem;
+      height: 0.32rem;
+      display: block;
+      background: url("../assets/img/people_icon.png") no-repeat center;
+      background-size: cover;
+    }
+    .more {
+      font-size: 0.28rem;
+      color: #999999;
+    }
+    .input1 {
+      box-sizing: border-box;
+      outline: none;
+      flex: 2;
+      border: 0;
+      border: 1px solid #f3f0f0;
+      padding: 0.08rem 0.2rem;
+      margin-left: 20%;
+      margin-right: 3%;
+      width: 3.44rem;
+      font-size: 0.24rem;
+    }
     span {
       margin-left: 20px;
     }
@@ -158,34 +200,11 @@ export default {
   width: 11px;
   height: 19px;
 }
-.member-w {
-  margin: 1.12rem 0.24rem 0.24rem;
-  background: #fff;
-  border: 1px solid #f3f0f0;
-  box-shadow: 0 0 2px #888888;
-  .share-title {
-    text-align: center;
-    // background: url("../../assets/img/get_icon.png") no-repeat 29% center;
-    background-size: 26px 37px;
-    margin: 0.32rem 0 0.24rem;
-    font-size: 24p;
-    color: #fc8d00;
-  }
-  .font-red {
-    color: #e73b3b;
-  }
-  .share-num {
-    font-size: 14px;
-    text-align: center;
-    // font-size: .64rem;
-    margin-bottom: 0.4rem;
-  }
-}
-.img-link {
-  display: black;
-  margin: 0.62ren auto;
-  width: 2.8rem;
-  height: 2.96rem;
+
+.common_font {
+  line-height: 0.88rem;
+  text-align: center;
+  font-size: 18px;
 }
 .common-w {
   margin: 1.12rem 0.24rem 0.24rem;
@@ -225,13 +244,41 @@ export default {
       flex: 1;
       text-align: center;
       font-size: 0;
+      img {
+        width: 0.48rem;
+        height: 0.48rem;
+      }
       span {
         display: block;
+      }
+      .textTile {
+        color: #333333;
+        font-size: 0.28rem;
+      }
+      .textContent {
+        font-size: 0.24rem;
         margin-top: 0.1rem;
-        font-size: 14px;
-        color: #3d3d3d;
+        color: #999999;
+      }
+      .yellow1 {
+        color: #fc8d00;
       }
     }
   }
+}
+.code {
+  padding: 0.52rem;
+  text-align: center;
+  img {
+    width: 2.86rem;
+    height: 2.8rem;
+  }
+}
+.abortTeam {
+  height: 0.96rem;
+  line-height: 0.96rem;
+  background-color: #fc8d00;
+  color: #ffffff;
+  text-align: center;
 }
 </style>

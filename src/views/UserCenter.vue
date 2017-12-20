@@ -32,13 +32,13 @@
                         <span>我的订单</span>
                         <i class="user-icon-right"></i>
                     </li>
-                    <li>
-                        <i class="user-icon-left icon-leader"></i>
+                    <li @click="pushRoute('TeamLeader')">
+                        <i class="user-icon-left icon-leader" ></i>
                         <span>我是团长</span>
                         <i class="user-icon-right"></i>
                     </li>
-                    <li>
-                        <i class="user-icon-left icon-member"></i>
+                    <li @click="pushRoute('TeamMember')">
+                        <i class="user-icon-left icon-member"  ></i>
                         <span>我是团员</span>
                         <i class="user-icon-right"></i>
                     </li>

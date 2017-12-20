@@ -1,5 +1,5 @@
 <template>
-    <div class="home">
+    <div>
         <swiper :options="swiperOption">
             <swiper-slide> <img src="../../assets/img/banner1.png" class="swi-img"></swiper-slide>
             <swiper-slide><img src="../../assets/img/banner3.png" class="swi-img"></swiper-slide>
@@ -9,18 +9,18 @@
         <div class="nav">
             <ul>
                 <li>
-                    <img src="../../assets/img/chuangfugonglue.png" alt="">
+                    <img src="../../assets/img/chuangfugonglue.png" alt="" @click="gotoRaider">
                     <span>创富攻略 </span>
                 </li>
                 <li>
-                    <img src="../../assets/img/woshituanzhang.png" alt="">
+                    <img src="../../assets/img/woshituanzhang.png" alt="" @click="gotoHeader">
                     <span>我是团长 </span>
                 </li>
                 <li>
-                    <img src="../../assets/img/woshituanyuan.png" alt="">
+                    <img src="../../assets/img/woshituanyuan.png" alt="" @click="gotoMember">
                     <span>我是团员 </span>
                 </li>
-                <li>
+                <li @click="gotomyWealth">
                     <img src="../../assets/img/wodecaifu.png" alt="">
                     <span>我的财富  </span>
                 </li>
@@ -30,7 +30,7 @@
             <p>
                 <i class="icon-huoke"></i>
                 <span>获克产品</span>
-                <span class="more">更多</span>
+                <span class="more">更多  </span>
             </p>
             <div class="product">
                 <div class="huoke-item-left">
@@ -43,7 +43,7 @@
             </div>
         </div>
         <div class="hot"></div>
-        <ele_footer  :activeName="1"></ele_footer>
+        <ele_footer></ele_footer>
     </div>
 
 </template>
@@ -81,15 +81,27 @@ export default {
   //    data: ,
   created() {
     //budgetListuserId
-    // console.log(api.homeIndex);
+    console.log(api.homeIndex);
     //        var self = this
     this.getData();
     //
   },
   methods: {
+    gotoRaider() {
+      this.$router.push({ path: "/Raider" });
+    },
+    gotoHeader() {
+      this.$router.push({ path: "/TeamLeader" });
+    },
     //        跳转到产品页面
     goAllProduct() {
-      this.$router.push({ path: "/Allproduct" });
+      this.$router.push({ path: "/Products" });
+    },
+    gotoMember() {
+      this.$router.push({ path: "/TeamMember" });
+    },
+    gotomyWealth() {
+      this.$router.push({ path: "/myWealth" });
     },
     getData() {
       axios({
@@ -113,7 +125,7 @@ export default {
   }
 };
 </script>
-<style lang="less" scoped>
+<style lang="less">
 .nav {
   ul {
     display: flex;
