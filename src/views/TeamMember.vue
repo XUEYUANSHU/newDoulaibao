@@ -3,8 +3,8 @@
     <div style="background: #F9F9F9;">
    
         <div class="memberHeader">
-            <div><i class="icon-team"></i><span class="team">创富团队</span></div>
-            <div class="membersName"><span class="yellow2">团长: </span><span>李某某</span></div>
+            <div><i class="icon-team"></i><span class="team">{{data.team.teamName}}</span></div>
+            <div class="membersName"><span class="yellow2">团长: </span><span>{{data.team.teamLeader}}</span></div>
         </div>
 
         <div class="header-content">
@@ -12,41 +12,23 @@
                 <i class="icon-persons"></i>
                 <span class="teamName">团队成员</span>
                 <!-- <input type="text"> -->
-                <span class="more">192人</span>
+                <span class="more">{{data.team.teamUserNum+ '人'}}</span>
             </p>
         </div>
-        <div class="header-list">
+        <div class="header-list" v-for="(item, idx) in data.teamMembers" :key="idx">
             <div class="nav">
                 <div class="list">
                     <div>
-                        <span class="textTile">李薇薇</span>
+                        <span class="textTile">{{item.realName}}</span>
                         <span class="textContent">131****6790 </span>
                     </div>
                     <div>
                         <span class="textTile">推广单数</span>
-                        <span class="textContent yellow1">13</span>
+                        <span class="textContent yellow1">{{item.expandNum}}</span>
                     </div>
                     <div>
                         <span class="textTile">累计收入</span>
-                        <span class="textContent yellow1">13</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-          <div class="header-list">
-            <div class="nav">
-                <div class="list">
-                    <div>
-                        <span class="textTile">李薇薇</span>
-                        <span class="textContent">131****6790 </span>
-                    </div>
-                    <div>
-                        <span class="textTile">推广单数</span>
-                        <span class="textContent yellow1">13</span>
-                    </div>
-                    <div>
-                        <span class="textTile">累计收入</span>
-                        <span class="textContent yellow1">13</span>
+                        <span class="textContent yellow1">{{item.awardPrice}}</span>
                     </div>
                 </div>
             </div>
@@ -65,32 +47,30 @@ import axios from "@/api/axios";
 import api from "@/api/index.api";
 
 export default {
-  data: function() {
-    return {};
+  data() {
+    return {
+        data:{team:{},teamMembers:{}},
+    };
   },
-
-  created() {
-    //console.log(, "woshi");
-    // if(){
-    this.getData();
+    mounted() {
+    axios({
+      method: "POST",
+      url:api.teamInfo,
+      data: {
+        userId: 1,
+      }
+    })
+      .then(res => {
+        this.data =  res.data;
+        console.log(this.data, "团队详情", res.data);
+      })
+      .catch(rtn => {
+        console.log(rtn);
+      });
   },
   methods: {
-    returnIndex() {
-      this.$router.go(-1);
-    },
-    getData() {
-      axios({
-        method: "POST",
-        url: api.itemInfo,
-        data: { userId: 1 }
-      })
-        .then(res => {
-          console.log(res);
-        })
-        .catch(rtn => {
-          console.log(rtn);
-        });
-    }
+   
+ 
   }
 };
 </script>
