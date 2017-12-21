@@ -12,9 +12,9 @@
                    </p>
                    <i class="item-right-icon"></i>
                </li>
-               <li>
+               <li @click="pushRoute('editUserName')">
                    <span >昵称</span>
-                   <span @click="pushRoute('editUserName')">未绑定</span>
+                   <span>未绑定</span>
                    <i class="item-right-icon"></i>
                </li>
                <li>
@@ -22,7 +22,7 @@
                    <span>未绑定</span>
                    <i class="item-right-icon"></i>
                </li>
-               <li>
+               <li @click="pushRoute('bindMobile')">
                    <span>手机号</span>
                    <span>未绑定</span>
                    <i class="item-right-icon"></i>

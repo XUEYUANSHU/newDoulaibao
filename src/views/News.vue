@@ -1,67 +1,87 @@
 <template>
-    <div class="products">
-       <h2>消息中心</h2>
+    <div>
+		<div class="title">
+			<span :class="activeNotice== '0'? 'activeNotice': ''"  @click="selected(0)">系统通知</span>
+			<span :class="activeNotice== '1'? 'activeNotice': ''"  @click="selected(1)">活动通知</span>
+		</div>
+		<div>
+			<ul class="noticeList">
+				<li  v-for="(item, idx) in list" :key="idx"  @click="showDeleted(idx)"> 
+					<div class="orderContent">
+						<div class="noticeInfo"><span class="orderStatus">{{item.noticeTitle}}</span><span class="orderTime">{{item.updateTime | timeSplit}}</span></div>
+						<div class="noticeDesc">{{item.noticeInfo}}</div>
+					</div>
+					<div class="delete" v-show="showDelete == idx"   @click="delected(idx)">删除</div>
+				</li>			
+			</ul>
+		</div>
     </div>
-
 </template>
 <script>
 import axios from "axios";
-import footer from "@/components/footer.vue";
 // import axios from '@/api/my-axios.js'
 import api from "@/api/index.api";
-import router from "@/router/index";
-import "swiper/dist/css/swiper.css";
+import moment from "moment";
 import { swiper, swiperSlide } from "vue-awesome-swiper";
 export default {
-  prop: {
-    //        option:Object
-  },
-  components: {
-    swiper,
-    swiperSlide,
-    ele_footer: footer
+  data() {
+    return {
+      activeNotice: "0",
+      showDelete: null,
+      list: []
+    };
   },
   mounted() {
     axios({
       method: "POST",
-      url: api.allProductIndex,
+      url: api.list,
       data: {
         userId: 1,
-        productType: 1
+        type: 0
       }
     })
       .then(res => {
-        console.log("请求到的产品数据", res.code);
+        this.list = Object.assign([], res.data);
+        console.log(this.list[0], "新闻通知列表", res.data);
       })
       .catch(rtn => {
         console.log(rtn);
       });
   },
-  data() {
-    return {
-      bannerList: [],
-      swiperOption: {
-        autoplay: {
-          delay: 5000,
-          disableOnInteraction: false
-        },
-        pagination: {
-          el: ".swiper-pagination",
-          clickable: true
-        }
-      }
-    };
-  },
-  methods: {
-    chooseType() {
-      this.$refs["slider1"].className =
-        this.$refs["slider1"].className == "close1" ? "open1" : "close1";
-      this.$refs["slider2"].className =
-        this.$refs["slider2"].className == "close2" ? "open2" : "close2";
-      console.log("选择全部或者不选");
+  filters: {
+    timeSplit(v) {
+      return moment(v).format("YYYY-MM-DD HH:mm");
     }
   },
-  //    data: ,
+  methods: {
+    showDeleted(idx) {
+      this.showDelete = idx;
+      console.log("显示第几个", idx);
+    },
+    delected(idx) {
+      console.log("删除了第几个", idx);
+    },
+    selected(type) {
+      this.activeNotice = type;
+      this.showDelete = null;
+      axios({
+        method: "POST",
+        url: api.list,
+        data: {
+          userId: 1,
+          type: type
+        }
+      })
+        .then(res => {
+          this.list = Object.assign([], res.data);
+          console.log(this.list[0], "新闻通知列表", res.data);
+        })
+        .catch(rtn => {
+          console.log(rtn);
+        });
+    }
+  },
+
   created() {
     //budgetListuserId
   }
@@ -69,122 +89,54 @@ export default {
 </script>
  
 <style lang="less" scoped>
-.activeName::before {
-  content: "";
-  position: absolute;
-  left: 50%;
-  top: 100%;
-  z-index: 9;
-  transform: translate(-50%, 0);
-  border-left: 0.14rem solid transparent;
-  border-right: 0.14rem solid transparent;
-  border-top: 0.28rem solid #f25f23;
+.activeNotice {
+  color: #fc8d00;
 }
-.listType {
-  height: 1.34rem;
-  background-color: #f25f23;
-  font-size: 13px;
-  border: 1px solid red;
-  ul {
+.title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 0.8rem;
+
+  color: #999999;
+  span {
+    flex: 1;
+    text-align: center;
+  }
+}
+.noticeList {
+  box-sizing: border-box;
+  height: 2.4rem;
+  li {
     display: flex;
-    width: 100%;
     height: 100%;
-    li {
-      position: relative;
+    .orderContent {
       flex: 1;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      img {
-        width: 0.54rem;
-        height: 0.88rem;
+      padding: 0.24rem 0.28rem;
+      .noticeInfo {
+        display: flex;
+        justify-content: space-between;
+        padding-bottom: 0.16rem;
+        color: #666666;
+        .orderStatus {
+          color: #333333;
+        }
+        .orderTime {
+          color: #999999;
+        }
+      }
+      .noticeDesc {
+        font-size: 0.24rem;
+        color: #666666;
       }
     }
-  }
-}
-.chooseType {
-  position: relative;
-  width: 100%;
-  height: 0.68rem;
-  color: #4a4a4a;
-  text-align: right;
-  background-color: #f3f0f0;
-  .close-text {
-    position: absolute;
-    right: 0.7rem;
-    top: 50%;
-    transform: translate(-50%, -50%);
-  }
-  #slider1 {
-    width: 0.52rem;
-    height: 0.32rem;
-    border-radius: 40%;
-    transition: all 0.5s;
-    position: absolute;
-    right: 0.1rem;
-    top: 50%;
-    transform: translate(-50%, -50%);
-  }
-  #slider2 {
-    width: 0.26rem;
-    height: 0.26rem;
-    transition: all 0.5s;
-    border-radius: 50%;
-    position: absolute;
-    background: white;
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.4);
-  }
-  .open1 {
-    background: rgba(0, 184, 0, 0.8);
-  }
-  .open2 {
-    top: 2px;
-    right: 1px;
-  }
-  .close1 {
-    background: rgba(144, 144, 144, 0.4);
-    // border:3px solid rgba(0,0,0,0.15);
-    border-left: transparent;
-  }
-  .close2 {
-    left: 0px;
-    top: 0px;
-    border: 2px solid rgba(0, 0, 0, 0.1);
-  }
-}
-.productList {
-  li {
-    box-sizing: border-box;
-    height: 1.82rem;
-    padding: 0.35rem;
-    border: 1px solid yellow;
-    .list-content {
-      display: flex;
-      width: 100%;
-      height: 100%;
-      .text-content {
-        flex: 1;
-        height: 100%;
-        border: 1px solid blue;
-        .title {
-          padding-bottom: 0.25rem;
-          font-size: 0.32rem;
-          font-weight: 600;
-        }
-        .desc {
-          font-size: 0.24rem;
-          line-height: 0.35rem;
-        }
-      }
-      .number-content {
-        width: 2rem;
-        padding-top: 0.25rem;
-        font-size: 0.32rem;
-        font-weight: 600;
-        text-align: right;
-        color: #f25f23;
-        border: 1px solid red;
-      }
+    .delete {
+      width: 1.42rem;
+      height: 2.4rem;
+      line-height: 2.4rem;
+      text-align: center;
+      color: #fff;
+      background-color: #ff0000;
     }
   }
 }
