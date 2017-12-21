@@ -3,12 +3,12 @@
         <div class="header">
             <p>累计收入（元）<i class="icon-eye" @click="pushRoute('history')"></i></p>
             <p>0.00</p>
-            <p><span class="cash">提现</span></p>
+            <p><span class="cash" @click="pushRoute('Deposit')">提现</span></p>
         </div>
         <div class="item">
             <div class="item-presented">
                 <p>0.00</p>
-                <p>可提现</p>
+                <p @click="pushRoute('Deposit')">可提现</p>
             </div>
             <div class="item-effective">
                 <p>0.00</p>
