@@ -55,7 +55,7 @@
                 <div ref="slider2" id="slider2" class="close2"></div>
         </div>
       </div>
-	  <div>
+	  <div style="padding-bottom:.85rem">
 		  <ul>
 			  <li class="productList"  v-for="(item, idx) in data.hotList" :key="idx">
 				  <div class="title">{{item.productName}}</div>
