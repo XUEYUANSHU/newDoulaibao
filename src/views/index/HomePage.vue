@@ -29,8 +29,8 @@
         <div class="huoke">
             <p>
                 <i class="icon-huoke"></i>
-                <span>获克产品</span>
-                <span class="more">更多  </span>
+                <span>获客产品</span>
+                <span class="more">更多</span>
             </p>
             <div class="product">
                 <div class="huoke-item-left">
@@ -42,7 +42,13 @@
                 </div>
             </div>
         </div>
-        <div class="hot"></div>
+         <div class="huoke">
+            <p>
+                <i class="icon-hotProduct"></i>
+                <span>全部产品</span>
+                <span class="more">全部</span>
+            </p>
+        </div>
         <ele_footer></ele_footer>
     </div>
 
@@ -150,22 +156,44 @@ export default {
   p {
     display: flex;
     align-items: center;
-    font-size: 14px;
-    color: #3d3d3d;
-    padding: 0.2rem 0.3rem;
+    font-size: 0.26rem;
+	color: #3d3d3d;
+	height: 0.8rem;
+    padding: 0 0.3rem;
     i.icon-huoke {
       background: url("../../assets/img/huoke-icon.png") no-repeat center;
       background-size: cover;
-      width: 20px;
-      height: 20px;
+      width: 0.4rem;
+      height: 0.4rem;
       display: block;
     }
     span {
-      margin-left: 20px;
+      margin-left: 0.4rem;
     }
     span:nth-child(3) {
       flex: 1;
       text-align: right;
+    }
+  }
+  .product {
+    display: flex;
+    padding: 0.1rem 0.16rem 0.1rem 0.3rem;
+    background-color: #f3f0f0;
+    .huoke-item-left {
+      width: 3.44rem;
+      height: 3.92rem;
+      margin-right: 0.1rem;
+    }
+    .item-right {
+      flex: 1;
+      img:nth-child(1) {
+        width: 3.42rem;
+        height: 2.16rem;
+      }
+      img:nth-child(2) {
+        width: 3.42rem;
+        height: 1.6rem;
+      }
     }
   }
 }

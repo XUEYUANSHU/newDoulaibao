@@ -224,7 +224,7 @@ export default {
         font-size: 0.32rem;
         font-weight: 600;
         text-align: right;
-        color: #f25f23;
+        color: #FC8D00;
       }
     }
   }
