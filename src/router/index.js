@@ -15,8 +15,12 @@ import Certification from '@/views/Certification'
 import News from '@/views/News'
 import TeamLeader from '@/views/TeamLeader'
 import TeamMember from '@/views/TeamMember'
+<<<<<<< HEAD
 import Raider from '@/views/TeamMember'
 import bindMobile from '@/views/bindMobile' //手机绑定
+=======
+import Raider from '@/views/Raider'
+>>>>>>> 158ac4c81c4fc6bcbdf5681a66ab84aac35510ca
 // import AllProduct from "@/views/index/AllProduct"
 // import ImTeam from "@/views/index/ImTeam"
 // //JoinTeam
