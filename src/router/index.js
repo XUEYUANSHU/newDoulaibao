@@ -17,9 +17,19 @@ import TeamLeader from '@/views/TeamLeader'
 import TeamMember from '@/views/TeamMember'
 // import Raider from '@/views/TeamMember'
 import bindMobile from '@/views/bindMobile' //手机绑定
+import changeMobile from '@/views/changeMobile' //修改手机绑定
+import showMobile from '@/views/showMobile' //修改手机绑定
 import Raider from '@/views/Raider'
-import Deposit from '@views/Deposit'  //提现页面
-import cashWechatSuccess from '@views/cashWechatSuccess'  //提现页面
+import addBankCard from '@/views/addBankCard'
+import tixian from '@/views/tixian'
+import tixianWechatSucc from '@/views/tixianWechatSucc' //提现到微信成功提示
+import intoAccount from '@/views/intoAccount' //到账微信成功提示
+import AccountIntoBank from '@/views/AccountIntoBank' //到账银行成功提示
+import identifyReview from '@/views/identifyReview' //认证审核中
+import identifySucc from '@/views/identifySucc' //认证审核完成
+import tixianGoIdentify from '@/views/tixianGoIdentify' //提现转实名认证
+
+// import cashWechatSuccess from '@views/cashWechatSuccess.vue'  //提现d到微信提示
 // import AllProduct from "@/views/index/AllProduct"
 // import ImTeam from "@/views/index/ImTeam"
 // //JoinTeam
@@ -31,7 +41,8 @@ import cashWechatSuccess from '@views/cashWechatSuccess'  //提现页面
 
 Vue.use(Router)
 
-var routeData = [{
+var routeData = [
+ {
     path: '/',
     name: 'Home',
     component: HomePage
@@ -129,9 +140,59 @@ var routeData = [{
     component: Certification
 },
     {
-        path: '/Deposit',
-        name: 'Deposit',
-        component: Deposit
+        path: '/Certification',
+        name: 'Certification',
+        component: Certification
+    },
+    {
+        path: '/tixian',
+        name: 'tixian',
+        component: tixian
+    },
+    {
+        path: '/addBankCard',
+        name: 'addBankCard',
+        component: addBankCard
+    },
+    {
+        path: '/tixianWechatSucc',
+        name: 'tixianWechatSucc',
+        component: tixianWechatSucc
+    },
+    {
+        path: '/intoAccount',
+        name: 'tintoAccount',
+        component: intoAccount
+    },
+    {
+        path: '/AccountIntoBank',
+        name: 'AccountIntoBank',
+        component: AccountIntoBank
+    },
+    {
+        path: '/changeMobile',
+        name: 'changeMobile',
+        component:changeMobile
+    },
+    {
+        path: '/showMobile',
+        name: 'showMobile',
+        component:showMobile
+    },
+    {
+        path: '/identifyReview',
+        name: 'identifyReview',
+        component:identifyReview
+    },
+    {
+        path: '/identifySucc',
+        name: 'identifySucc',
+        component:identifySucc
+    },
+    {
+        path: '/tixianGoIdentify',
+        name: 'tixianGoIdentify',
+        component:tixianGoIdentify
     }
 ]
 
