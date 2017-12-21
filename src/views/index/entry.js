@@ -8,7 +8,7 @@ import router from '@/router/index'
 import Home from './Home.vue'
 import $ from 'jquery'
 import VueAwesomeSwiper from 'vue-awesome-swiper'
-//require('es6-promise').polyfill() 需要评估是否需要
+// require('es6-promise').polyfill() //需要评估是否需要
 
 //加载vuex和router
 Vue.use(VueRouter)
