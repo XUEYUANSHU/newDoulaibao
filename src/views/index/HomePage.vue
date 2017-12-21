@@ -30,7 +30,7 @@
             <p>
                 <i class="icon-huoke"></i>
                 <span>获客产品</span>
-                <span class="more">更多</span>
+                <span class="more" @click="gotoProducts">更多</span>
             </p>
             <div class="product">
                 <div class="huoke-item-left">
@@ -46,7 +46,7 @@
             <p>
                 <i class="icon-hotProduct"></i>
                 <span>全部产品</span>
-                <span class="more">全部</span>
+                <span class="more"  @click="gotoProducts">全部</span>
             </p>
         </div>
 		 <div  class="chooseType">
@@ -57,46 +57,17 @@
       </div>
 	  <div>
 		  <ul>
-			  <li class="productList">
-				  <div class="title">中华爱无忧定期寿险</div>
+			  <li class="productList"  v-for="(item, idx) in data.hotList" :key="idx">
+				  <div class="title">{{item.productName}}</div>
 				  <div class="content">
-					  <div class="desc">保额80万保额80万保额80万保额80万保额80万保额80万</div>
+					  <div class="desc">{{item.productIntro}}</div>
 					  <div class="params">
-						  <div class="price">¥1132元</div>
-						  <div class="percent">10&+10%额外奖励</div>
+						  <div class="price">{{'¥' + item.productMinPrice + '元'}}1132元</div>
+						  <div v-if="showPercenter"  class="percent">{{item.commissionRate + '%+'+ item.extraCommissionRate  + '%额外奖励'}}</div>
 					  </div>
 				  </div>
 			  </li>
-			  <li class="productList">
-				  <div class="title">中华爱无忧定期寿险</div>
-				  <div class="content">
-					  <div class="desc">保额80万保额80万保额80万保额80万保额80万保额80万</div>
-					  <div class="params">
-						  <div class="price">¥1132元</div>
-						  <div class="percent">10&+10%额外奖励</div>
-					  </div>
-				  </div>
-			  </li>
-			  <li class="productList">
-				  <div class="title">中华爱无忧定期寿险</div>
-				  <div class="content">
-					  <div class="desc">保额80万保额80万保额80万保额80万保额80万保额80万</div>
-					  <div class="params">
-						  <div class="price">¥1132元</div>
-						  <div class="percent">10&+10%额外奖励</div>
-					  </div>
-				  </div>
-			  </li>
-			  <li class="productList">
-				  <div class="title">中华爱无忧定期寿险</div>
-				  <div class="content">
-					  <div class="desc">保额80万保额80万保额80万保额80万保额80万保额80万</div>
-					  <div class="params">
-						  <div class="price">¥1132元</div>
-						  <div class="percent">10+10%额外奖励</div>
-					  </div>
-				  </div>
-			  </li>
+			 
 		  </ul>		
 	  </div>
         <ele_footer></ele_footer>
@@ -121,6 +92,8 @@ export default {
   },
   data() {
     return {
+      data: {},
+      showPercenter: true,
       bannerList: [],
       swiperOption: {
         autoplay: {
@@ -137,19 +110,44 @@ export default {
   //    data: ,
   created() {
     //budgetListuserId
-    console.log(api.homeIndex);
+
     //        var self = this
     this.getData();
     //
   },
+  mounted() {
+    axios({
+      method: "POST",
+      url: api.homeIndex,
+      data: {
+        userId: 1,
+        productType: ""
+      }
+    })
+      .then(res => {
+        console.log(this.list, "请求到的首页数据", res.data);
+        this.data = Object.assign([], res.data);
+        console.log(this.data, "请求到的首页数据", res.data);
+      })
+      .catch(rtn => {
+        console.log(rtn);
+      });
+  },
   methods: {
     chooseType() {
-      //   this.showPercenter = !this.showPercenter;
+      this.showPercenter = !this.showPercenter;
       this.$refs["slider1"].className =
         this.$refs["slider1"].className == "close1" ? "open1" : "close1";
       this.$refs["slider2"].className =
         this.$refs["slider2"].className == "close2" ? "open2" : "close2";
-      console.log(this.$refs["slider1"].className, "类名");
+      console.log(
+        this.$refs["slider1"].className,
+        "类名 this.showPercenter",
+        this.showPercenter
+      );
+	},
+	gotoProducts() {
+      this.$router.push({ path: "/Products" });
     },
     gotoRaider() {
       this.$router.push({ path: "/Raider" });
@@ -177,7 +175,7 @@ export default {
       })
         .then(res => {
           console.log(res.code);
-          console.log(res.data);
+          console.log("res.data", res.data);
           //                this.bannerList = res.data.bannerList;
           //                console.log(this.bannerList)
           //                this.$set(this.items,data)
@@ -327,7 +325,7 @@ export default {
     display: flex;
     .desc {
       flex: 1;
-      line-height: 0.40rem;
+      line-height: 0.4rem;
       font-size: 0.26rem;
       color: #7c7c7c;
     }

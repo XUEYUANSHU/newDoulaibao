@@ -14,7 +14,7 @@ import Certification from '@/views/Certification'
 import News from '@/views/News'
 import TeamLeader from '@/views/TeamLeader'
 import TeamMember from '@/views/TeamMember'
-import Raider from '@/views/TeamMember'
+import Raider from '@/views/Raider'
 // import AllProduct from "@/views/index/AllProduct"
 // import ImTeam from "@/views/index/ImTeam"
 // //JoinTeam
