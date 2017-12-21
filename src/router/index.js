@@ -10,6 +10,7 @@ import OrderList from "@/views/OrderList"
 import myWealth from "@/views/myWealth"
 import userProfile from '@/views/userProfile'
 import editUserName from '@/views/editUserName'
+import Certification from '@/views/Certification'
 import News from '@/views/News'
 import TeamLeader from '@/views/TeamLeader'
 import TeamMember from '@/views/TeamMember'
@@ -96,7 +97,12 @@ var routeData = [{
     path: '/editUserName',
     name: 'editUserName',
     component: editUserName
-}
+},
+{
+    path: '/Certification',
+    name: 'Certification',
+    component: Certification
+},
 ]
 
 
