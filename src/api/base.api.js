@@ -2,6 +2,7 @@ var NODE_ENV = process.env.NODE_ENV;
 var api = {};
 
 var baseurl = NODE_ENV == 'development' ? './api' : '/webapp/WEBproject/Companyservice';
+var baseurl = ' http://www.zyd521.com';
 // var baseurl = NODE_ENV == 'development' ? '/WEBproject/Companyservice' : './WEBproject/Companyservice';
 
 
