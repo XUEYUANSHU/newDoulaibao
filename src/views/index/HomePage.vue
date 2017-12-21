@@ -93,6 +93,27 @@ export default {
     //
   },
   methods: {
+      //userid
+      getUserId(){
+          let url = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxf7bac7d05b02d79c&redirect_uri=http%3A%2F%2Fwww.zyd521.com%2Fdlb%2Findex.html&response_type=code&scope=snsapi_userinfo#wechat_redirect"
+          axios({
+              method: "POST",
+              url: url,
+              data: {
+                  userId: 1
+              }
+          })
+              .then(res => {
+                  console.log(res.code);
+                  console.log(res.data);
+                  //                this.bannerList = res.data.bannerList;
+                  //                console.log(this.bannerList)
+                  //                this.$set(this.items,data)
+              })
+              .catch(rtn => {
+                  console.log(rtn);
+              });
+      },
     gotoRaider() {
       this.$router.push({ path: "/Raider" });
     },
