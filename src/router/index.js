@@ -10,11 +10,8 @@ import OrderList from "@/views/OrderList"
 import myWealth from "@/views/myWealth"
 import userProfile from '@/views/userProfile'
 import editUserName from '@/views/editUserName'
-<<<<<<< HEAD
 import history from '@/views/history'
-=======
 import Certification from '@/views/Certification'
->>>>>>> 850b2f8803ee84f060bbf0dae91b7d6e2a38710f
 import News from '@/views/News'
 import TeamLeader from '@/views/TeamLeader'
 import TeamMember from '@/views/TeamMember'
@@ -111,7 +108,7 @@ var routeData = [{
     name: 'editUserName',
     component: editUserName
 },
-<<<<<<< HEAD
+
     {
         path: '/OrderList',
         name: 'OrderList',
@@ -121,14 +118,14 @@ var routeData = [{
         path: '/bindMobile',
         name: 'bindMobile',
         component: bindMobile
-    }
-=======
+    },
+
 {
     path: '/Certification',
     name: 'Certification',
     component: Certification
 },
->>>>>>> 850b2f8803ee84f060bbf0dae91b7d6e2a38710f
+
 ]
 
 
