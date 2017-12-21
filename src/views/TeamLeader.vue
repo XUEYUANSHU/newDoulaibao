@@ -1,11 +1,11 @@
 
 <template>
     <div style="background: #F9F9F9;">
-        <div class="common_top">
-            <!-- <div class="common_fanhui" @click="returnIndex"><img src="../../assets/img/return.png" /></div> -->
+        <!-- <div class="common_top">
+            <div class="common_fanhui" @click="returnIndex"><img src="../../assets/img/return.png" /></div>
             <div class="common_fanhui" @click="returnIndex"><img ></div>
             我是团长
-        </div>
+        </div> -->
         <div class="common-w">
             <div class="share-title">分享团队邀请码</div>
             <div class="share-num">22222222</div>

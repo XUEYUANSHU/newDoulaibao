@@ -49,6 +49,56 @@
                 <span class="more">全部</span>
             </p>
         </div>
+		 <div  class="chooseType">
+      <span class="close-text">关闭</span>
+        <div @click="chooseType" ref="slider1" id="slider1" class="close1">
+                <div ref="slider2" id="slider2" class="close2"></div>
+        </div>
+      </div>
+	  <div>
+		  <ul>
+			  <li class="productList">
+				  <div class="title">中华爱无忧定期寿险</div>
+				  <div class="content">
+					  <div class="desc">保额80万保额80万保额80万保额80万保额80万保额80万</div>
+					  <div class="params">
+						  <div class="price">¥1132元</div>
+						  <div class="percent">10&+10%额外奖励</div>
+					  </div>
+				  </div>
+			  </li>
+			  <li class="productList">
+				  <div class="title">中华爱无忧定期寿险</div>
+				  <div class="content">
+					  <div class="desc">保额80万保额80万保额80万保额80万保额80万保额80万</div>
+					  <div class="params">
+						  <div class="price">¥1132元</div>
+						  <div class="percent">10&+10%额外奖励</div>
+					  </div>
+				  </div>
+			  </li>
+			  <li class="productList">
+				  <div class="title">中华爱无忧定期寿险</div>
+				  <div class="content">
+					  <div class="desc">保额80万保额80万保额80万保额80万保额80万保额80万</div>
+					  <div class="params">
+						  <div class="price">¥1132元</div>
+						  <div class="percent">10&+10%额外奖励</div>
+					  </div>
+				  </div>
+			  </li>
+			  <li class="productList">
+				  <div class="title">中华爱无忧定期寿险</div>
+				  <div class="content">
+					  <div class="desc">保额80万保额80万保额80万保额80万保额80万保额80万</div>
+					  <div class="params">
+						  <div class="price">¥1132元</div>
+						  <div class="percent">10+10%额外奖励</div>
+					  </div>
+				  </div>
+			  </li>
+		  </ul>		
+	  </div>
         <ele_footer></ele_footer>
     </div>
 
@@ -93,6 +143,14 @@ export default {
     //
   },
   methods: {
+    chooseType() {
+      //   this.showPercenter = !this.showPercenter;
+      this.$refs["slider1"].className =
+        this.$refs["slider1"].className == "close1" ? "open1" : "close1";
+      this.$refs["slider2"].className =
+        this.$refs["slider2"].className == "close2" ? "open2" : "close2";
+      console.log(this.$refs["slider1"].className, "类名");
+    },
     gotoRaider() {
       this.$router.push({ path: "/Raider" });
     },
@@ -131,7 +189,58 @@ export default {
   }
 };
 </script>
-<style lang="less">
+<style lang="less" scoped>
+.chooseType {
+  position: relative;
+  width: 100%;
+  height: 0.68rem;
+  color: #4a4a4a;
+  text-align: right;
+  background-color: #f3f0f0;
+  .close-text {
+    position: absolute;
+    right: 0.7rem;
+    top: 50%;
+    transform: translate(0, -50%);
+    color: #7b7a7a;
+  }
+  #slider1 {
+    width: 0.52rem;
+    height: 0.32rem;
+    border-radius: 40%;
+    transition: all 0.5s;
+    position: absolute;
+    right: 0.1rem;
+    top: 50%;
+    transform: translate(0, -50%);
+  }
+  #slider2 {
+    width: 0.26rem;
+    height: 0.26rem;
+    transition: all 0.5s;
+    border-radius: 50%;
+    position: absolute;
+    background: white;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.4);
+  }
+  .open1 {
+    background: rgba(0, 184, 0, 0.8);
+  }
+  .open2 {
+    top: 2px;
+    right: 1px;
+  }
+  .close1 {
+    background: rgba(144, 144, 144, 0.4);
+    // border:3px solid rgba(0,0,0,0.15);
+    border-left: transparent;
+  }
+  .close2 {
+    left: 0px;
+    top: 0px;
+    border: 2px solid rgba(0, 0, 0, 0.1);
+  }
+}
 .nav {
   ul {
     display: flex;
@@ -157,9 +266,16 @@ export default {
     display: flex;
     align-items: center;
     font-size: 0.26rem;
-	color: #3d3d3d;
-	height: 0.8rem;
+    color: #3d3d3d;
+    height: 0.8rem;
     padding: 0 0.3rem;
+    i.icon-hotProduct {
+      background: url("../../assets/img/hot.png") no-repeat center;
+      background-size: cover;
+      width: 0.4rem;
+      height: 0.4rem;
+      display: block;
+    }
     i.icon-huoke {
       background: url("../../assets/img/huoke-icon.png") no-repeat center;
       background-size: cover;
@@ -194,6 +310,31 @@ export default {
         width: 3.42rem;
         height: 1.6rem;
       }
+    }
+  }
+}
+.productList {
+  height: 1.86rem;
+  padding: 0.1rem;
+  border-bottom: 0.01rem solid #f3f0f0;
+  .title {
+    font-weight: 600;
+    color: #3d3d3d;
+    padding-bottom: 0.24rem;
+    font-size: 0.3rem;
+  }
+  .content {
+    display: flex;
+    .desc {
+      flex: 1;
+      line-height: 0.40rem;
+      font-size: 0.26rem;
+      color: #7c7c7c;
+    }
+    .params {
+      width: 2.72rem;
+      font-size: 0.3rem;
+      color: #fc8d00;
     }
   }
 }
