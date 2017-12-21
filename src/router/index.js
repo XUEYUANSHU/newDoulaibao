@@ -12,6 +12,10 @@ import userProfile from '@/views/userProfile'
 import editUserName from '@/views/editUserName'
 import history from '@/views/history'
 import News from '@/views/News'
+import TeamLeader from '@/views/TeamLeader'
+import TeamMember from '@/views/TeamMember'
+import Raider from '@/views/TeamMember'
+import bindMobile from '@/views/bindMobile' //手机绑定
 // import AllProduct from "@/views/index/AllProduct"
 // import ImTeam from "@/views/index/ImTeam"
 // //JoinTeam
@@ -40,10 +44,11 @@ var routeData = [{
 //     component: JoinTeam
 // },
 //
+
 {
-    path: '/OrderList',
-    name: 'OrderList',
-    component: OrderList
+    path: '/Raider',
+    name: 'Raider',
+    component: Raider
 },
 {
     path: '/',
@@ -78,7 +83,16 @@ var routeData = [{
     component: News
 },
 {
-
+    path: '/TeamLeader',
+    name: 'TeamLeader',
+    component: TeamLeader
+},
+{
+    path: '/TeamMember',
+    name: 'TeamMember',
+    component: TeamMember
+},
+{
     path: '/userProfile',
     name: 'userProfile',
     component: userProfile
@@ -87,7 +101,17 @@ var routeData = [{
     path: '/editUserName',
     name: 'editUserName',
     component: editUserName
-}
+},
+    {
+        path: '/OrderList',
+        name: 'OrderList',
+        component: OrderList
+    },
+    {
+        path: '/bindMobile',
+        name: 'bindMobile',
+        component: bindMobile
+    }
 ]
 
 
