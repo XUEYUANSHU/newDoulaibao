@@ -55,7 +55,7 @@
                 <div ref="slider2" id="slider2" class="close2"></div>
         </div>
       </div>
-	  <div>
+	  <div class="listWrap">
 		  <ul>
 			  <li class="productList"  v-for="(item, idx) in data.hotList" :key="idx">
 				  <div class="title">{{item.productName}}</div>
@@ -145,8 +145,8 @@ export default {
         "类名 this.showPercenter",
         this.showPercenter
       );
-	},
-	gotoProducts() {
+    },
+    gotoProducts() {
       this.$router.push({ path: "/Products" });
     },
     gotoRaider() {
@@ -311,28 +311,31 @@ export default {
     }
   }
 }
-.productList {
-  height: 1.86rem;
-  padding: 0.1rem;
-  border-bottom: 0.01rem solid #f3f0f0;
-  .title {
-    font-weight: 600;
-    color: #3d3d3d;
-    padding-bottom: 0.24rem;
-    font-size: 0.3rem;
-  }
-  .content {
-    display: flex;
-    .desc {
-      flex: 1;
-      line-height: 0.4rem;
-      font-size: 0.26rem;
-      color: #7c7c7c;
-    }
-    .params {
-      width: 2.72rem;
+.listWrap {
+  margin-bottom: 1rem;
+  .productList {
+    height: 1.86rem;
+    padding: 0.1rem;
+    border-bottom: 0.01rem solid #f3f0f0;
+    .title {
+      font-weight: 600;
+      color: #3d3d3d;
+      padding-bottom: 0.24rem;
       font-size: 0.3rem;
-      color: #fc8d00;
+    }
+    .content {
+      display: flex;
+      .desc {
+        flex: 1;
+        line-height: 0.4rem;
+        font-size: 0.26rem;
+        color: #7c7c7c;
+      }
+      .params {
+        width: 2.72rem;
+        font-size: 0.3rem;
+        color: #fc8d00;
+      }
     }
   }
 }
