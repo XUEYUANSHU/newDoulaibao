@@ -10,11 +10,16 @@ import OrderList from "@/views/OrderList"
 import myWealth from "@/views/myWealth"
 import userProfile from '@/views/userProfile'
 import editUserName from '@/views/editUserName'
+import history from '@/views/history'
 import Certification from '@/views/Certification'
 import News from '@/views/News'
 import TeamLeader from '@/views/TeamLeader'
 import TeamMember from '@/views/TeamMember'
+// import Raider from '@/views/TeamMember'
+import bindMobile from '@/views/bindMobile' //手机绑定
 import Raider from '@/views/Raider'
+import Deposit from '@views/Deposit'  //提现页面
+import cashWechatSuccess from '@views/cashWechatSuccess'  //提现页面
 // import AllProduct from "@/views/index/AllProduct"
 // import ImTeam from "@/views/index/ImTeam"
 // //JoinTeam
@@ -73,6 +78,14 @@ var routeData = [{
     name: 'myWealth',
     component: myWealth
 },
+
+    {
+        path: '/history',
+        name: 'history',
+        component: history
+    },
+
+
 {
     path: '/News',
     name: 'News',
@@ -98,11 +111,28 @@ var routeData = [{
     name: 'editUserName',
     component: editUserName
 },
+
+    {
+        path: '/OrderList',
+        name: 'OrderList',
+        component: OrderList
+    },
+    {
+        path: '/bindMobile',
+        name: 'bindMobile',
+        component: bindMobile
+    },
+
 {
     path: '/Certification',
     name: 'Certification',
     component: Certification
 },
+    {
+        path: '/Deposit',
+        name: 'Deposit',
+        component: Deposit
+    }
 ]
 
 
