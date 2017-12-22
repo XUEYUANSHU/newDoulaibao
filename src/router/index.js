@@ -4,6 +4,7 @@ import Router from 'vue-router'
 
 
 import HomePage from "@/views/index/HomePage"
+import Raider from '@/views/Raider' // 创富攻略
 import Products from "@/views/Products"
 import UserCenter from "@/views/UserCenter"
 import OrderList from "@/views/OrderList"
@@ -11,20 +12,22 @@ import myWealth from "@/views/myWealth"
 import userProfile from '@/views/userProfile'
 import editUserName from '@/views/editUserName'
 import history from '@/views/history'
+
 import News from '@/views/News'
 import TeamLeader from '@/views/TeamLeader'
 import TeamMember from '@/views/TeamMember'
-import bindMobile from '@/views/bindMobile' //手机绑定
-import Raider from '@/views/Raider'
 
-import CashWechatSuccess from '@views/cashWechatSuccess'  //提现页面
-import Certification from '@views/Certification'  //提现页面
+import bindMobile from '@/views/bindMobile' //手机绑定
+import Deposit from '@/views/Deposit' // 实名认证
+import Certification from '@/views/Certification' // 实名认证
+import cashWechatSuccess from '@/views/cashWechatSuccess' // 实名认证
+import bindBank from '@/views/bindBank' // 绑定银行卡
+// import cashWechatSuccess from '@views/cashWechatSuccess'  //提现页面
 // import AllProduct from "@/views/index/AllProduct"
 // import ImTeam from "@/views/index/ImTeam"
 // //JoinTeam
 // import JoinTeam from "@/views/index/JoinTeam"
 // import Share from "@/views/index/Share"
-import Deposit from '@views/Deposit'  //提现页面
 
 
 
@@ -36,19 +39,6 @@ var routeData = [{
 	name: 'Home',
 	component: HomePage
 },
-// {
-//     path: '/imTeam',
-//     name: 'ImTeam',
-//     component: ImTeam
-// },
-//
-// {
-//     path: '/joinTeam',
-//     name: 'JoinTeam',
-//     component: JoinTeam
-// },
-//
-
 {
 	path: '/Raider',
 	name: 'Raider',
@@ -122,7 +112,6 @@ var routeData = [{
 	name: 'bindMobile',
 	component: bindMobile
 },
-
 {
 	path: '/Certification',
 	name: 'Certification',
@@ -132,7 +121,17 @@ var routeData = [{
 	path: '/Deposit',
 	name: 'Deposit',
 	component: Deposit
-}
+},
+{
+	path: '/cashWechatSuccess',
+	name: 'cashWechatSuccess',
+	component: cashWechatSuccess
+},
+{
+	path: '/bindBank',
+	name: 'bindBank',
+	component: bindBank
+},
 ]
 
 
