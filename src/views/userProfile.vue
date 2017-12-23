@@ -27,7 +27,7 @@
                    <span>未绑定</span>
                    <i class="item-right-icon"></i>
                </li>
-               <li class="bankcard">
+               <li class="bankcard"  @click="pushRoute('bindBank')">
                    <span>银行卡</span>
                    <span>未绑定</span>
                    <i class="item-right-icon"></i>

@@ -107,6 +107,9 @@ export default {
 </script>
  
 <style lang="less" scoped>
+.products {
+  margin-bottom: 1rem;
+}
 .activeName::before {
   content: "";
   position: absolute;
@@ -207,12 +210,12 @@ export default {
         // border: 1px solid blue;
         .title {
           padding-bottom: 0.25rem;
-          font-size: 0.30rem;
-          color: #3D3D3D ;
+          font-size: 0.3rem;
+          color: #3d3d3d;
           font-weight: 600;
         }
         .desc {
-          color: #7C7C7C;
+          color: #7c7c7c;
           font-size: 0.26rem;
           line-height: 0.35rem;
         }

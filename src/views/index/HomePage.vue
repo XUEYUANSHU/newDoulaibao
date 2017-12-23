@@ -55,7 +55,7 @@
                 <div ref="slider2" id="slider2" class="close2"></div>
         </div>
       </div>
-	  <div style="padding-bottom:.85rem">
+	  <div class="listWrap">
 		  <ul>
 			  <li class="productList"  v-for="(item, idx) in data.hotList" :key="idx">
 				  <div class="title">{{item.productName}}</div>
@@ -67,8 +67,8 @@
 					  </div>
 				  </div>
 			  </li>
-
-		  </ul>
+			 
+		  </ul>		
 	  </div>
         <ele_footer></ele_footer>
     </div>
@@ -134,27 +134,6 @@ export default {
       });
   },
   methods: {
-      //userid
-      getUserId(){
-          let url = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxf7bac7d05b02d79c&redirect_uri=http%3A%2F%2Fwww.zyd521.com%2Fdlb%2Findex.html&response_type=code&scope=snsapi_userinfo#wechat_redirect"
-          axios({
-              method: "POST",
-              url: url,
-              data: {
-                  userId: 1
-              }
-          })
-              .then(res => {
-                  console.log(res.code);
-                  console.log(res.data);
-                  //                this.bannerList = res.data.bannerList;
-                  //                console.log(this.bannerList)
-                  //                this.$set(this.items,data)
-              })
-              .catch(rtn => {
-                  console.log(rtn);
-              });
-      },
     chooseType() {
       this.showPercenter = !this.showPercenter;
       this.$refs["slider1"].className =
@@ -166,8 +145,8 @@ export default {
         "类名 this.showPercenter",
         this.showPercenter
       );
-	},
-	gotoProducts() {
+    },
+    gotoProducts() {
       this.$router.push({ path: "/Products" });
     },
     gotoRaider() {
@@ -332,28 +311,31 @@ export default {
     }
   }
 }
-.productList {
-  height: 1.86rem;
-  padding: 0.1rem;
-  border-bottom: 0.01rem solid #f3f0f0;
-  .title {
-    font-weight: 600;
-    color: #3d3d3d;
-    padding-bottom: 0.24rem;
-    font-size: 0.3rem;
-  }
-  .content {
-    display: flex;
-    .desc {
-      flex: 1;
-      line-height: 0.4rem;
-      font-size: 0.26rem;
-      color: #7c7c7c;
-    }
-    .params {
-      width: 2.72rem;
+.listWrap {
+  margin-bottom: 1rem;
+  .productList {
+    height: 1.86rem;
+    padding: 0.1rem;
+    border-bottom: 0.01rem solid #f3f0f0;
+    .title {
+      font-weight: 600;
+      color: #3d3d3d;
+      padding-bottom: 0.24rem;
       font-size: 0.3rem;
-      color: #fc8d00;
+    }
+    .content {
+      display: flex;
+      .desc {
+        flex: 1;
+        line-height: 0.4rem;
+        font-size: 0.26rem;
+        color: #7c7c7c;
+      }
+      .params {
+        width: 2.72rem;
+        font-size: 0.3rem;
+        color: #fc8d00;
+      }
     }
   }
 }
