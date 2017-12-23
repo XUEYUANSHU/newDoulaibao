@@ -34,7 +34,7 @@
             </div>
         </div>
          <div class="code">
-            <div><img src="../assets/img/二维码@3x.png" alt=""></div>
+            <div><img :src="data.team.teamImage" alt=""></div>
             <div>分享二维码</div>
         </div>
         <div class="abortTeam">
