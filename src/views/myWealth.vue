@@ -105,6 +105,7 @@
                 font-size: .3rem;
                 line-height: .44rem;
                 color: #f97908;
+                margin: 0!important;
             }
         }
         .item-presented{

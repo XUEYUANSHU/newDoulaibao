@@ -67,8 +67,8 @@
 					  </div>
 				  </div>
 			  </li>
-			 
-		  </ul>		
+
+		  </ul>
 	  </div>
         <ele_footer></ele_footer>
     </div>
@@ -253,7 +253,7 @@ export default {
       span {
         display: block;
         margin-top: 0.1rem;
-        font-size: 14px;
+        font-size: .28rem;
         color: #3d3d3d;
       }
     }

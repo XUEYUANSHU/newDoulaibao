@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="item">
+        <div class="item-identify">
             <p>请您先完成实名认证后，再进行提现哦！</p>
             <button>前去实名认证</button>
         </div>
@@ -12,7 +12,7 @@
     }
 </script>
 <style lang="less">
-    .item{
+    .item-identify{
         p{
             font-size: .35rem;
             line-height: .5rem;

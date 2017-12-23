@@ -63,7 +63,7 @@ export default {
     display: flex;
     align-items: center;
     i {
-      font-size: 40px;
+      /*font-size: 40px;*/
     }
     li {
       flex: 1;
@@ -71,7 +71,7 @@ export default {
       color: #3d3d3d;
       span {
         display: block;
-        font-size: 14px;
+        font-size: .28rem;
       }
     }
      .activeName{
