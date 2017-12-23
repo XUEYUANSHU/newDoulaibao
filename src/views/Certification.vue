@@ -11,21 +11,21 @@
                     <p>身份证正面照</p>
                     <div class="choose-img">
                         <img src="../assets/img/zhengmian2x.png" alt="">
-                        <input type="file" accept="image/png,image/gif,image/jpg" name="file"/>
+                        <input type="file" accept="image/png,image/gif,image/jpg" name="file" />
                     </div>
                 </div>
                 <div class="cert-img-list">
                     <p>身份证反面照</p>
                     <div class="choose-img">
                         <img src="../assets/img/反面照@2x.png" alt="">
-                        <input type="file" accept="image/png,image/gif,image/jpg"/>
+                        <input type="file" accept="image/png,image/gif,image/jpg" @change="onFileChange($event,1)"/>
                     </div>
                 </div>
                 <div class="cert-img-list">
                     <p>手持身份证照</p>
                     <div class="choose-img">
                         <img src="../assets/img/反面照@2x.png" alt="">
-                        <input type="file" accept="image/png,image/gif,image/jpg"/>
+                        <input type="file" accept="image/png,image/gif,image/jpg" @change="onFileChange($event,1)"/>
                     </div>
                 </div>
             </div>
@@ -36,17 +36,34 @@
     </div>
 </template>
 <script>
+    import footer from "@/components/footer.vue";
+    import axios from "@/api/axios";
+    import api from "@/api/index.api";
     export default {
         data(){
             return {
-
+                
             }
+        },
+        created(){
+
         },
         methods:{
             uploadImg(){
-                this.$router.push('identifyReview')
-            }
-
+//                this.$router.push('identifyReview')
+                $.ajax({
+                    url:api.uploadimage,
+                    type:'POST',
+                    data:{file:"1.jpg"},
+                    success:function (res) {
+                        alert('2')
+                        alert(res.code)
+                    },
+                    err:function (err) {
+                        console.log(err)
+                    }
+                })
+            },
         }
     }
 </script>

@@ -7,7 +7,7 @@
                <li>
                    <span>头像</span>
                    <p>
-                       <input type="file" accept="image/png,image/gif,image/jpg" name="file">
+                       <input type="file" accept="image/png,image/gif,image/jpg" name="file" multiple="multiple"  @change="onFileChange">
                        <img :src="data.avatar" alt="">
                    </p>
                    <i class="item-right-icon"></i>
@@ -19,7 +19,7 @@
                </li>
                <li>
                    <span>实名认证</span>
-                   <span @click="checkUserStatus($event)" :status-id="data.userStatus">{{data.userStatus === 0 ? "未认证":"已认证"}}</span>
+                   <span @click="checkUserStatus($event)" :status-id="data.userStatus">{{data.userStatus === 0 ? "未认证":(data.userStatus === 1?"审核中":(data.userStatus === 2?"已认证":(data.userStatus === 3?"审核失败":"认证失败")))}}</span>
                    <i class="item-right-icon"></i>
                </li>
                <li @click="checkMobile($event)" :usermobile-id="data.mobile">
@@ -79,7 +79,7 @@
             //检测手机号是否绑定
             checkMobile(){
                 var usermobile =  this.usermobile = event.currentTarget.getAttribute('usermobile-id');
-                alert(this.usermobile)
+//                alert(this.usermobile)
                 if(usermobile === ''){
                     this.$touter.push('bindMobile')
                 }else {
@@ -89,15 +89,59 @@
             //检测是否实名
             checkUserStatus(){
                 var status =  this.status = event.currentTarget.getAttribute('status-id');
-//                alert(this.status)
+//                alert(this.status)0 未通过 1.审核中2.通过 3.失败
                 if(status === "0"){
                     this.$router.push('Certification')
-                    alert('未认证')
+//                    alert('未认证')
                 }else if(status === "1"){
 //                    this.$router.push('changeMobile')
-                    alert('您已完成个人认证')
+                    this.$router.push('identifyReview')
+//                    alert('1')
+                }else if(status === "2"){
+//                    alert('2')
+                    this.$router.push('identifySucc')
+                }else {
+//                    alert('3')
+                    this.$router.push('Certification')
                 }
-            }
+            },
+            //photo
+            onFileChange(e) {
+                var files = e.target.files || e.dataTransfer.files;
+                if (!files.length)
+                    return;
+                this.createImage(files[0]);
+            },
+            createImage(file) {
+                var image = new Image();
+                var reader = new FileReader();
+                var vm = this;
+
+                reader.onload = (e) => {
+                    vm.image = e.target.result;
+                };
+                reader.readAsDataURL(file);
+                axios({
+                    method: "POST",
+                    url: api.uploadimage,
+                    data: {
+                        file:this.image
+                    }
+                })
+                    .then(res => {
+//                        this.data = res.data;
+                        console.log(res.code)
+//                        var mobile = res.data.mobile;
+//                        console.log(res.data.userStatus);
+//                        console.log("res.data", res.data);
+                        //                this.bannerList = res.data.bannerList;
+                        //                console.log(this.bannerList)
+                        //                this.$set(this.items,data)
+                    })
+                    .catch(rtn => {
+                        console.log(rtn);
+                    });
+            },
 
         }
     }
