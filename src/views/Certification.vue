@@ -1,38 +1,37 @@
 <template>
 
     <div class="container">
-        <!--个人资料-->
+        <!--实名认证-->
         <div class="item-ul">
-           <ul>
-               <li>
-                   <span>头像</span>
-                   <p>
-                       <input type="file" accept="image/png,image/gif,image/jpg" name="file">
-                       <img src="../assets/img/headimg.jpg" alt="">
-                   </p>
-                   <i class="item-right-icon"></i>
-               </li>
-               <li @click="pushRoute('editUserName')">
-                   <span >昵称</span>
-                   <span>未绑定</span>
-                   <i class="item-right-icon"></i>
-               </li>
-               <li>
-                   <span>实名认证111</span>
-                   <span @click="pushRoute('Certification')">未绑定</span>
-                   <i class="item-right-icon"></i>
-               </li>
-               <li @click="pushRoute('bindMobile')">
-                   <span>手机号</span>
-                   <span>未绑定</span>
-                   <i class="item-right-icon"></i>
-               </li>
-               <li class="bankcard"  @click="pushRoute('bindBank')">
-                   <span>银行卡</span>
-                   <span>未绑定</span>
-                   <i class="item-right-icon"></i>
-               </li>
-           </ul>
+            <ul>
+                <li>
+                    <span>实名认证</span>
+                    <span>请上传真实的个人信息，认证通过后将无法进行修改</span>
+                </li>
+                <li>
+                    <span >姓名</span>
+                    <input type="text" placeholder="请输入真实姓名" />
+                </li>
+                <li>
+                    <span >身份证</span>
+                    <input type="text" placeholder="请输入信息" />
+                </li>
+                <li>
+                    <span >身份证正面照</span>
+                    <input type="file" accept="image/png,image/gif,image/jpg" name="file">
+                    <img src="../assets/img/正面照@2x.png" alt="">
+                </li>
+                <li class="bankcard">
+                    <span >身份证反面照</span>
+                    <input type="file" accept="image/png,image/gif,image/jpg" name="file">
+                    <img src="../assets/img/反面照.png" alt="">
+                </li>
+                <li class="bankcard">
+                    <span >手持身份证照</span>
+                    <input type="file" accept="image/png,image/gif,image/jpg" name="file">
+                    <img src="../assets/img/反面照.png" alt="">
+                </li>
+            </ul>
         </div>
     </div>
 </template>

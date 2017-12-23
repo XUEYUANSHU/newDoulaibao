@@ -2,6 +2,7 @@
     <div id="app">
         <div>
             <router-view></router-view>
+            <ele_footer></ele_footer>
         </div>
     </div>
 </template>
@@ -11,11 +12,15 @@
 import Vue from 'vue'
 import rem from  '@/assets/js/h5reset'
 import '@/assets/css/style.css'
+import footer from "@/components/footer.vue"
 export default {
     data() {
         return {
 
         }
+    },
+    components: {
+        ele_footer: footer
     },
     created() {
         this.setRem()

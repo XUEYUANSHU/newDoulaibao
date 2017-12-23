@@ -38,7 +38,7 @@
 import axios from "axios";
 import footer from "@/components/footer.vue";
 import api from "@/api/index.api";
- 
+
 export default {
   data() {
     return {
@@ -49,7 +49,6 @@ export default {
   },
 
   components: {
-   
     ele_footer: footer
   },
   mounted() {
@@ -108,6 +107,9 @@ export default {
 </script>
  
 <style lang="less" scoped>
+.products {
+  margin-bottom: 1rem;
+}
 .activeName::before {
   content: "";
   position: absolute;
@@ -153,7 +155,7 @@ export default {
     right: 0.7rem;
     top: 50%;
     transform: translate(-50%, -50%);
-    color: #7B7A7A;
+    color: #7b7a7a;
   }
   #slider1 {
     width: 0.52rem;
@@ -208,13 +210,13 @@ export default {
         // border: 1px solid blue;
         .title {
           padding-bottom: 0.25rem;
-          font-size: 0.32rem;
-          color: #707070;
+          font-size: 0.3rem;
+          color: #3d3d3d;
           font-weight: 600;
         }
         .desc {
-          color: #999999;
-          font-size: 0.24rem;
+          color: #7c7c7c;
+          font-size: 0.26rem;
           line-height: 0.35rem;
         }
       }
@@ -224,7 +226,7 @@ export default {
         font-size: 0.32rem;
         font-weight: 600;
         text-align: right;
-        color: #f25f23;
+        color: #fc8d00;
       }
     }
   }

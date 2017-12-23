@@ -2,14 +2,20 @@
     <div>
         <div class="item">
             <input type="text" placeholder="请输入您的姓名" class="username">
-            <span class="save" @click="">保存</span>
+            <span class="save" @click="pushRoute('userProfile')">保存</span>
         </div>
     </div>
 </template>
 <script>
+    import axios from "@/api/axios";
+    import api from "@/api/index.api";
+    import router from "@/router/index";
     export default {
         methods:{
-
+            pushRoute(param) {
+                console.log(param)
+                this.$router.push("" + param + "");
+            }
         }
     }
 </script>
