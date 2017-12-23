@@ -50,6 +50,7 @@ api.bindbankcard = baseurl + "/user/bind/bank?userId=";
  code	是	String	验证码
  请求时写入data{}中
  */
+//绑定手机号
 api.bindmobile = baseurl + "/user/bind/mobile?userId=";
 
 api.wealth = baseurl + "/home/article?userId=1";
@@ -83,6 +84,7 @@ api.checkTeamMember = baseurl + "/team/checkTeamMember?userId=";
 
  请求时写入data{}中
  */
+//编辑用户昵称接口
 api.editnickName = baseurl + "/user/edit/nickname?userId=";
 
 /**
@@ -156,6 +158,7 @@ api.productDetail = baseurl + "/product/info";
  mobile 手机号
  请求时写入data{}中
  */
+//验证码接口
 api.sms = baseurl + "/sms/send";
 
 /**
@@ -181,6 +184,7 @@ api.teamAdd = baseurl + "/team/add?userId=1";
  TeamDesc	是	String	团队简介
  请求时写入data{}中
  */
+// 团队详情
 api.teamInfo = baseurl + "/team/info?userId=1";
 
 
@@ -231,6 +235,7 @@ api.userBalance = baseurl + "/user/balance?userId=1";
  userId 当前用户userId
  请求时写入data{}中
  */
+//用户详情
 api.userDetail = baseurl + "/user/info?userId=1";
 
 /**
@@ -238,5 +243,6 @@ api.userDetail = baseurl + "/user/info?userId=1";
  userId 当前用户userId
  请求时写入data{}中
  */
+//用户首页
 api.userIndex = baseurl + "/user/index?userId=1";
 export default api
