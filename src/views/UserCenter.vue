@@ -4,18 +4,18 @@
             <div class="header">
                 <div class="item-left">
                     <div class="item-user-msg">
-                        <img src="../assets/img/headimg.jpg" class="avador" @click="pushRoute('userProfile')" alt="">
-                        <span class="user-name">都来宝</span>
-                        <span class="user-number">12345678</span>
+                        <img :src="result.avatar" class="avador" @click="pushRoute('userProfile')" alt="">
+                        <span class="user-name">{{result.nickname}}</span>
+                        <span class="user-number">{{result.mobile}}</span>
                     </div>
                 </div>
                 <div class="item-right">
                     <div class="item-detail">
                         <p><i class="icon-total"></i><span>累计收入</span></p>
-                        <p class="total-money">7000</p>
+                        <p class="total-money">{{result.totalEarning}}</p>
                         <div class="item-cash">
-                            <p><span>可提现</span>{{}}</p>
-                            <p><span>待生效</span>{{}}</p>
+                            <p><span>可提现</span>{{result.totalWaitRecorded}}</p>
+                            <p><span>待生效</span>{{result.waitWithdrawal}}</p>
                         </div>
                     </div>
                 </div>
@@ -73,28 +73,40 @@ export default {
   },
   data() {
     return {
-      bannerList: [],
-      swiperOption: {
-        autoplay: {
-          delay: 5000,
-          disableOnInteraction: false
-        },
-        pagination: {
-          el: ".swiper-pagination",
-          clickable: true
-        }
-      }
+      result: [],
+
     };
   },
   //    data: ,
   created() {
     //budgetListuserId
+      this.getUserCenter()
   },
   methods: {
     pushRoute(param) {
         console.log(param)
       this.$router.push("" + param + "");
-    }
+    },
+      getUserCenter(){
+          axios({
+              method: "POST",
+              url: api.userIndex,
+              data: {
+                  userId: 1
+              }
+          })
+              .then(res => {
+                  this.result = res.data;
+                  console.log(res.code);
+                  console.log("res.data", res.data);
+                  //                this.bannerList = res.data.bannerList;
+                  //                console.log(this.bannerList)
+                  //                this.$set(this.items,data)
+              })
+              .catch(rtn => {
+                  console.log(rtn);
+              });
+      }
   }
 };
 </script>
@@ -107,7 +119,7 @@ body {
 .header {
   width: 7.5rem;
   height: 3.84rem;
-  background-color: #009944;
+  background-color: #fc8d00;
   display: flex;
   text-align: center;
   .item-left {
@@ -225,5 +237,5 @@ body {
     }
   }
 }
- 
+
 </style>

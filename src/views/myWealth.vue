@@ -2,16 +2,16 @@
     <div class="wrap">
         <div class="header">
             <p>累计收入（元）<i class="icon-eye" @click="pushRoute('history')"></i></p>
-            <p>0.00</p>
+            <p>{{wealth.totalEarning}}</p>
             <p><span class="cash" @click="pushRoute('tixian')">提现</span></p>
         </div>
         <div class="item">
             <div class="item-presented">
-                <p>0.00</p>
+                <p>{{wealth.waitWithdrawal}}</p>
                 <p @click="pushRoute('tixian')">可提现</p>
             </div>
             <div class="item-effective">
-                <p>0.00</p>
+                <p>{{wealth.totalWaitRecorded}}</p>
                 <p>待生效</p>
             </div>
         </div>
@@ -20,22 +20,22 @@
             <li>
                 <i class="icon-star-empty"></i>
                 <span>当月累计收入</span>
-                <span>0.00</span>
+                <span>{{wealth.curMonthTotalEarning}}</span>
             </li>
             <li>
                 <i class="icon-star-empty"></i>
                 <span>当月可提现(税前)</span>
-                <span>0.00</span>
+                <span>{{wealth.curMonthTotalEarning}}</span>
             </li>
             <li>
                 <i class="icon-star-empty"></i>
                 <span>当月缴税</span>
-                <span>0.00</span>
+                <span>{{wealth.curMonthTax}}</span>
             </li>
             <li>
                 <i class="icon-star-empty"></i>
                 <span>当月待生效</span>
-                <span>0.00</span>
+                <span>{{wealth.curMonthTotalWaitRecorded}}</span>
             </li>
         </ul>
     </div>
@@ -45,11 +45,42 @@
     </div>
 </template>
 <script>
+    import footer from "@/components/footer.vue";
+    import axios from "@/api/axios";
+    import api from "@/api/index.api";
     export  default {
+        data(){
+            return {
+                wealth:[]
+            }
+        },
+        created(){
+            this.getMyWealth()
+        },
         methods: {
             pushRoute(param) {
                 this.$router.push("" + param + "");
-            }
+            },
+            getMyWealth(){
+                axios({
+                    method: "POST",
+                    url: api.treasure,
+                    data: {
+                        userId: 1
+                    }
+                })
+                  .then(res => {
+                        this.wealth = res.data;
+                        console.log(res.code);
+                        console.log("res.data", res.data);
+                        //                this.bannerList = res.data.bannerList;
+                        //                console.log(this.bannerList)
+                        //                this.$set(this.items,data)
+                    })
+                    .catch(rtn => {
+                        console.log(rtn);
+                    });
+    }
         }
     }
 </script>
@@ -60,7 +91,7 @@
     .header{
         height:3.1rem;
         width:100%;
-        background: #009944;
+        background: #fc8d00;
         p{
             text-align: center;
             color: #fff;

@@ -11,6 +11,9 @@
     </div>
 </template>
 <script>
+    import footer from "@/components/footer.vue";
+    import axios from "@/api/axios";
+    import api from "@/api/index.api";
     export default {
         props:{
             disabled:{
@@ -29,14 +32,13 @@
             //发送短信
             sendCode(){
                 var reg = /^1[3|5][0-9]\d{4,8}$/;
-                var time = 30;
+                var time = 60;
                 var that = this
                 if(this.$refs.phone.value === "" || !reg.test(this.$refs.phone.value)){
                     console.log(this.$refs.phone.value)
+                    alert('手机号不合法')
                     return false;
                 }else{
-                    console.log('手机号合法'+ this.code)
-                    alert('1')
                     this.show= false;
                     var timer = setInterval(function () {
                         time--;
@@ -44,11 +46,32 @@
                         console.log(this.mobileCode)
                         if(time <=0){
                             clearInterval(timer);
-                            time = 30;
+                            time = 60;
                             that.mobileCode = "发送验证码"
                             that.show = true;
                         }
                     },1000);
+                    axios({
+                        method: "POST",
+                        url: api.sms,
+                        data: {
+                            userId: 1,
+                            mobile:this.$refs.phone.value
+                        }
+                    })
+                        .then(res => {
+                            this.data = res.data;
+                            console.log(res.code);
+//                            alert(res.data)
+//                            this.$router.push("userProfile");
+//                            console.log("res.data", res.data);
+                            //                this.bannerList = res.data.bannerList;
+                            //                console.log(this.bannerList)
+                            //                this.$set(this.items,data)
+                        })
+                        .catch(rtn => {
+                            console.log(rtn);
+                        });
 
                 }
             },
@@ -60,7 +83,32 @@
                 }
                 else{
                     //post
-                    this.$router.push('userProfile');
+                    axios({
+                        method: "POST",
+                        url: api.bindmobile,
+                        data: {
+                            userId: 1,
+                            mobile:this.$refs.phone.value,
+                            code:this.$refs.code.value
+                        }
+                    })
+                        .then(res => {
+                            this.data = res.data;
+                            console.log(res.code);
+                            alert(res.data);
+                            if(res.code === 200){
+                                alert('手机号更改成功')
+                                this.$router.push('userProfile');
+                            }
+//                            this.$router.push("userProfile");
+                            console.log("res.data", res.data);
+                            //                this.bannerList = res.data.bannerList;
+                            //                console.log(this.bannerList)
+                            //                this.$set(this.items,data)
+                        })
+                        .catch(rtn => {
+                            console.log(rtn);
+                        });
                 }
             },
         }

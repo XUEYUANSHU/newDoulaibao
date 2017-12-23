@@ -2,17 +2,49 @@
     <div>
         <div class="show-mobile">
             <div class="item">
-                <p><i class="icon-phone"></i><span>手机号</span><span>13881388888</span></p>
-                <button @click="pushRoute('changeMobile')">修改手机号</button>
+                <p><i class="icon-phone"></i><span>手机号</span><span>{{mobile}}</span></p>
+                <button @click="goChangePage()">修改手机号</button>
             </div>
         </div>
     </div>
 </template>
 <script>
+    import footer from "@/components/footer.vue";
+    import axios from "@/api/axios";
+    import api from "@/api/index.api";
     export default {
+        data(){
+            return {
+                mobile:''
+            }
+        },
+        created(){
+            this.getUserMobile()
+        },
         methods:{
-            pushRoute(param) {
-                this.$router.push("" + param + "");
+            getUserMobile(){
+                axios({
+                    method: "POST",
+                    url: api.userDetail,
+                    data: {
+                        userId: 1
+                    }
+                })
+                    .then(res => {
+                        this.mobile = res.data.mobile;
+//                        var mobile = res.data.mobile;
+//                        console.log(res.data.userStatus);
+//                        console.log("res.data", res.data);
+                        //                this.bannerList = res.data.bannerList;
+                        //                console.log(this.bannerList)
+                        //                this.$set(this.items,data)
+                    })
+                    .catch(rtn => {
+                        console.log(rtn);
+                    });
+            },
+            goChangePage(){
+                this.$router.push('changeMobile')
             }
         }
     }

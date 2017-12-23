@@ -1,8 +1,9 @@
 <template>
     <div>
         <div class="item">
-            <input type="text" placeholder="请输入您的姓名" class="username">
-            <span class="save" @click="pushRoute('userProfile')">保存</span>
+            <input type="text" placeholder="请输入您的姓名" class="username"  v-model="nickname">
+            <!--<p >{{nickname}}</p>-->
+            <span class="save" @click="editUserName()">保存</span>
         </div>
     </div>
 </template>
@@ -11,10 +12,47 @@
     import api from "@/api/index.api";
     import router from "@/router/index";
     export default {
+        data(){
+          return {
+              data:[],
+              nickname:""
+          }
+        },
+        created(){
+//            this.editUserName()
+        },
         methods:{
-            pushRoute(param) {
-                console.log(param)
-                this.$router.push("" + param + "");
+//            pushRoute(param) {
+//                console.log(param)
+//                this.$router.push("" + param + "");
+//            },
+            editUserName(){
+                if(this.nickname === ''){
+                    alert('请输入姓名')
+                }
+                else{
+                    axios({
+                        method: "POST",
+                        url: api.editnickName,
+                        data: {
+                            userId: 1,
+                            nickname:this.nickname
+                        }
+                    })
+                        .then(res => {
+                            this.data = res.data;
+                            console.log(res.code);
+                            alert(res.data)
+                            this.$router.push("userProfile");
+                            console.log("res.data", res.data);
+                            //                this.bannerList = res.data.bannerList;
+                            //                console.log(this.bannerList)
+                            //                this.$set(this.items,data)
+                        })
+                        .catch(rtn => {
+                            console.log(rtn);
+                        });
+                }
             }
         }
     }

@@ -1,37 +1,36 @@
 <template>
     <div>
-        <div class="container">
-            <!--实名认证-->
-            <div class="item-ul">
-                <ul>
-                    <li>
-                        <span>实名认证</span>
-                        <span>请上传真实的个人信息，认证通过后将无法进行修改</span>
-                    </li>
-                    <li>
-                        <span >姓名</span>
-                        <input type="text" placeholder="请输入真实姓名" />
-                    </li>
-                    <li>
-                        <span >身份证</span>
-                        <input type="text" placeholder="请输入信息" />
-                    </li>
-                    <li>
-                        <span >身份证正面照</span>
-                        <input type="file" accept="image/png,image/gif,image/jpg" name="file">
-                        <img src="../assets/img/正面照@2x.png" alt="">
-                    </li>
-                    <li class="bankcard">
-                        <span >身份证反面照</span>
-                        <input type="file" accept="image/png,image/gif,image/jpg" name="file">
-                        <img src="../assets/img/反面照.png" alt="">
-                    </li>
-                    <li class="bankcard">
-                        <span >手持身份证照</span>
-                        <input type="file" accept="image/png,image/gif,image/jpg" name="file">
-                        <img src="../assets/img/反面照.png" alt="">
-                    </li>
-                </ul>
+        <div class="cert-item">
+            <h3><span>实名认证</span>(请上传真实的个人信息，认证通过后将无法修改)</h3>
+            <div class="cert-input">
+                <p><span>姓名</span><input type="text" placeholder="请输入真实姓名"></p>
+                <p><span>身份证</span><input type="text" placeholder="请输入信息"></p>
+            </div>
+            <div class="cert-img">
+                <div class="cert-img-list">
+                    <p>身份证正面照</p>
+                    <div class="choose-img">
+                        <img src="../assets/img/zhengmian2x.png" alt="">
+                        <input type="file" accept="image/png,image/gif,image/jpg" name="file"/>
+                    </div>
+                </div>
+                <div class="cert-img-list">
+                    <p>身份证反面照</p>
+                    <div class="choose-img">
+                        <img src="../assets/img/反面照@2x.png" alt="">
+                        <input type="file" accept="image/png,image/gif,image/jpg"/>
+                    </div>
+                </div>
+                <div class="cert-img-list">
+                    <p>手持身份证照</p>
+                    <div class="choose-img">
+                        <img src="../assets/img/反面照@2x.png" alt="">
+                        <input type="file" accept="image/png,image/gif,image/jpg"/>
+                    </div>
+                </div>
+            </div>
+            <div class="upload" @click="uploadImg()">
+                <span>提交</span>
             </div>
         </div>
     </div>
@@ -44,72 +43,94 @@
             }
         },
         methods:{
-            pushRoute(param){
-                this.$router.push(""+param+"")
-            },
+            uploadImg(){
+                this.$router.push('identifyReview')
+            }
 
         }
     }
 </script>
-<style lang="less" scoped="scoped">
-    .container{
-        background-color: #fff;
-    }
-    .item-ul{
-        ul{
-            margin:.2rem 0;
-            li{
+<style lang="less" scoped>
+    .cert-item{
+        padding-bottom: 1rem;
+        h3{
+            display: flex;
+            align-items: flex-end;
+            font-size: .24rem;
+            color: rgba(18,18,18,0.25);
+            padding: .16rem .24rem;
+            span{
+                font-size: .3rem;
+                margin-right:.1rem ;
+                color: #5f3104;
+            }
+        }
+        .cert-input{
+            background-color: #fff;
+            p{
                 display: flex;
                 align-items: center;
-                padding: .2rem;
-                font-size: .32rem;
-                color: #545454;
-                border-bottom: 1px solid #ccc;
-                p{
+                padding: .3rem .24rem;
+                span{
+                    font-size: .32rem;
+                    color: #333;
+                    width:1.3rem;
+                }
+                input{
                     flex:1;
-                    display: flex;
+                    outline:none;
+                    border:none;
+                    color: #333;
+                    font-size: .28rem;
+                    text-align: center;
+                }
+            }
+
+        }
+        .cert-img{
+            background-color: #fff;
+            margin-top: .16rem;
+            padding: .16rem .24rem;
+            font-size: .28rem;
+            .cert-img-list{
+                margin-top: .24rem;
+                .choose-img{
+                    width:7.5rem;
+                    height:2.4rem;
                     position: relative;
-                    height:.56rem;
+                    padding: .24rem 0;
                     img{
-                        width: .56rem;
-                        height:.56rem;
-                        border-radius: 50%;
+                        width:4rem;
+                        height:2.4rem;
                         position: absolute;
-                        right:0;
-                        top:0;
-                        display: inline-block;
-                        z-index:98;
+                        left:1.726rem;
+                        top:.24rem;
+                        z-index: 996;
                     }
                     input{
-                        width:.56rem;
-                        height:.56rem;
-                        position: absolute;
-                        right:0;
-                        top:0;
-                        border:none;
-                        outline: none;
-                        /*background-color: rgba(0,0,0,0);*/
+                        display: block;
+                        width:4rem;
+                        height:2.4rem;
                         opacity: 0;
-                        display: inline-block;
-                        z-index: 99;
+                        outline:none;
+                        border:none;
+                        position: absolute;
+                        left:1.726rem;
+                        top:.24rem;
+                        z-index: 999;
                     }
                 }
-                span:nth-child(2){
-                    flex:1;
-                    text-align: right;
-                }
-                i.item-right-icon{
-                    background: url("../assets/img/item-right-icon.png") no-repeat center;
-                    background-size: cover;
-                    width:.18rem;
-                    height:.36rem;
-                    margin-left: .3rem;
-                }
             }
-            li.bankcard{
-                /*margin-top: .2rem;*/
-                border-top: .2rem solid #f2f2f2;
-            }
+        }
+        .upload{
+            width:7.5rem;
+            height:.96rem;
+            line-height:.96rem;
+            background-color: #fc8d00;
+            color: #fff;
+            font-size: .32rem;
+            margin-top: .4rem;
+            text-align: center;
         }
     }
 </style>
