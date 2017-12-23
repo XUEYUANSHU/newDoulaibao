@@ -87,13 +87,13 @@ export default {
 }
 </script>
 <style lang="less">
- @font-face {
+@font-face {
   font-family: 'iconfont';  /* project id 511646 */
-  src: url('//at.alicdn.com/t/font_511646_qcrocb2p5l7q4cxr.eot');
-  src: url('//at.alicdn.com/t/font_511646_qcrocb2p5l7q4cxr.eot?#iefix') format('embedded-opentype'),
-  url('//at.alicdn.com/t/font_511646_qcrocb2p5l7q4cxr.woff') format('woff'),
-  url('//at.alicdn.com/t/font_511646_qcrocb2p5l7q4cxr.ttf') format('truetype'),
-  url('//at.alicdn.com/t/font_511646_qcrocb2p5l7q4cxr.svg#iconfont') format('svg');
+  src: url('//at.alicdn.com/t/font_511646_r5j9b8zfz6qd7vi.eot');
+  src: url('//at.alicdn.com/t/font_511646_r5j9b8zfz6qd7vi.eot?#iefix') format('embedded-opentype'),
+  url('//at.alicdn.com/t/font_511646_r5j9b8zfz6qd7vi.woff') format('woff'),
+  url('//at.alicdn.com/t/font_511646_r5j9b8zfz6qd7vi.ttf') format('truetype'),
+  url('//at.alicdn.com/t/font_511646_r5j9b8zfz6qd7vi.svg#iconfont') format('svg');
 }
 .iconfont{
   font-family:"iconfont" !important;

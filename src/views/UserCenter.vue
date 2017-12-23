@@ -1,5 +1,6 @@
 <template>
     <div class="userCenter">
+       <Header url='-1' title="我的"></Header>
         <div class="container">
             <div class="header">
                 <div class="item-left">
@@ -57,6 +58,7 @@
 </template>
 <script>
 import footer from "@/components/footer.vue";
+import Header from "@/components/Header.vue";
 import axios from "@/api/axios";
 import api from "@/api/index.api";
 import router from "@/router/index";
@@ -69,44 +71,44 @@ export default {
   components: {
     swiper,
     swiperSlide,
-    ele_footer: footer
+    ele_footer: footer,
+    Header
   },
   data() {
     return {
-      result: [],
-
+      result: []
     };
   },
   //    data: ,
   created() {
     //budgetListuserId
-      this.getUserCenter()
+    this.getUserCenter();
   },
   methods: {
     pushRoute(param) {
-        console.log(param)
+      console.log(param);
       this.$router.push("" + param + "");
     },
-      getUserCenter(){
-          axios({
-              method: "POST",
-              url: api.userIndex,
-              data: {
-                  userId: 1
-              }
-          })
-              .then(res => {
-                  this.result = res.data;
-                  console.log(res.code);
-                  console.log("res.data", res.data);
-                  //                this.bannerList = res.data.bannerList;
-                  //                console.log(this.bannerList)
-                  //                this.$set(this.items,data)
-              })
-              .catch(rtn => {
-                  console.log(rtn);
-              });
-      }
+    getUserCenter() {
+      axios({
+        method: "POST",
+        url: api.userIndex,
+        data: {
+          userId: 1
+        }
+      })
+        .then(res => {
+          this.result = res.data;
+          console.log(res.code);
+          console.log("res.data", res.data);
+          //                this.bannerList = res.data.bannerList;
+          //                console.log(this.bannerList)
+          //                this.$set(this.items,data)
+        })
+        .catch(rtn => {
+          console.log(rtn);
+        });
+    }
   }
 };
 </script>
@@ -119,7 +121,7 @@ body {
 .header {
   width: 7.5rem;
   height: 3.84rem;
-  background-color: #fc8d00;
+  background-color: #F6871F;
   display: flex;
   text-align: center;
   .item-left {
@@ -237,5 +239,4 @@ body {
     }
   }
 }
-
 </style>

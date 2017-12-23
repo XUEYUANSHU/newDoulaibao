@@ -12,25 +12,25 @@
                 <div class="list">
                     <div>
                         <img src="../assets/img/短信@2x.png" class="icon-logo-img" />
-                        <span>短信</span>
+                        <span class="text">短信</span>
                     </div>
                     <div class="boder-line">
-                        <img src="../assets/img/QQ@2x.png" class="icon-logo-img" />
-                        <span>QQ </span>
+                        <img src="../assets/img/QQ @2x.png" class="icon-logo-img" />
+                        <span class="text">QQ </span>
                     </div>
                     <div>
                         <img src="../assets/img/微信@2x.png" class="icon-logo-img" />
-                        <span>微信</span>
+                        <span class="text">微信</span>
                     </div>
                     <div class="boder-line">
                         <img src="../assets/img/朋友圈@2x.png" class="icon-logo-img" />
                      
-                        <span>朋友圈</span>
+                        <span class="text">朋友圈</span>
                     </div>
                     <div style="boder:0">
                         <img src="../assets/img/二维码@2x.png" class="icon-logo-img" />
                         
-                        <span>二维码</span>
+                        <span class="text">二维码</span>
                     </div>
                 </div>
             </div>
@@ -241,6 +241,9 @@ export default {
         height: 0.48rem;
       }
       span {
+        height: 0.24rem;
+        font-size: 0.24rem;
+        color: #333333;
         display: block;
       }
       .textTile {

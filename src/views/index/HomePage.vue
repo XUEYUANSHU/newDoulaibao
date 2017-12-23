@@ -1,5 +1,6 @@
 <template>
     <div>
+        <Header url='-1' title="首页"></Header>
         <swiper :options="swiperOption">
             <swiper-slide> <img src="../../assets/img/banner1.png" class="swi-img"></swiper-slide>
             <swiper-slide><img src="../../assets/img/banner3.png" class="swi-img"></swiper-slide>
@@ -76,6 +77,7 @@
 </template>
 <script>
 import footer from "@/components/footer.vue";
+import Header from "@/components/Header.vue";
 import axios from "@/api/axios";
 import api from "@/api/index.api";
 import router from "@/router/index";
@@ -88,7 +90,8 @@ export default {
   components: {
     swiper,
     swiperSlide,
-    ele_footer: footer
+    ele_footer: footer,
+    Header
   },
   data() {
     return {
