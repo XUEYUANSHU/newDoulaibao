@@ -18,7 +18,6 @@ import TeamLeader from '@/views/TeamLeader'
 import TeamMember from '@/views/TeamMember'
 
 import bindMobile from '@/views/bindMobile' //手机绑定
-<<<<<<< HEAD
 import changeMobile from '@/views/changeMobile' //修改手机绑定
 import showMobile from '@/views/showMobile' //修改手机绑定
 import Raider from '@/views/Raider'
@@ -129,16 +128,6 @@ var routeData = [{
 	path: '/Certification',
 	name: 'Certification',
 	component: Certification
-},
-{
-	path: '/Deposit',
-	name: 'Deposit',
-	component: Deposit
-},
-{
-	path: '/cashWechatSuccess',
-	name: 'cashWechatSuccess',
-	component: cashWechatSuccess
 },
 {
 	path: '/bindBank',
