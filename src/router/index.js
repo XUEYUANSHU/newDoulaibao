@@ -20,7 +20,6 @@ import TeamMember from '@/views/TeamMember'
 import bindMobile from '@/views/bindMobile' //手机绑定
 import changeMobile from '@/views/changeMobile' //修改手机绑定
 import showMobile from '@/views/showMobile' //修改手机绑定
-import Raider from '@/views/Raider'
 import addBankCard from '@/views/addBankCard'
 import tixian from '@/views/tixian'
 import tixianWechatSucc from '@/views/tixianWechatSucc' //提现到微信成功提示
