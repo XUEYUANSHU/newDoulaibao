@@ -7,8 +7,8 @@
                <li>
                    <span>头像</span>
                    <p>
-                       <input type="file" accept="image/png,image/gif,image/jpg" name="file" multiple="multiple"  @change="onFileChange">
-                       <img :src="data.avatar" alt="">
+                       <input type="file" accept="image/png,image/gif,image/jpg" name="file" multiple="multiple"   @change="uploading($event)">
+                       <img :src="src" alt="" id="imageUrl">
                    </p>
                    <i class="item-right-icon"></i>
                </li>
@@ -45,7 +45,9 @@
             return {
                    data:[],
                    usermobile:'',
-                   status:''
+                   status:'',
+                    file:'',
+                    src:''
             }
         },
         created(){
@@ -65,6 +67,7 @@
                 })
                     .then(res => {
                         this.data = res.data;
+                        this.src = res.data.avatar;
 //                        var mobile = res.data.mobile;
                         console.log(res.data.userStatus);
 //                        console.log("res.data", res.data);
@@ -106,31 +109,60 @@
                 }
             },
             //photo
-            onFileChange(e) {
-                var files = e.target.files || e.dataTransfer.files;
-                if (!files.length)
-                    return;
-                this.createImage(files[0]);
-            },
-            createImage(file) {
-                var image = new Image();
-                var reader = new FileReader();
-                var vm = this;
+            choose(){
+//                var formData = new FormData($("#uploadImage")[0]);
+////                formData.append('userId',1);
+//                $.ajax({
+//                    url: api.uploadimage,
+//                    type: 'POST',
+//                    data: formData,
+//                    async: false,
+//                    cache: false,
+//                    contentType: false,
+//                    processData: false,
+//                    success: function (data) {
+////                            $('#uploadImageUrl').val(data.data);
+//                        $('#imageUrl').attr('src',data.data);
+//                        //alert(data.data+"上传成功!");
+//                        console.log(data.data)
+//                        console.log(data.message)
+//                    },
+//                    error: function (returndata) {
+//                        alert(returndata);
+//                    }
+//                });
 
-                reader.onload = (e) => {
-                    vm.image = e.target.result;
-                };
-                reader.readAsDataURL(file);
+            },
+            uploading(event){
+
+                this.file = event.target.files[0];//获取文件
+                var windowURL = window.URL || window.webkitURL;
+
+                this.file = event.target.files[0];
+
+                //创建图片文件的url
+
+                this.src = windowURL.createObjectURL(event.target.files[0]);
+                var formdata = new FormData();
+                formdata.append('file',this.file);
+                formdata.append('userId',"1")
+                console.log(this.file);
+                var config ={} ;
                 axios({
                     method: "POST",
                     url: api.uploadimage,
+                    headers: {
+                        'Content-Type':'multipart/form-data'
+                    },
                     data: {
-                        file:this.image
+                        file:formdata
                     }
                 })
                     .then(res => {
 //                        this.data = res.data;
                         console.log(res.code)
+//                        this.src = res.data
+                        console.log(res.message)
 //                        var mobile = res.data.mobile;
 //                        console.log(res.data.userStatus);
 //                        console.log("res.data", res.data);
