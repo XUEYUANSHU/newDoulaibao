@@ -32,7 +32,7 @@ import tixianGoIdentify from '@/views/tixianGoIdentify' //提现转实名认证
 // import cashWechatSuccess from '@views/cashWechatSuccess.vue'  //提现d到微信提示 // 实名认证
 import Certification from '@/views/Certification' // 实名认证
 
-// import bindBank from '@/views/bindBank' // 绑定银行卡
+import bindBank from '@/views/bindBank' // 绑定银行卡
 // import cashWechatSuccess from '@views/cashWechatSuccess'  //提现页面
 // import AllProduct from "@/views/index/AllProduct"
 // import ImTeam from "@/views/index/ImTeam"
@@ -128,11 +128,11 @@ var routeData = [{
 	name: 'Certification',
 	component: Certification
 },
-// {
-// 	path: '/bindBank',
-// 	name: 'bindBank',
-// 	component: bindBank
-// },
+{
+	path: '/bindBank',
+	name: 'bindBank',
+	component: bindBank
+},
     {
         path: '/Certification',
         name: 'Certification',
