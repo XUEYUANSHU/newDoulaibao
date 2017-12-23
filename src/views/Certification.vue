@@ -42,7 +42,7 @@
     export default {
         data(){
             return {
-                
+
             }
         },
         created(){
@@ -50,19 +50,8 @@
         },
         methods:{
             uploadImg(){
-//                this.$router.push('identifyReview')
-                $.ajax({
-                    url:api.uploadimage,
-                    type:'POST',
-                    data:{file:"1.jpg"},
-                    success:function (res) {
-                        alert('2')
-                        alert(res.code)
-                    },
-                    err:function (err) {
-                        console.log(err)
-                    }
-                })
+                this.$router.push('identifyReview')
+//
             },
         }
     }
