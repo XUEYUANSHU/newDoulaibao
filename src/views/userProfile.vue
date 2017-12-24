@@ -112,30 +112,6 @@
                 }
             },
             //photo
-            choose() {
-//                var formData = new FormData($("#uploadImage")[0]);
-////                formData.append('userId',1);
-//                $.ajax({
-//                    url: api.uploadimage,
-//                    type: 'POST',
-//                    data: formData,
-//                    async: false,
-//                    cache: false,
-//                    contentType: false,
-//                    processData: false,
-//                    success: function (data) {
-////                            $('#uploadImageUrl').val(data.data);
-//                        $('#imageUrl').attr('src',data.data);
-//                        //alert(data.data+"上传成功!");
-//                        console.log(data.data)
-//                        console.log(data.message)
-//                    },
-//                    error: function (returndata) {
-//                        alert(returndata);
-//                    }
-//                });
-
-            },
             uploading(event) {
 //                var that = this
                 this.file = event.target.files[0];//获取文件
