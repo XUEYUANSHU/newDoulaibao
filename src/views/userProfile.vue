@@ -7,7 +7,7 @@
                <li>
                    <span>头像</span>
                    <p>
-                       <input type="file" accept="image/png,image/gif,image/jpg" name="file" multiple="multiple"   @change="uploading($event)">
+                       <input type="file" accept="image/png,image/gif,image/jpg" name="file" multiple="multiple"   @change="uploading($event)" ref="avatar">
                        <img :src="src" alt="" id="imageUrl">
                    </p>
                    <i class="item-right-icon"></i>
@@ -103,6 +103,7 @@
                 }else if(status === "2"){
 //                    alert('2')
                     this.$router.push('identifySucc')
+//                    this.$router.push('Certification')
                 }else {
 //                    alert('3')
                     this.$router.push('Certification')
@@ -134,19 +135,18 @@
 
             },
             uploading(event){
-
+//                var that = this
                 this.file = event.target.files[0];//获取文件
                 var windowURL = window.URL || window.webkitURL;
-
+//
                 this.file = event.target.files[0];
-
                 //创建图片文件的url
-
                 this.src = windowURL.createObjectURL(event.target.files[0]);
                 var formdata = new FormData();
-                formdata.append('file',this.file);
-                formdata.append('userId',"1")
-                console.log(this.file);
+                formdata.append('file', this.file);
+//                formdata.append('userId',"1")
+//                console.log(this.$refs.avatar.files[0]);
+                console.log(formdata.get("userId"))
                 var config ={} ;
                 axios({
                     method: "POST",
@@ -154,14 +154,15 @@
                     headers: {
                         'Content-Type':'multipart/form-data'
                     },
-                    data: {
-                        file:formdata
-                    }
+                    data:
+                        formdata,
+
                 })
                     .then(res => {
 //                        this.data = res.data;
                         console.log(res.code)
-//                        this.src = res.data
+                        this.src = res.data
+                        console.log(this.src)
                         console.log(res.message)
 //                        var mobile = res.data.mobile;
 //                        console.log(res.data.userStatus);
