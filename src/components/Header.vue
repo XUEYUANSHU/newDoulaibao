@@ -42,7 +42,7 @@ export default {
   align-items: center;
   height: 0.86rem;
   color: #ffffff;
-  background-image:-webkit-linear-gradient(to top, orange, green);
+  background-image: -webkit-linear-gradient(left,#F7921E 0%,#F15B24 80%); 
   // background-color: #F47221;
   padding: 0 0.24rem;
   text-align: center;
