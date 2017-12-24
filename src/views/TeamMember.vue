@@ -1,8 +1,8 @@
 
 <template>
     <div style="background: #F9F9F9;">
-
-        <div style="display:none">
+      <Header url="-1" title="我是团员" />
+        <div style="display:block">
             <div class="memberHeader">
                 <div><i class="icon-team"></i><span class="team">{{data.team.teamName}}</span></div>
                 <div class="membersName"><span class="yellow2">团长: </span><span>{{data.team.teamLeader}}</span></div>
@@ -42,7 +42,7 @@
                 退出团队
             </div>
         </div>
-        <div class="join_member">
+        <div class="join_member" style="display:none">
             <div class="join_input"><i class="icon-yao"></i><input type="text" placeholder="请输入团队邀请码"></div>
             <p>注:团队邀请码由团队负责人提供</p>
             <div class="btn-join">确定加入</div>
@@ -52,23 +52,26 @@
 <script>
 import axios from "@/api/axios";
 import api from "@/api/index.api";
-
+import Header from "@/components/Header.vue";
 export default {
+  components: {
+    Header
+  },
   data() {
     return {
-        data:{team:{},teamMembers:{}},
+      data: { team: {}, teamMembers: {} }
     };
   },
-    mounted() {
+  mounted() {
     axios({
       method: "POST",
-      url:api.teamInfo,
+      url: api.teamInfo,
       data: {
-        userId: 1,
+        userId: 1
       }
     })
       .then(res => {
-        this.data =  res.data;
+        this.data = res.data;
         console.log(this.data, "团队详情", res.data);
       })
       .catch(rtn => {
@@ -76,23 +79,22 @@ export default {
       });
   },
   methods: {
-    outTeam(){
-        axios({
-            method: "POST",
-            url:api.outTeam,
-            data: {
-                userId: 1,
-            }
+    outTeam() {
+      axios({
+        method: "POST",
+        url: api.outTeam,
+        data: {
+          userId: 1
+        }
+      })
+        .then(res => {
+          //                this.data =  res.data;
+          console.log("退出团队成功", res.data);
         })
-            .then(res => {
-//                this.data =  res.data;
-                console.log( "退出团队成功", res.data);
-            })
-            .catch(rtn => {
-                console.log(rtn);
-            });
+        .catch(rtn => {
+          console.log(rtn);
+        });
     }
-
   }
 };
 </script>
@@ -283,52 +285,52 @@ export default {
   color: #ffffff;
   text-align: center;
 }
-    /*加入团队样式*/
-.join_member{
-    width:4.8rem;
-    margin: .7rem auto 0;
-    .join_input{
-        width:100%;
-        position: relative;
-        i.icon-yao{
-            background: url("../assets/img/邀请@2x.png");
-            background-size: cover;
-            width:.36rem;
-            height:.36rem;
-            display: block;
-            position: absolute;
-            left:.24rem;
-            top:.22rem;
-        }
-        input{
-            height:.8rem;
-            width:100%;
-            line-height: .8rem;
-            font-size: .3rem;
-            outline:none;
-            background: #FFFFFF;
-            border: 1px solid rgba(107,107,107,0.40);
-            border-radius: .1rem;
-            text-indent: .7rem;
-            color: #6b6b6b;
-        }
+/*加入团队样式*/
+.join_member {
+  width: 4.8rem;
+  margin: 0.7rem auto 0;
+  .join_input {
+    width: 100%;
+    position: relative;
+    i.icon-yao {
+      background: url("../assets/img/邀请@2x.png");
+      background-size: cover;
+      width: 0.36rem;
+      height: 0.36rem;
+      display: block;
+      position: absolute;
+      left: 0.24rem;
+      top: 0.22rem;
     }
-    p{
-        font-size: .24rem;
-        text-align: center;
-        margin-top: .16rem;
-        color: #6b6b6b;
+    input {
+      height: 0.8rem;
+      width: 100%;
+      line-height: 0.8rem;
+      font-size: 0.3rem;
+      outline: none;
+      background: #ffffff;
+      border: 1px solid rgba(107, 107, 107, 0.4);
+      border-radius: 0.1rem;
+      text-indent: 0.7rem;
+      color: #6b6b6b;
     }
-    .btn-join{
-        width:100%;
-        height:.72rem;
-        line-height: .72rem;
-        font-size: .32rem;
-        color: #fff;
-        text-align: center;
-        background-color: #fc8d00;
-        margin-top: .64rem;
-        border-radius: .1rem;
-    }
+  }
+  p {
+    font-size: 0.24rem;
+    text-align: center;
+    margin-top: 0.16rem;
+    color: #6b6b6b;
+  }
+  .btn-join {
+    width: 100%;
+    height: 0.72rem;
+    line-height: 0.72rem;
+    font-size: 0.32rem;
+    color: #fff;
+    text-align: center;
+    background-color: #fc8d00;
+    margin-top: 0.64rem;
+    border-radius: 0.1rem;
+  }
 }
 </style>
