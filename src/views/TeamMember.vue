@@ -1,44 +1,51 @@
 
 <template>
     <div style="background: #F9F9F9;">
-   
-        <div class="memberHeader">
-            <div><i class="icon-team"></i><span class="team">{{data.team.teamName}}</span></div>
-            <div class="membersName"><span class="yellow2">团长: </span><span>{{data.team.teamLeader}}</span></div>
-        </div>
 
-        <div class="header-content">
-            <p>
-                <i class="icon-persons"></i>
-                <span class="teamName">团队成员</span>
-                <!-- <input type="text"> -->
-                <span class="more">{{data.team.teamUserNum+ '人'}}</span>
-            </p>
-        </div>
-        <div class="header-list" v-for="(item, idx) in data.teamMembers" :key="idx">
-            <div class="nav">
-                <div class="list">
-                    <div>
-                        <span class="textTile">{{item.realName}}</span>
-                        <span class="textContent">131****6790 </span>
-                    </div>
-                    <div>
-                        <span class="textTile">推广单数</span>
-                        <span class="textContent yellow1">{{item.expandNum}}</span>
-                    </div>
-                    <div>
-                        <span class="textTile">累计收入</span>
-                        <span class="textContent yellow1">{{item.awardPrice}}</span>
+        <div style="display:none">
+            <div class="memberHeader">
+                <div><i class="icon-team"></i><span class="team">{{data.team.teamName}}</span></div>
+                <div class="membersName"><span class="yellow2">团长: </span><span>{{data.team.teamLeader}}</span></div>
+            </div>
+
+            <div class="header-content">
+                <p>
+                    <i class="icon-persons"></i>
+                    <span class="teamName">团队成员</span>
+                    <!-- <input type="text"> -->
+                    <span class="more">{{data.team.teamUserNum+ '人'}}</span>
+                </p>
+            </div>
+            <div class="header-list" v-for="(item, idx) in data.teamMembers" :key="idx">
+                <div class="nav">
+                    <div class="list">
+                        <div>
+                            <span class="textTile">{{item.realName}}</span>
+                            <span class="textContent">131****6790 </span>
+                        </div>
+                        <div>
+                            <span class="textTile">推广单数</span>
+                            <span class="textContent yellow1">{{item.expandNum}}</span>
+                        </div>
+                        <div>
+                            <span class="textTile">累计收入</span>
+                            <span class="textContent yellow1">{{item.awardPrice}}</span>
+                        </div>
                     </div>
                 </div>
             </div>
+            <div class="code">
+                <div><img :src="data.team.teamImage" alt=""></div>
+                <div>分享二维码</div>
+            </div>
+            <div class="abortTeam" @click="outTeam()">
+                退出团队
+            </div>
         </div>
-         <div class="code">
-            <div><img :src="data.team.teamImage" alt=""></div>
-            <div>分享二维码</div>
-        </div>
-        <div class="abortTeam">
-            退出团队
+        <div class="join_member">
+            <div class="join_input"><i class="icon-yao"></i><input type="text" placeholder="请输入团队邀请码"></div>
+            <p>注:团队邀请码由团队负责人提供</p>
+            <div class="btn-join">确定加入</div>
         </div>
     </div>
 </template>
@@ -69,8 +76,23 @@ export default {
       });
   },
   methods: {
-   
- 
+    outTeam(){
+        axios({
+            method: "POST",
+            url:api.outTeam,
+            data: {
+                userId: 1,
+            }
+        })
+            .then(res => {
+//                this.data =  res.data;
+                console.log( "退出团队成功", res.data);
+            })
+            .catch(rtn => {
+                console.log(rtn);
+            });
+    }
+
   }
 };
 </script>
@@ -260,5 +282,53 @@ export default {
   background-color: #fc8d00;
   color: #ffffff;
   text-align: center;
+}
+    /*加入团队样式*/
+.join_member{
+    width:4.8rem;
+    margin: .7rem auto 0;
+    .join_input{
+        width:100%;
+        position: relative;
+        i.icon-yao{
+            background: url("../assets/img/邀请@2x.png");
+            background-size: cover;
+            width:.36rem;
+            height:.36rem;
+            display: block;
+            position: absolute;
+            left:.24rem;
+            top:.22rem;
+        }
+        input{
+            height:.8rem;
+            width:100%;
+            line-height: .8rem;
+            font-size: .3rem;
+            outline:none;
+            background: #FFFFFF;
+            border: 1px solid rgba(107,107,107,0.40);
+            border-radius: .1rem;
+            text-indent: .7rem;
+            color: #6b6b6b;
+        }
+    }
+    p{
+        font-size: .24rem;
+        text-align: center;
+        margin-top: .16rem;
+        color: #6b6b6b;
+    }
+    .btn-join{
+        width:100%;
+        height:.72rem;
+        line-height: .72rem;
+        font-size: .32rem;
+        color: #fff;
+        text-align: center;
+        background-color: #fc8d00;
+        margin-top: .64rem;
+        border-radius: .1rem;
+    }
 }
 </style>
