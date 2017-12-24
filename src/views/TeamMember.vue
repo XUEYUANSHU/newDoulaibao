@@ -2,7 +2,7 @@
 <template>
     <div style="background: #F9F9F9;">
       <Header url="-1" title="我是团员" />
-        <div style="display:block">
+        <div v-if="hasTeam">
             <div class="memberHeader">
                 <div><i class="icon-team"></i><span class="team">{{data.team.teamName}}</span></div>
                 <div class="membersName"><span class="yellow2">团长: </span><span>{{data.team.teamLeader}}</span></div>
@@ -42,10 +42,10 @@
                 退出团队
             </div>
         </div>
-        <div class="join_member" style="display:none">
-            <div class="join_input"><i class="icon-yao"></i><input type="text" placeholder="请输入团队邀请码"></div>
+        <div class="join_member" v-if="hasTeam">
+            <div class="join_input"><i class="icon-yao"></i><input v-model="teamCode" type="text" placeholder="请输入团队邀请码"></div>
             <p>注:团队邀请码由团队负责人提供</p>
-            <div class="btn-join">确定加入</div>
+            <div class="btn-join" @click="joinTeam">确定加入</div>
         </div>
     </div>
 </template>
@@ -59,6 +59,8 @@ export default {
   },
   data() {
     return {
+      teamCode: "",
+      hasTeam: true,
       data: { team: {}, teamMembers: {} }
     };
   },
@@ -73,12 +75,36 @@ export default {
       .then(res => {
         this.data = res.data;
         console.log(this.data, "团队详情", res.data);
+        if (res.data.teamMembers.length == 0) {
+          this.hasTeam = false;
+        }
       })
       .catch(rtn => {
         console.log(rtn);
       });
   },
   methods: {
+    joinTeam() {
+      if (this.teamCode) {
+        alert("请填写团队邀请码");
+        return;
+      }
+      axios({
+        method: "POST",
+        url: api.teamJoin,
+        data: {
+          userId: 1,
+          teamCode: this.hasTeam,
+        }
+      })
+        .then(res => {
+          //                this.data =  res.data;
+          console.log("退出团队成功", res.data);
+        })
+        .catch(rtn => {
+          console.log(rtn);
+        });
+    },
     outTeam() {
       axios({
         method: "POST",
