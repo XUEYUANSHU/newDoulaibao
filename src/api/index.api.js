@@ -257,13 +257,13 @@ idCardBody	是	string	手持身份证图片地址
 userId	是	Int	用户id
 *
 * */
-api.bindIdentify = baseurl + "/bind/identity?userId=4"
+api.bindIdentify = baseurl + "/user/bind/identity?userId=1"
 
 /*
 userId	是	Int	用户id
 推出团队
 * */
-api.outTeam = baseurl + "/team/outTeam?userId="
+api.outTeam = baseurl + "/team/outTeam?userId=1"
 
     /**
      *
