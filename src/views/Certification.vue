@@ -114,7 +114,7 @@
                 }else {
                     var formdata = new FormData();
                     formdata.append('realName',this.realName)
-                    formdata.append('idCardNumber',this.idCard)
+                    formdata.append('idCardNumber',this.idCardNumber)
                     formdata.append('idCardFront',this.$refs.avatar.files[0])
                     formdata.append('idCardVerso',this.$refs.avatar2.files[0])
                     formdata.append('idCardBody',this.$refs.avatar3.files[0])
@@ -123,9 +123,17 @@
                         method: "POST",
                         url: api.bindIdentify,
                         headers: {
-                            'Content-Type':'multipart/form-data'
+//                            'Content-Type':'multipart/form-data'
                         },
-                        data: formdata
+//                        data: {formdata}
+                        data:{
+                            realName:this.realName,
+                            idCardNumber:this.idCardNumber,
+                            idCardFront:this.$refs.avatar.files[0],
+                            idCardVerso:this.$refs.avatar2.files[0],
+                            idCardBody:this.$refs.avatar3.files[0],
+                            userId:1
+                        }
                 })
                     .then(res => {
 //                        this.data = res.data;
