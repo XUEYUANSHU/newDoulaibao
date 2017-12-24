@@ -1,6 +1,6 @@
 <template>
     <div>
-   
+    <Header url="-1" title="绑定银行卡" />
         <div class="identify" v-if="!identify">
             <div class="text">
               <p>请您完成实名认证后, 再添加</p>
@@ -25,7 +25,7 @@
                     <span class="left">手机号</span><input v-model="mobile" v-on:input="NUmberClear('mobile')"  class="mobile" placeholder="请输入手机号"> 
                 </div>
                 <div class="infoList code">
-                    <input  v-model="code" v-on:input="NUmberClear('code')"  class="left text-left" placeholder="请输入验证码"> <div @click="sendCode()" class="right yellow">{{hasSendCode ? '请输入验证码' : '点击发送验证码'}}</div>
+                    <input  v-model="code" v-on:input="NUmberClear('code')"  class="left text-left" placeholder="请输入验证码"> <div @click="sendCode()" class="right yellow">{{hasSendCode ? '请输入验证码' : '点击获取验证码'}}</div>
                 </div>
             </div>
             <div class="submit" @click="submit()">提交</div>
@@ -37,8 +37,11 @@
 import axios from "axios";
 // import axios from '@/api/my-axios.js'
 import api from "@/api/index.api";
-
+import Header from "@/components/Header.vue";
 export default {
+  components: {
+    Header
+  },
   data() {
     return {
       user: {},
@@ -50,6 +53,9 @@ export default {
     };
   },
   methods: {
+    go(){
+       this.$router.push('userProfile')
+    },
     sendCode() {
       let myreg = /^(((13[0-9]{1})|(15[0-9]{1})|(18[0-9]{1}))+\d{8})$/;
       if (!this.mobile) {
@@ -104,7 +110,10 @@ export default {
         alert("请输入有效的手机号码！");
         return false;
       }
-
+      if( this.hasSendCode){
+          alert("请点击获取验证码！");
+        return false;
+      }
       if (!this.code) {
         alert("请输入验证码！");
         return false;
@@ -121,8 +130,11 @@ export default {
         }
       })
         .then(res => {
-          if (res.data.code == 200) {
+          console.log('绑定银行卡的信息', res)
+          if (res.code == 200) {
             this.$router.go(-1);
+          } else{
+            alert(res.message)
           }
 
           console.log(this.user, "绑定银行卡的信息", res.data);
@@ -141,8 +153,15 @@ export default {
       }
     })
       .then(res => {
-        this.identify = res.data = 1;
+         
         console.log(this.identify, "是否实名认证", res.data);
+        if( res.code == 200){
+           this.identify = true
+        } else {
+           this.identify = false;
+           
+        
+        }
         if (this.identify) {
           axios({
             method: "POST",
@@ -167,7 +186,6 @@ export default {
 };
 </script>
 <style lang="less" scoped>
-
 .identify {
   .text {
     text-align: center;

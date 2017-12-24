@@ -1,13 +1,10 @@
 
 <template>
     <div style="background: #F9F9F9;">
-        <!-- <div class="common_top">
-            <div class="common_fanhui" @click="returnIndex"><img src="../assets/img/return.png" /></div>
-            我是团长
-        </div> -->
+        <Header url="-1" title="我是团长" />
         <div class="common-w">
             <div class="share-title">分享团队邀请码</div>
-            <div class="share-num">{{data.team.teamCode}}</div>
+            <div class="share-num">{{data.team.teamCode || '无'}}</div>
             <div class="nav">
                 <div class="list">
                     <div>
@@ -76,8 +73,11 @@
 <script>
 import axios from "@/api/axios";
 import api from "@/api/index.api";
-
+import Header from "@/components/Header.vue";
 export default {
+   components: {
+    Header
+  },
   data() {
     return {
       data: { team: {}, teamMembers: {} }

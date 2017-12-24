@@ -1,5 +1,6 @@
 <template>
     <div>
+          <Header url="-1" title="实名认证成功" />
         <div class="item">
             <div class="item-contain">
                 <img src="../assets/img/成功提示@2x.png" alt="">
@@ -10,7 +11,11 @@
     </div>
 </template>
 <script>
+import Header from "@/components/Header.vue";
     export  default {
+          components: {
+    Header
+  },
         methods: {
             pushRoute(param) {
                 this.$router.push("" + param + "");

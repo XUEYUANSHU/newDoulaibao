@@ -1,21 +1,24 @@
 <template>
     <div>
+      <Header url="-1" title="创富攻略" />
         <div  ref="articleContent" id="articleContent" v-html="this.data.articleContent"></div>
     </div>
 
 </template>
 <script>
 import footer from "@/components/footer.vue";
+import Header from "@/components/Header.vue";
 import axios from "@/api/axios";
 import api from "@/api/index.api";
 import router from "@/router/index";
- 
+
 export default {
   prop: {
     //        option:Object
   },
   components: {
-    ele_footer: footer
+    ele_footer: footer,
+    Header
   },
   data() {
     return {
@@ -33,8 +36,12 @@ export default {
     })
       .then(res => {
         this.data = Object.assign([], res.data);
-		console.log( this.$refs["articleContent"], '请求到的创富数据', res.data, this.data.articleContent)
-       
+        console.log(
+          this.$refs["articleContent"],
+          "请求到的创富数据",
+          res.data,
+          this.data.articleContent
+        );
       })
       .catch(rtn => {
         console.log(rtn);

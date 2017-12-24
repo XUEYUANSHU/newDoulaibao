@@ -2,7 +2,6 @@
     <div id="app">
         <div>
             <router-view></router-view>
-            <ele_footer></ele_footer>
         </div>
     </div>
 </template>
@@ -89,11 +88,11 @@ export default {
 <style lang="less">
 @font-face {
   font-family: 'iconfont';  /* project id 511646 */
-  src: url('//at.alicdn.com/t/font_511646_r5j9b8zfz6qd7vi.eot');
-  src: url('//at.alicdn.com/t/font_511646_r5j9b8zfz6qd7vi.eot?#iefix') format('embedded-opentype'),
-  url('//at.alicdn.com/t/font_511646_r5j9b8zfz6qd7vi.woff') format('woff'),
-  url('//at.alicdn.com/t/font_511646_r5j9b8zfz6qd7vi.ttf') format('truetype'),
-  url('//at.alicdn.com/t/font_511646_r5j9b8zfz6qd7vi.svg#iconfont') format('svg');
+  src: url('//at.alicdn.com/t/font_511646_jydamjd53fjbrzfr.eot');
+  src: url('//at.alicdn.com/t/font_511646_jydamjd53fjbrzfr.eot?#iefix') format('embedded-opentype'),
+  url('//at.alicdn.com/t/font_511646_jydamjd53fjbrzfr.woff') format('woff'),
+  url('//at.alicdn.com/t/font_511646_jydamjd53fjbrzfr.ttf') format('truetype'),
+  url('//at.alicdn.com/t/font_511646_jydamjd53fjbrzfr.svg#iconfont') format('svg');
 }
 .iconfont{
   font-family:"iconfont" !important;

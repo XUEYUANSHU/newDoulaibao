@@ -1,5 +1,6 @@
 <template>
     <div>
+         <Header url="-1" title="消息中心" />
 		<div class="title">
 			<span :class="activeNotice== '0'? 'activeNotice': ''"  @click="selected(0)">系统通知</span>
 			<span :class="activeNotice== '1'? 'activeNotice': ''"  @click="selected(1)">活动通知</span>
@@ -22,8 +23,11 @@ import axios from "axios";
 // import axios from '@/api/my-axios.js'
 import api from "@/api/index.api";
 import moment from "moment";
-import { swiper, swiperSlide } from "vue-awesome-swiper";
+import Header from "@/components/Header.vue";
 export default {
+  components: {
+    Header
+  },
   data() {
     return {
       activeNotice: "0",

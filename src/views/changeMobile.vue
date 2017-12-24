@@ -1,5 +1,6 @@
 <template>
     <div>
+          <Header url="-1" title="修改手机号" />
         <div class="item">
             <p><i class="icon-phone"></i><input type="number" value="" placeholder="请输入手机号码" id="phoneNum" class="mobile" ref="phone"></p>
             <p>
@@ -11,10 +12,13 @@
     </div>
 </template>
 <script>
-    import footer from "@/components/footer.vue";
     import axios from "@/api/axios";
     import api from "@/api/index.api";
+    import Header from "@/components/Header.vue";
     export default {
+          components: {
+    Header
+  },
         props:{
             disabled:{
                 type:Boolean,

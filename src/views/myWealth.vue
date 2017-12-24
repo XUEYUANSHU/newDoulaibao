@@ -1,5 +1,6 @@
 <template>
     <div class="wrap">
+           <Header url="-1" title="我的财富" />
         <div class="header">
             <p>累计收入（元）<i class="icon-eye" @click="pushRoute('history')"></i></p>
             <p>{{wealth.totalEarning}}</p>
@@ -45,139 +46,141 @@
     </div>
 </template>
 <script>
-    import footer from "@/components/footer.vue";
-    import axios from "@/api/axios";
-    import api from "@/api/index.api";
-    export  default {
-        data(){
-            return {
-                wealth:[]
-            }
-        },
-        created(){
-            this.getMyWealth()
-        },
-        methods: {
-            pushRoute(param) {
-                this.$router.push("" + param + "");
-            },
-            getMyWealth(){
-                axios({
-                    method: "POST",
-                    url: api.treasure,
-                    data: {
-                        userId: 1
-                    }
-                })
-                  .then(res => {
-                        this.wealth = res.data;
-                        console.log(res.code);
-                        console.log("res.data", res.data);
-                        //                this.bannerList = res.data.bannerList;
-                        //                console.log(this.bannerList)
-                        //                this.$set(this.items,data)
-                    })
-                    .catch(rtn => {
-                        console.log(rtn);
-                    });
-    }
+import Header from "@/components/Header.vue";
+import axios from "@/api/axios";
+import api from "@/api/index.api";
+export default {
+  components: {
+    Header
+  },
+  data() {
+    return {
+      wealth: []
+    };
+  },
+  created() {
+    this.getMyWealth();
+  },
+  methods: {
+    pushRoute(param) {
+      this.$router.push("" + param + "");
+    },
+    getMyWealth() {
+      axios({
+        method: "POST",
+        url: api.treasure,
+        data: {
+          userId: 1
         }
+      })
+        .then(res => {
+          this.wealth = res.data;
+          console.log(res.code);
+          console.log("res.data", res.data);
+          //                this.bannerList = res.data.bannerList;
+          //                console.log(this.bannerList)
+          //                this.$set(this.items,data)
+        })
+        .catch(rtn => {
+          console.log(rtn);
+        });
     }
+  }
+};
 </script>
 <style lang="less" scoped="scoped">
-    .wrap{
-        /*background: #fff;*/
+.wrap {
+  /*background: #fff;*/
+}
+.header {
+  height: 3.1rem;
+  width: 100%;
+  background: #fc8d00;
+  p {
+    text-align: center;
+    color: #fff;
+    i.icon-eye {
+      background: url("../assets/img/icon-eye.png");
+      background-size: cover;
+      width: 0.6rem;
+      height: 0.4rem;
+      display: inline-block;
     }
-    .header{
-        height:3.1rem;
-        width:100%;
-        background: #fc8d00;
-        p{
-            text-align: center;
-            color: #fff;
-            i.icon-eye{
-                background: url("../assets/img/icon-eye.png");
-                background-size: cover;
-                width:.6rem;
-                height:.4rem;
-                display: inline-block;
-            }
-            span{
-                width:1.56rem;
-                height:.64rem;
-                line-height: .64rem;
-                text-align: center;
-                display: inline-block;
-                border-radius: .4rem;
-                border:1px solid #fff;
-            }
-        }
-        p:nth-child(1){
-            padding-top: .4rem;
-            font-size: .4rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        p:nth-child(2){
-            font-size: .8rem;
-            line-height: 1.2rem;
-        }
+    span {
+      width: 1.56rem;
+      height: 0.64rem;
+      line-height: 0.64rem;
+      text-align: center;
+      display: inline-block;
+      border-radius: 0.4rem;
+      border: 1px solid #fff;
     }
-    .item{
-        display: flex;
-        padding: .2rem 0;
-        border-bottom: .2rem solid #f2f2f2;
-        background-color: #fff;
-        div{
-            flex:1;
-            text-align: center;
-            p{
-                font-size: .3rem;
-                line-height: .44rem;
-                color: #f97908;
-                margin: 0!important;
-            }
-        }
-        .item-presented{
-            border-right:1px solid #f97908;
-        }
-        .item-effective{
-
-        }
+  }
+  p:nth-child(1) {
+    padding-top: 0.4rem;
+    font-size: 0.4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  p:nth-child(2) {
+    font-size: 0.8rem;
+    line-height: 1.2rem;
+  }
+}
+.item {
+  display: flex;
+  padding: 0.2rem 0;
+  border-bottom: 0.2rem solid #f2f2f2;
+  background-color: #fff;
+  div {
+    flex: 1;
+    text-align: center;
+    p {
+      font-size: 0.3rem;
+      line-height: 0.44rem;
+      color: #f97908;
+      margin: 0 !important;
     }
-    .item-list{
-        background-color: #fff;
-        ul{
-            li{
-                display: flex;
-                align-items: center;
-                padding: .2rem;
-                border-bottom: 1px solid #f2f2f2;
-                span{
-                    font-size: .3rem;
-                    color: #000;
-                }
-                span:nth-child(2){
-                    flex:1;
-                    margin-left: .25rem;
-                }
-                i.icon-star-empty{
-                    background: url("../assets/img/icon-star-empty.png") no-repeat center;
-                    background-size: cover;
-                    width:.34rem;
-                    height:.3rem;
-                    display: inline-block;
-                }
-            }
-        }
+  }
+  .item-presented {
+    border-right: 1px solid #f97908;
+  }
+  .item-effective {
+  }
+}
+.item-list {
+  background-color: #fff;
+  ul {
+    li {
+      display: flex;
+      align-items: center;
+      padding: 0.2rem;
+      border-bottom: 1px solid #f2f2f2;
+      span {
+        font-size: 0.3rem;
+        color: #000;
+      }
+      span:nth-child(2) {
+        flex: 1;
+        margin-left: 0.25rem;
+      }
+      i.icon-star-empty {
+        background: url("../assets/img/icon-star-empty.png") no-repeat center;
+        background-size: cover;
+        width: 0.34rem;
+        height: 0.3rem;
+        display: inline-block;
+      }
     }
-    .item-detail-bar{
-        .item-history-detail{
-            font-size: .28rem;
-            color: #f97908;
-            text-align: center;
-            margin-top: .45rem;
-        }
-    }
+  }
+}
+.item-detail-bar {
+  .item-history-detail {
+    font-size: 0.28rem;
+    color: #f97908;
+    text-align: center;
+    margin-top: 0.45rem;
+  }
+}
 </style>

@@ -1,7 +1,7 @@
 
 <template>
     <div style="background: #F9F9F9;">
-   
+   <Header url="-1" title="团队成员" />
         <div class="memberHeader">
             <div><i class="icon-team"></i><span class="team">{{data.team.teamName}}</span></div>
             <div class="membersName"><span class="yellow2">团长: </span><span>{{data.team.teamLeader}}</span></div>
@@ -37,7 +37,7 @@
             <div><img :src="data.team.teamImage" alt=""></div>
             <div>分享二维码</div>
         </div>
-        <div class="abortTeam">
+        <div @click="quit" class="abortTeam">
             退出团队
         </div>
     </div>
@@ -45,23 +45,27 @@
 <script>
 import axios from "@/api/axios";
 import api from "@/api/index.api";
+import Header from "@/components/Header.vue";
 
 export default {
+  components: {
+    Header
+  },
   data() {
     return {
-        data:{team:{},teamMembers:{}},
+      data: { team: {}, teamMembers: {} }
     };
   },
-    mounted() {
+  mounted() {
     axios({
       method: "POST",
-      url:api.teamInfo,
+      url: api.teamInfo,
       data: {
-        userId: 1,
+        userId: 1
       }
     })
       .then(res => {
-        this.data =  res.data;
+        this.data = res.data;
         console.log(this.data, "团队详情", res.data);
       })
       .catch(rtn => {
@@ -69,8 +73,22 @@ export default {
       });
   },
   methods: {
-   
- 
+    quit() {
+      axios({
+        method: "POST",
+        url: api.outTeam,
+        data: {
+          userId: 1
+        }
+      })
+        .then(res => {
+         
+          console.log(this.data, "团队详情", res.data);
+        })
+        .catch(rtn => {
+          console.log(rtn);
+        });
+    }
   }
 };
 </script>

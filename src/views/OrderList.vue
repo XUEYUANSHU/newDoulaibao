@@ -1,5 +1,6 @@
 <template>
     <div>
+        <Header url="-1" title="订单列表" />
         <div class="header">
             <div class="insuranceType">
                 <span :class="activeType== '0'? 'activeType': ''"  @click="selected(0)">车险</span>
@@ -40,8 +41,12 @@ import axios from "axios";
 import api from "@/api/index.api";
 import router from "@/router/index";
 import moment from "moment";
+import Header from "@/components/Header.vue";
 
 export default {
+  components: {
+    Header
+  },
   data() {
     return {
       activeStatus: "0",

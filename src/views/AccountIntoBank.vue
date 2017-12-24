@@ -1,5 +1,6 @@
 <template>
     <div>
+         <Header url="-1" title="提现申请已提交"
         <div class="dialog" @click="pushRoute('tixianWechatSucc')">
             <div class="prompt" @click="pushRoute('tixianWechatSucc')">
                 <div class="item">
@@ -11,7 +12,11 @@
     </div>
 </template>
 <script>
+import Header from "@/components/Header.vue";
     export default {
+          components: {
+    Header
+  },
         methods: {
             pushRoute(param) {
                 this.$router.push("" + param + "");
