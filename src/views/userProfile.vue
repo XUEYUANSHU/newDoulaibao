@@ -8,8 +8,8 @@
                <li>
                    <span>头像</span>
                    <p>
-                       <input id="image" type="file" accept="image/png,image/gif,image/jpg" name="file" multiple="multiple"  @change="onFileChange">
-                       <img :src="data.avatar" alt="">
+                       <input type="file" accept="image/png,image/gif,image/jpg" name="file" multiple="multiple"   @change="uploading($event)" ref="avatar">
+                       <img :src="src" alt="" id="imageUrl">
                    </p>
                    <i class="item-right-icon"></i>
                </li>
@@ -38,143 +38,147 @@
     </div>
 </template>
 <script>
-import Header from "@/components/Header.vue";
-import footer from "@/components/footer.vue";
-import axios from "@/api/axios";
-import api from "@/api/index.api";
-export default {
-  data() {
-    return {
-      data: [],
-      usermobile: "",
-      status: ""
-    };
-  },
-  created() {
-    this.getUerProfile();
-  },
-  methods: {
-    pushRoute(param) {
-      this.$router.push("" + param + "");
-    },
-    getUerProfile() {
-      axios({
-        method: "POST",
-        url: api.userDetail,
-        data: {
-          userId: 1
-        }
-      })
-        .then(res => {
-          this.data = res.data;
-          //                        var mobile = res.data.mobile;
-          console.log(res.data.userStatus);
-          //                        console.log("res.data", res.data);
-          //                this.bannerList = res.data.bannerList;
-          //                console.log(this.bannerList)
-          //                this.$set(this.items,data)
-        })
-        .catch(rtn => {
-          console.log(rtn);
-        });
-    },
-    //检测手机号是否绑定
-    checkMobile() {
-      var usermobile = (this.usermobile = event.currentTarget.getAttribute(
-        "usermobile-id"
-      ));
-      //                alert(this.usermobile)
-      if (usermobile === "") {
-        this.$touter.push("bindMobile");
-      } else {
-        this.$router.push("showMobile");
-      }
-    },
-    //检测是否实名
-    checkUserStatus() {
-      var status = (this.status = event.currentTarget.getAttribute(
-        "status-id"
-      ));
-      //                alert(this.status)0 未通过 1.审核中2.通过 3.失败
-      if (status === "0") {
-        this.$router.push("Certification");
-        //                    alert('未认证')
-      } else if (status === "1") {
-        //                    this.$router.push('changeMobile')
-        this.$router.push("identifyReview");
-        //                    alert('1')
-      } else if (status === "2") {
-        //                    alert('2')
-        this.$router.push("identifySucc");
-      } else {
-        //                    alert('3')
-        this.$router.push("Certification");
-      }
-    },
-    //photo
-    onFileChange(e) {
-      var files = e.target.files || e.dataTransfer.files;
-      if (!files.length) return;
-    //   this.createImage(files[0]);
+    import Header from "@/components/Header.vue";
+    import footer from "@/components/footer.vue";
+    import axios from "@/api/axios";
+    import api from "@/api/index.api";
+    export default {
+        data() {
+            return {
+                data: [],
+                usermobile: '',
+                status: '',
+                file: '',
+                src: ''
+            }
+        },
+        created() {
+            this.getUerProfile()
+        },
+        methods: {
+            pushRoute(param) {
+                this.$router.push("" + param + "")
+            },
+            getUerProfile() {
+                axios({
+                    method: "POST",
+                    url: api.userDetail,
+                    data: {
+                        userId: 1
+                    }
+                })
+                    .then(res => {
+                        this.data = res.data;
+                        this.src = res.data.avatar;
+//                        var mobile = res.data.mobile;
+                        console.log(res.data.userStatus);
+//                        console.log("res.data", res.data);
+                        //                this.bannerList = res.data.bannerList;
+                        //                console.log(this.bannerList)
+                        //                this.$set(this.items,data)
+                    })
+                    .catch(rtn => {
+                        console.log(rtn);
+                    });
+            },
+            //检测手机号是否绑定
+            checkMobile() {
+                var usermobile = this.usermobile = event.currentTarget.getAttribute('usermobile-id');
+//                alert(this.usermobile)
+                if (usermobile === '') {
+                    this.$touter.push('bindMobile')
+                } else {
+                    this.$router.push('showMobile')
+                }
+            },
+            //检测是否实名
+            checkUserStatus() {
+                var status = this.status = event.currentTarget.getAttribute('status-id');
+//                alert(this.status)0 未通过 1.审核中2.通过 3.失败
+                if (status === "0") {
+                    this.$router.push('Certification')
+//                    alert('未认证')
+                } else if (status === "1") {
+//                    this.$router.push('changeMobile')
+                    this.$router.push('identifyReview')
+//                    alert('1')
+                } else if (status === "2") {
+//                    alert('2')
+                    this.$router.push('identifySucc')
+//                    this.$router.push('Certification')
+                } else {
+//                    alert('3')
+                    this.$router.push('Certification')
+                }
+            },
+            //photo
+            choose() {
+//                var formData = new FormData($("#uploadImage")[0]);
+////                formData.append('userId',1);
+//                $.ajax({
+//                    url: api.uploadimage,
+//                    type: 'POST',
+//                    data: formData,
+//                    async: false,
+//                    cache: false,
+//                    contentType: false,
+//                    processData: false,
+//                    success: function (data) {
+////                            $('#uploadImageUrl').val(data.data);
+//                        $('#imageUrl').attr('src',data.data);
+//                        //alert(data.data+"上传成功!");
+//                        console.log(data.data)
+//                        console.log(data.message)
+//                    },
+//                    error: function (returndata) {
+//                        alert(returndata);
+//                    }
+//                });
 
-      var formData = new FormData();
-      formData.append("file", document.getElementById("image"));
-      formData.append("userId", 1); //添加其他需要上传的数据，这里可以用JSON.stringify转，涉及file上传的切记不要转;
+            },
+            uploading(event) {
+//                var that = this
+                this.file = event.target.files[0];//获取文件
+                var windowURL = window.URL || window.webkitURL;
+//
+                this.file = event.target.files[0];
+                //创建图片文件的url
+                this.src = windowURL.createObjectURL(event.target.files[0]);
+                var formdata = new FormData();
+                formdata.append('file', this.file);
+//                formdata.append('userId',"1")
+//                console.log(this.$refs.avatar.files[0]);
+                console.log(formdata.get("userId"))
+                var config = {};
+                axios({
+                    method: "POST",
+                    url: api.uploadimage,
+                    headers: {
+                        'Content-Type': 'multipart/form-data'
+                    },
+                    data:
+                    formdata,
 
-      axios({
-         headers: { "Content-Type": "multipart/form-data" },
-        method: "POST",
-        url: api.uploadimage,
-        data: {
-          formData
+                })
+                    .then(res => {
+//                        this.data = res.data;
+                        console.log(res.code)
+                        this.src = res.data
+                        console.log(this.src)
+                        console.log(res.message)
+//                        var mobile = res.data.mobile;
+//                        console.log(res.data.userStatus);
+//                        console.log("res.data", res.data);
+                        //                this.bannerList = res.data.bannerList;
+                        //                console.log(this.bannerList)
+                        //                this.$set(this.items,data)
+                    })
+                    .catch(rtn => {
+                        console.log(rtn);
+                    });
+            }
         }
-      })
-        .then(res => {
-          //                        this.data = res.data;
-          console.log(res.code);
-          //                        var mobile = res.data.mobile;
-          //                        console.log(res.data.userStatus);
-          //                        console.log("res.data", res.data);
-          //                this.bannerList = res.data.bannerList;
-          //                console.log(this.bannerList)
-          //                this.$set(this.items,data)
-        })
-        .catch(rtn => {
-          console.log(rtn);
-        });
-    },
-    createImage(file) {
-      var image = new Image();
-      var reader = new FileReader();
-      var vm = this;
-
-      reader.onload = e => {
-        vm.image = e.target.result;
-      };
-      reader.readAsDataURL(file);
-      axios({
-        method: "POST",
-        url: api.uploadimage,
-        data: {
-          file: this.image
-        }
-      })
-        .then(res => {
-          //                        this.data = res.data;
-          console.log(res.code);
-          //                        var mobile = res.data.mobile;
-          //                        console.log(res.data.userStatus);
-          //                        console.log("res.data", res.data);
-          //                this.bannerList = res.data.bannerList;
-          //                console.log(this.bannerList)
-          //                this.$set(this.items,data)
-        })
-        .catch(rtn => {
-          console.log(rtn);
-        });
     }
-  }
-};
 </script>
 <style lang="less" scoped="scoped">
 .container {

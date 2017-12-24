@@ -221,6 +221,7 @@ api.unbindbankcard = baseurl + "/user/unbind/bank?userId=";
  file	是	file	图片
  请求时写入data{}中
  */
+//上传图片
 api.uploadimage = baseurl + "/upload/image";
 
 /**
@@ -245,4 +246,29 @@ api.userDetail = baseurl + "/user/info?userId=1";
  */
 //用户首页
 api.userIndex = baseurl + "/user/index?userId=1";
+
+//实名认证接口
+/*
+* realName	是	string	真实姓名
+idCardNumber	是	string	身份证号
+idCardFront	是	string	身份证正面图片地址
+idCardVerso	是	string	身份证反面图片地址
+idCardBody	是	string	手持身份证图片地址
+userId	是	Int	用户id
+*
+* */
+api.bindIdentify = baseurl + "/bind/identity?userId=4"
+
+/*
+userId	是	Int	用户id
+推出团队
+* */
+api.outTeam = baseurl + "/team/outTeam?userId="
+
+    /**
+     *
+     * 提现接口
+     */
+api.extract = baseurl + "/user/extract?userId="
 export default api
+
