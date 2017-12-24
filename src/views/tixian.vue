@@ -67,9 +67,11 @@ export default {
     submit() {
       if (!this.cash) {
         alert("请输入提现金额");
+        return;
       }
       if (this.cash > this.balance) {
         alert("提现金额 大于 账户余额");
+           return;
       }
       // 如果没哟实名认证
       if(!this.isIdentity){

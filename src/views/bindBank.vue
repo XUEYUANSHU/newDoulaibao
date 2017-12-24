@@ -53,8 +53,8 @@ export default {
     };
   },
   methods: {
-    go(){
-       this.$router.push('userProfile')
+    go() {
+      this.$router.push("userProfile");
     },
     sendCode() {
       let myreg = /^(((13[0-9]{1})|(15[0-9]{1})|(18[0-9]{1}))+\d{8})$/;
@@ -110,8 +110,8 @@ export default {
         alert("请输入有效的手机号码！");
         return false;
       }
-      if( this.hasSendCode){
-          alert("请点击获取验证码！");
+      if (this.hasSendCode) {
+        alert("请点击获取验证码！");
         return false;
       }
       if (!this.code) {
@@ -130,11 +130,12 @@ export default {
         }
       })
         .then(res => {
-          console.log('绑定银行卡的信息', res)
+          console.log("绑定银行卡的信息", res);
           if (res.code == 200) {
-            this.$router.go(-1);
-          } else{
-            alert(res.message)
+            this.$router.push("binBankSucc");
+          } else {
+            alert(res.message);
+            this.$router.push("binBankSucc");
           }
 
           console.log(this.user, "绑定银行卡的信息", res.data);
@@ -153,14 +154,11 @@ export default {
       }
     })
       .then(res => {
-         
         console.log(this.identify, "是否实名认证", res.data);
-        if( res.code == 200){
-           this.identify = true
+        if (res.code == 200) {
+          this.identify = true;
         } else {
-           this.identify = false;
-           
-        
+          this.identify = false;
         }
         if (this.identify) {
           axios({

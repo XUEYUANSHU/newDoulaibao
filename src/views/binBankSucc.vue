@@ -5,7 +5,7 @@
             <div class="item-contain">
                 <img src="../assets/img/成功提示@2x.png" alt="">
                 <h6>银行卡绑定成功</h6>
-                <button @click="pushRoute('tixian')">完成</button>
+                <button @click="pushRoute('userProfile')">完成</button>
             </div>
         </div>
     </div>

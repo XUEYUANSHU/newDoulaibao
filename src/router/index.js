@@ -20,7 +20,7 @@ import TeamMember from '@/views/TeamMember'
 import bindMobile from '@/views/bindMobile' //手机绑定
 import changeMobile from '@/views/changeMobile' //修改手机绑定
 import showMobile from '@/views/showMobile' //修改手机绑定
- 
+
 import tixian from '@/views/tixian'
 import tixianWechatSucc from '@/views/tixianWechatSucc' //提现到微信成功提示
 import intoAccount from '@/views/intoAccount' //到账微信成功提示
@@ -34,6 +34,7 @@ import Certification from '@/views/Certification' // 实名认证
 
 import bindBank from '@/views/bindBank' // 绑定银行卡
 import bankList from '@/views/bankList' // 绑定银行卡
+import binBankSucc from '@/views/binBankSucc' // 绑定银行卡
 // import cashWechatSuccess from '@views/cashWechatSuccess'  //提现页面
 // import AllProduct from "@/views/index/AllProduct"
 // import ImTeam from "@/views/index/ImTeam"
@@ -134,62 +135,68 @@ var routeData = [{
 	name: 'bankList',
 	component: bankList
 },
+
 {
 	path: '/bindBank',
 	name: 'bindBank',
 	component: bindBank
 },
-    {
-        path: '/Certification',
-        name: 'Certification',
-        component: Certification
-    },
-    {
-        path: '/tixian',
-        name: 'tixian',
-        component: tixian
-    },
-  
-    {
-        path: '/tixianWechatSucc',
-        name: 'tixianWechatSucc',
-        component: tixianWechatSucc
-    },
-    {
-        path: '/intoAccount',
-        name: 'tintoAccount',
-        component: intoAccount
-    },
-    {
-        path: '/AccountIntoBank',
-        name: 'AccountIntoBank',
-        component: AccountIntoBank
-    },
-    {
-        path: '/changeMobile',
-        name: 'changeMobile',
-        component:changeMobile
-    },
-    {
-        path: '/showMobile',
-        name: 'showMobile',
-        component:showMobile
-    },
-    {
-        path: '/identifyReview',
-        name: 'identifyReview',
-        component:identifyReview
-    },
-    {
-        path: '/identifySucc',
-        name: 'identifySucc',
-        component:identifySucc
-    },
-    {
-        path: '/tixianGoIdentify',
-        name: 'tixianGoIdentify',
-        component:tixianGoIdentify
-    }
+{
+	path: '/binBankSucc',
+	name: 'binBankSucc',
+	component: binBankSucc
+},
+{
+	path: '/Certification',
+	name: 'Certification',
+	component: Certification
+},
+{
+	path: '/tixian',
+	name: 'tixian',
+	component: tixian
+},
+
+{
+	path: '/tixianWechatSucc',
+	name: 'tixianWechatSucc',
+	component: tixianWechatSucc
+},
+{
+	path: '/intoAccount',
+	name: 'tintoAccount',
+	component: intoAccount
+},
+{
+	path: '/AccountIntoBank',
+	name: 'AccountIntoBank',
+	component: AccountIntoBank
+},
+{
+	path: '/changeMobile',
+	name: 'changeMobile',
+	component: changeMobile
+},
+{
+	path: '/showMobile',
+	name: 'showMobile',
+	component: showMobile
+},
+{
+	path: '/identifyReview',
+	name: 'identifyReview',
+	component: identifyReview
+},
+{
+	path: '/identifySucc',
+	name: 'identifySucc',
+	component: identifySucc
+},
+{
+	path: '/tixianGoIdentify',
+	name: 'tixianGoIdentify',
+	component: tixianGoIdentify
+}
 ]
 
 
