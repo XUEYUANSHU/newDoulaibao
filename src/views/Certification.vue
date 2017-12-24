@@ -3,33 +3,33 @@
         <div class="cert-item">
             <h3><span>实名认证</span>(请上传真实的个人信息，认证通过后将无法修改)</h3>
             <div class="cert-input">
-                <p><span>姓名</span><input type="text" placeholder="请输入真实姓名"></p>
-                <p><span>身份证</span><input type="text" placeholder="请输入信息"></p>
+                <p><span>姓名</span><input type="text" placeholder="请输入真实姓名" ref="realName" v-model="realName"></p>
+                <p><span>身份证</span><input type="text" placeholder="请输入信息" ref="idCard" v-model="idCardNumber"></p>
             </div>
             <div class="cert-img">
                 <div class="cert-img-list">
                     <p>身份证正面照</p>
                     <div class="choose-img">
-                        <img src="../assets/img/zhengmian2x.png" alt="">
-                        <input type="file" accept="image/png,image/gif,image/jpg" name="file" />
+                        <img :src="idCardFront" alt="">
+                        <input type="file" accept="image/png,image/gif,image/jpg" name="file" @change="uploading($event,this)" ref="avatar" />
                     </div>
                 </div>
                 <div class="cert-img-list">
                     <p>身份证反面照</p>
                     <div class="choose-img">
-                        <img src="../assets/img/反面照@2x.png" alt="">
-                        <input type="file" accept="image/png,image/gif,image/jpg" @change="onFileChange($event,1)"/>
+                        <img :src="idCardVerso" alt="">
+                        <input type="file" accept="image/png,image/gif,image/jpg" @change="uploading($event,this)" ref="avatar2"/>
                     </div>
                 </div>
                 <div class="cert-img-list">
                     <p>手持身份证照</p>
                     <div class="choose-img">
-                        <img src="../assets/img/反面照@2x.png" alt="">
-                        <input type="file" accept="image/png,image/gif,image/jpg" @change="onFileChange($event,1)"/>
+                        <img :src="idCardBody" alt="">
+                        <input type="file" accept="image/png,image/gif,image/jpg" @change="uploading($event,this)" ref="avatar3"/>
                     </div>
                 </div>
             </div>
-            <div class="upload" @click="uploadImg()">
+            <div class="upload" @click="submit()">
                 <span>提交</span>
             </div>
         </div>
@@ -42,7 +42,11 @@
     export default {
         data(){
             return {
-
+                realName:'',
+                idCardNumber:'',
+                idCardFront:'static/img/zhengmian.png',//正面
+                idCardVerso:'static/img/反面照@2x.png',//反面
+                idCardBody:'static/img/手持@2x.png',//手持身份证
             }
         },
         created(){
@@ -50,9 +54,100 @@
         },
         methods:{
             uploadImg(){
-                this.$router.push('identifyReview')
+//                this.$router.push('identifyReview')
 //
             },
+            uploading(event){
+//                var that = this
+                this.file = event.target.files[0];//获取文件
+                var windowURL = window.URL || window.webkitURL;
+//
+                this.file = event.target.files[0];
+                //创建图片文件的url
+                this.idCardFront = windowURL.createObjectURL(this.$refs.avatar.files[0]);
+                this.idCardVerso = windowURL.createObjectURL(this.$refs.avatar2.files[0]);
+                this.idCardBody = windowURL.createObjectURL(this.$refs.avatar3.files[0]);
+                var formdata = new FormData();
+                formdata.append('file', this.file);
+//                formdata.append('userId',"1")
+                console.log(this.$refs.avatar.files[0]);
+//                console.log(formdata.get("userId"))
+                var config ={} ;
+//                axios({
+//                    method: "POST",
+//                    url: api.uploadimage,
+//                    headers: {
+//                        'Content-Type':'multipart/form-data'
+//                    },
+//                    data:
+//                    formdata,
+//
+//                })
+//                    .then(res => {
+////                        this.data = res.data;
+//                        console.log(res.code)
+//                        this.src = res.data
+//                        console.log(this.src)
+//                        console.log(res.message)
+////                        var mobile = res.data.mobile;
+////                        console.log(res.data.userStatus);
+////                        console.log("res.data", res.data);
+//                        //                this.bannerList = res.data.bannerList;
+//                        //                console.log(this.bannerList)
+//                        //                this.$set(this.items,data)
+//                    })
+//                    .catch(rtn => {
+//                        console.log(rtn);
+//                    });
+            },
+            submit(){
+//                console.log(this.realName)
+//                console.log(this.idCard)
+                console.log(this.$refs.avatar.files[0])
+//                console.log(this.$refs.avatar2.files[0])
+//                console.log(this.$refs.avatar3.files[0])
+                if(this.realName === '' || this.idCardNumber === ''){
+                    alert('请输入个人信息')
+                }
+                if(this.$refs.avatar.files[0] === undefined || this.$refs.avatar2.files[0] === undefined || this.$refs.avatar3.files[0] === undefined){
+                    alert('请选择照片')
+                }else {
+                    var formdata = new FormData();
+                    formdata.append('realName',this.realName)
+                    formdata.append('idCardNumber',this.idCard)
+                    formdata.append('idCardFront',this.$refs.avatar.files[0])
+                    formdata.append('idCardVerso',this.$refs.avatar2.files[0])
+                    formdata.append('idCardBody',this.$refs.avatar3.files[0])
+                    formdata.append('userId',1)
+                    axios({
+                        method: "POST",
+                        url: api.bindIdentify,
+                        headers: {
+                            'Content-Type':'multipart/form-data'
+                        },
+                        data: formdata
+                })
+                    .then(res => {
+//                        this.data = res.data;
+                        console.log(res.code)
+                        if(res.code === 200){
+                            this.$router.push('identifyReview')
+                        }
+//                        this.src = res.data
+//                        console.log(this.src)
+                        console.log(res.message)
+//                        var mobile = res.data.mobile;
+//                        console.log(res.data.userStatus);
+//                        console.log("res.data", res.data);
+                        //                this.bannerList = res.data.bannerList;
+                        //                console.log(this.bannerList)
+                        //                this.$set(this.items,data)
+                    })
+                    .catch(rtn => {
+                        console.log(rtn);
+                    });
+                }
+            }
         }
     }
 </script>
