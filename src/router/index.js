@@ -20,7 +20,7 @@ import TeamMember from '@/views/TeamMember'
 import bindMobile from '@/views/bindMobile' //手机绑定
 import changeMobile from '@/views/changeMobile' //修改手机绑定
 import showMobile from '@/views/showMobile' //修改手机绑定
-import addBankCard from '@/views/addBankCard'
+ 
 import tixian from '@/views/tixian'
 import tixianWechatSucc from '@/views/tixianWechatSucc' //提现到微信成功提示
 import intoAccount from '@/views/intoAccount' //到账微信成功提示
@@ -33,6 +33,7 @@ import tixianGoIdentify from '@/views/tixianGoIdentify' //提现转实名认证
 import Certification from '@/views/Certification' // 实名认证
 
 import bindBank from '@/views/bindBank' // 绑定银行卡
+import bankList from '@/views/bankList' // 绑定银行卡
 // import cashWechatSuccess from '@views/cashWechatSuccess'  //提现页面
 // import AllProduct from "@/views/index/AllProduct"
 // import ImTeam from "@/views/index/ImTeam"
@@ -129,6 +130,11 @@ var routeData = [{
 	component: Certification
 },
 {
+	path: '/bankList',
+	name: 'bankList',
+	component: bankList
+},
+{
 	path: '/bindBank',
 	name: 'bindBank',
 	component: bindBank
@@ -143,11 +149,7 @@ var routeData = [{
         name: 'tixian',
         component: tixian
     },
-    {
-        path: '/addBankCard',
-        name: 'addBankCard',
-        component: addBankCard
-    },
+  
     {
         path: '/tixianWechatSucc',
         name: 'tixianWechatSucc',

@@ -1,7 +1,7 @@
 <template>
         <div class="footer">
             <ul>
-                <li @click="goUrl(1)"   :class="{activeName: activeName  == 1}">
+                <li @click="goUrl(1)"   :class="{activeName: activeName  === 1}">
                     <i class="iconfont">&#xe621;</i>
                     <span>首页</span>
                 </li>
@@ -20,7 +20,7 @@
 export default {
   props: {
     activeName: {
-      type: Number,
+     
       default() {
         return 1;
       }
@@ -45,6 +45,9 @@ export default {
           break;
       }
     }
+  },
+  mounted(){
+    console.log('底部显示第几个', this.activeName)
   }
 };
 </script>

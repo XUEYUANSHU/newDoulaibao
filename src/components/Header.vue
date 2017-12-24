@@ -11,7 +11,6 @@
 export default {
   props: {
     url: {
-      
       default() {
         return -1;
       }
