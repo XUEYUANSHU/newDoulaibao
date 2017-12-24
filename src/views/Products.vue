@@ -1,5 +1,6 @@
 <template>
     <div class="products">
+      <Header url='-1' title="产品"></Header>
       <div class="listType">
         <ul>
             <li :class=" (!activeName)? 'activeName': ''"  @click="selected()"> <img src="../assets/img/全部产品页-06.png" alt=""> </li>
@@ -37,6 +38,7 @@
 <script>
 import axios from "axios";
 import footer from "@/components/footer.vue";
+import Header from "@/components/Header.vue";
 import api from "@/api/index.api";
 
 export default {
@@ -49,7 +51,8 @@ export default {
   },
 
   components: {
-    ele_footer: footer
+    ele_footer: footer,
+    Header
   },
   mounted() {
     axios({
@@ -125,7 +128,7 @@ export default {
   height: 1.34rem;
   background-color: #f25f23;
   font-size: 13px;
-  border: 1px solid red;
+ 
   ul {
     display: flex;
     width: 100%;

@@ -11,7 +11,7 @@
 						<div class="noticeInfo"><span class="orderStatus">{{item.noticeTitle}}</span><span class="orderTime">{{item.updateTime | timeSplit}}</span></div>
 						<div class="noticeDesc">{{item.noticeInfo}}</div>
 					</div>
-					<div class="delete" v-show="showDelete == idx"   @click="delected(idx)">删除</div>
+					<div class="delete" v-show="false"   @click="delected(idx)">删除</div>
 				</li>			
 			</ul>
 		</div>

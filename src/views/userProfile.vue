@@ -1,6 +1,7 @@
 <template>
 
     <div class="container">
+        <Header url='-1' title="首页"></Header>
         <!--个人资料-->
         <div class="item-ul">
            <ul>
@@ -37,27 +38,28 @@
     </div>
 </template>
 <script>
+    import Header from "@/components/Header.vue";
     import footer from "@/components/footer.vue";
     import axios from "@/api/axios";
     import api from "@/api/index.api";
     export default {
-        data(){
+        data() {
             return {
-                   data:[],
-                   usermobile:'',
-                   status:'',
-                    file:'',
-                    src:''
+                data: [],
+                usermobile: '',
+                status: '',
+                file: '',
+                src: ''
             }
         },
-        created(){
-          this.getUerProfile()
+        created() {
+            this.getUerProfile()
         },
-        methods:{
-            pushRoute(param){
-                this.$router.push(""+param+"")
+        methods: {
+            pushRoute(param) {
+                this.$router.push("" + param + "")
             },
-            getUerProfile(){
+            getUerProfile() {
                 axios({
                     method: "POST",
                     url: api.userDetail,
@@ -80,37 +82,37 @@
                     });
             },
             //检测手机号是否绑定
-            checkMobile(){
-                var usermobile =  this.usermobile = event.currentTarget.getAttribute('usermobile-id');
+            checkMobile() {
+                var usermobile = this.usermobile = event.currentTarget.getAttribute('usermobile-id');
 //                alert(this.usermobile)
-                if(usermobile === ''){
+                if (usermobile === '') {
                     this.$touter.push('bindMobile')
-                }else {
+                } else {
                     this.$router.push('showMobile')
                 }
             },
             //检测是否实名
-            checkUserStatus(){
-                var status =  this.status = event.currentTarget.getAttribute('status-id');
+            checkUserStatus() {
+                var status = this.status = event.currentTarget.getAttribute('status-id');
 //                alert(this.status)0 未通过 1.审核中2.通过 3.失败
-                if(status === "0"){
+                if (status === "0") {
                     this.$router.push('Certification')
 //                    alert('未认证')
-                }else if(status === "1"){
+                } else if (status === "1") {
 //                    this.$router.push('changeMobile')
                     this.$router.push('identifyReview')
 //                    alert('1')
-                }else if(status === "2"){
+                } else if (status === "2") {
 //                    alert('2')
                     this.$router.push('identifySucc')
 //                    this.$router.push('Certification')
-                }else {
+                } else {
 //                    alert('3')
                     this.$router.push('Certification')
                 }
             },
             //photo
-            choose(){
+            choose() {
 //                var formData = new FormData($("#uploadImage")[0]);
 ////                formData.append('userId',1);
 //                $.ajax({
@@ -134,7 +136,7 @@
 //                });
 
             },
-            uploading(event){
+            uploading(event) {
 //                var that = this
                 this.file = event.target.files[0];//获取文件
                 var windowURL = window.URL || window.webkitURL;
@@ -147,15 +149,15 @@
 //                formdata.append('userId',"1")
 //                console.log(this.$refs.avatar.files[0]);
                 console.log(formdata.get("userId"))
-                var config ={} ;
+                var config = {};
                 axios({
                     method: "POST",
                     url: api.uploadimage,
                     headers: {
-                        'Content-Type':'multipart/form-data'
+                        'Content-Type': 'multipart/form-data'
                     },
                     data:
-                        formdata,
+                    formdata,
 
                 })
                     .then(res => {
@@ -174,70 +176,69 @@
                     .catch(rtn => {
                         console.log(rtn);
                     });
-            },
-
+            }
         }
     }
 </script>
 <style lang="less" scoped="scoped">
-    .container{
-        background-color: #fff;
-    }
-    .item-ul{
-        ul{
-            margin:.2rem 0;
-            li{
-                display: flex;
-                align-items: center;
-                padding: .2rem;
-                font-size: .32rem;
-                color: #545454;
-                border-bottom: 1px solid #ccc;
-                p{
-                    flex:1;
-                    display: flex;
-                    position: relative;
-                    height:.56rem;
-                    img{
-                        width: .56rem;
-                        height:.56rem;
-                        border-radius: 50%;
-                        position: absolute;
-                        right:0;
-                        top:0;
-                        display: inline-block;
-                        z-index:98;
-                    }
-                    input{
-                        width:.56rem;
-                        height:.56rem;
-                        position: absolute;
-                        right:0;
-                        top:0;
-                        border:none;
-                        outline: none;
-                        /*background-color: rgba(0,0,0,0);*/
-                        opacity: 0;
-                        display: inline-block;
-                        z-index: 99;
-                    }
-                }
-                span:nth-child(2){
-                    flex:1;
-                    text-align: right;
-                }
-                i.item-right-icon{
-                    background: url("../assets/img/item-right-icon.png") no-repeat center;
-                    background-size: cover;
-                    width:.18rem;
-                    height:.36rem;
-                    margin-left: .3rem;
-                }
-            }
-            li.bankcard{
-                /*margin-top: .2rem;*/
-                border-top: .2rem solid #f2f2f2;
-            }
+.container {
+  background-color: #fff;
+}
+.item-ul {
+  ul {
+    margin: 0.2rem 0;
+    li {
+      display: flex;
+      align-items: center;
+      padding: 0.2rem;
+      font-size: 0.32rem;
+      color: #545454;
+      border-bottom: 1px solid #ccc;
+      p {
+        flex: 1;
+        display: flex;
+        position: relative;
+        height: 0.56rem;
+        img {
+          width: 0.56rem;
+          height: 0.56rem;
+          border-radius: 50%;
+          position: absolute;
+          right: 0;
+          top: 0;
+          display: inline-block;
+          z-index: 98;
         }
+        input {
+          width: 0.56rem;
+          height: 0.56rem;
+          position: absolute;
+          right: 0;
+          top: 0;
+          border: none;
+          outline: none;
+          /*background-color: rgba(0,0,0,0);*/
+          opacity: 0;
+          display: inline-block;
+          z-index: 99;
+        }
+      }
+      span:nth-child(2) {
+        flex: 1;
+        text-align: right;
+      }
+      i.item-right-icon {
+        background: url("../assets/img/item-right-icon.png") no-repeat center;
+        background-size: cover;
+        width: 0.18rem;
+        height: 0.36rem;
+        margin-left: 0.3rem;
+      }
     }
+    li.bankcard {
+      /*margin-top: .2rem;*/
+      border-top: 0.2rem solid #f2f2f2;
+    }
+  }
+}
 </style>
