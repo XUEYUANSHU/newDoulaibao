@@ -5,8 +5,8 @@
         <ul>
             <li :class=" (!activeName)? 'activeName': ''"  @click="selected()"> <img src="../assets/img/全部产品页-06.png" alt=""> </li>
             <li :class=" activeName== '0'? 'activeName': ''"  @click="selected('0')"><img src="../assets/img/全部产品页-07.png" alt=""></li>
-            <li :class=" activeName== '1'? 'activeName': ''"  @click="selected('1')"><img src="../assets/img/全部产品页-08.png" alt=""></li>
             <li :class=" activeName== '2'? 'activeName': ''"  @click="selected('2')"><img src="../assets/img/全部产品页-09.png" alt=""></li>
+            <li :class=" activeName== '1'? 'activeName': ''"  @click="selected('1')"><img src="../assets/img/全部产品页-08.png" alt=""></li>
         </ul>
       </div>
       <div  class="chooseType">
@@ -126,9 +126,8 @@ export default {
 }
 .listType {
   height: 1.34rem;
-  background-color: #f25f23;
+  background: url("../assets/img/mululan@2x.png") no-repeat center;
   font-size: 13px;
- 
   ul {
     display: flex;
     width: 100%;

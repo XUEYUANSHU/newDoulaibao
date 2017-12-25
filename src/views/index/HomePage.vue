@@ -1,6 +1,12 @@
 <template>
     <div>
-        <Header url='-1' title="首页"></Header>
+        <div >
+            <div class="hearder">
+              <i class="iconfont return">&#xe63c;</i>
+              <div class="title">首页</div>
+              <span></span>
+            </div>
+        </div>
         <swiper :options="swiperOption">
             <swiper-slide> <img src="../../assets/img/banner1.png" class="swi-img"></swiper-slide>
             <swiper-slide><img src="../../assets/img/banner3.png" class="swi-img"></swiper-slide>
@@ -10,19 +16,19 @@
         <div class="nav">
             <ul>
                 <li>
-                    <img src="../../assets/img/chuangfugonglue.png" alt="" @click="gotoRaider">
+                    <img src="../../assets/img/chuangfugonglueicon@2x.png" alt="" @click="gotoRaider">
                     <span>创富攻略 </span>
                 </li>
                 <li>
-                    <img src="../../assets/img/woshituanzhang.png" alt="" @click="gotoHeader">
+                    <img src="../../assets/img/woshituanzhangicon@2x.png" alt="" @click="gotoHeader">
                     <span>我是团长 </span>
                 </li>
                 <li>
-                    <img src="../../assets/img/woshituanyuan.png" alt="" @click="gotoMember">
+                    <img src="../../assets/img/woshituanyuanicon@2x.png" alt="" @click="gotoMember">
                     <span>我是团员 </span>
                 </li>
                 <li @click="gotomyWealth">
-                    <img src="../../assets/img/wodecaifu.png" alt="">
+                    <img src="../../assets/img/wodecaifuicon@2x.png" alt="">
                     <span>我的财富  </span>
                 </li>
             </ul>
@@ -77,7 +83,7 @@
 </template>
 <script>
 import footer from "@/components/footer.vue";
-import Header from "@/components/Header.vue";
+ 
 import axios from "@/api/axios";
 import api from "@/api/index.api";
 import router from "@/router/index";
@@ -91,7 +97,7 @@ export default {
     swiper,
     swiperSlide,
     ele_footer: footer,
-    Header
+  
   },
   data() {
     return {
@@ -191,6 +197,29 @@ export default {
 };
 </script>
 <style lang="less" scoped>
+ 
+.hearder {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 0.86rem;
+  color: #ffffff;
+  background-image: -webkit-linear-gradient(left,#F7931E 0%,#F15A24); 
+  // background-color: #F47221;
+  padding: 0 0.24rem;
+  text-align: center;
+  .return {
+    visibility: hidden;
+    padding: 0.1rem;
+    font-size: 0.4rem;
+  }
+  .title {
+    flex: 1;
+    margin-left: -1rem;
+    font-size: 0.28rem;
+    text-align: center;
+  }
+}
 .chooseType {
   position: relative;
   width: 100%;
@@ -253,10 +282,14 @@ export default {
       flex: 1;
       text-align: center;
       font-size: 0;
+      img{
+        width: 0.78rem;
+        height:0.78rem;
+      }
       span {
         display: block;
         margin-top: 0.1rem;
-        font-size: .28rem;
+        font-size: 0.28rem;
         color: #3d3d3d;
       }
     }
@@ -271,14 +304,14 @@ export default {
     height: 0.8rem;
     padding: 0 0.3rem;
     i.icon-hotProduct {
-      background: url("../../assets/img/hot.png") no-repeat center;
+      background: url("../../assets/img/rexiaochanpin@2x.png") no-repeat center;
       background-size: cover;
       width: 0.4rem;
       height: 0.4rem;
       display: block;
     }
     i.icon-huoke {
-      background: url("../../assets/img/huoke-icon.png") no-repeat center;
+      background: url("../../assets/img/huokechanpin@2x.png") no-repeat center;
       background-size: cover;
       width: 0.4rem;
       height: 0.4rem;

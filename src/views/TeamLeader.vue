@@ -34,7 +34,7 @@
         </div>
 
         <div class="header-content">
-            <p>
+            <p class="bdone">
                 <i class="icon-people"></i>
                 <span class="teamName">团队名称</span>
                 <!-- <span class="more"> </span> -->
@@ -108,6 +108,9 @@ export default {
 };
 </script>
 <style lang="less" scoped>
+.bdone{
+  border-bottom:0.01rem solid #f3f0f0;
+}
 .header-content {
   background: #fff;
   padding: 0 0.24rem;
