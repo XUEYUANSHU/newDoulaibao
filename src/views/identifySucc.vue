@@ -1,6 +1,6 @@
 <template>
     <div>
-          <Header url="-1" title="实名认证成功" />
+        <commonHeader url="-1" title="实名认证成功"/>
         <div class="item">
             <div class="item-contain">
                 <img src="../assets/img/成功提示@2x.png" alt="">
@@ -11,11 +11,12 @@
     </div>
 </template>
 <script>
-import Header from "@/components/Header.vue";
-    export  default {
-          components: {
-    Header
-  },
+    import commonHeader from "@/components/Header.vue";
+
+    export default {
+        components: {
+            commonHeader
+        },
         methods: {
             pushRoute(param) {
                 this.$router.push("" + param + "");
@@ -24,38 +25,38 @@ import Header from "@/components/Header.vue";
     }
 </script>
 <style lang="less" scoped>
-    .item{
-        .item-contain{
+    .item {
+        .item-contain {
             font-size: 0;
             text-align: center;
-            img{
-                width:1.28rem;
-                height:1.28rem;
+            img {
+                width: 1.28rem;
+                height: 1.28rem;
                 margin: 2rem auto .4rem;
             }
-            h6{
+            h6 {
                 font-size: .48rem;
                 text-align: center;
                 color: #fc8d00;
                 padding: 0 1.5rem;
                 line-height: .66rem;
             }
-            button{
+            button {
                 font-size: .32rem;
                 text-align: center;
                 background-color: #fc8d00;
                 display: block;
-                outline:none;
-                border:none;
-                width:6rem;
-                height:.8rem;
+                outline: none;
+                border: none;
+                width: 6rem;
+                height: .8rem;
                 margin: 1.6rem auto 0;
                 line-height: .8rem;
                 color: #fff;
                 border-radius: .1rem;
                 margin-top: 1rem;
             }
-            p{
+            p {
                 font-size: .26rem;
                 color: #9b9b9b;
                 line-height: .4rem;
